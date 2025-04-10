@@ -98,7 +98,7 @@ form input:focus{
     outline:none;
     border-color: var(--hover-color);
 }
-div:has(input:focus) > label{
+form div:has(input:focus) > label{
     background-color: var(--hover-color);
 }
 
@@ -208,11 +208,54 @@ div:has(input:focus) > label{
     }
 }
 
-.senza-bordi {
-    border-radius: 0 0 0 0;
+.lista-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    text-align: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: clamp(20px, 2vw, 40px);
+    justify-items: start;
 }
 
-.reset{
-    border-radius: 0 10px 10px 0;
-    height: 50px;   
+.sezione {   
+    padding:20px 0 20px 0;
+  }
+
+.sezione > div {
+    margin-bottom: 5px; /* aggiungi margine inferiore */
+}
+
+.sezione input[type="checkbox"]:checked ~ label {
+    color:var(--shadow-color);
+}
+
+.sezione input[type="checkbox"] + label {
+    padding-left: 5px; 
+}
+
+
+.sezione > div {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    
+}
+
+
+.sezione input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2.3px;
+    accent-color: var(--btn-icon-background-color);
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.sezione label {
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.2;
 }
