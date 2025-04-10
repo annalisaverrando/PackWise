@@ -5,7 +5,7 @@
     --error-color: #f06272;
     --btn-icon-background-color: #5f8ecc;
     --hover-color:#191970;
-    --shadow-color: #727272;
+    --shadow-color: #898989;
 }
 
 * {
@@ -16,7 +16,7 @@
 
 html {
     font-family: 'arial', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     color:var(--text-color);
 }
 
@@ -40,10 +40,13 @@ body{
 }
 
 h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin: 20px 0 20px 0;
+}
+h2{
+    font-size: 1.7rem;
 }
 
 form{
@@ -54,7 +57,7 @@ form{
 }
 
 form > div{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,13 +69,10 @@ form label{
     width: 50px;
     background-color: var(--btn-icon-background-color);
     fill: var(--background-color);
-    color: var(--text-color);
     border-radius: 10px 0 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 500;
 }
 form label:hover {
     background-color: var(--hover-color);
@@ -106,6 +106,7 @@ div:has(input:focus) > label{
     background-color: var(--btn-icon-background-color); 
     border-color: var(--btn-icon-background-color);
     font-weight: 600;
+    font-size: 1.2rem;
 }
 .btn-primary:hover {
     background-color: var(--hover-color);
@@ -114,7 +115,7 @@ div:has(input:focus) > label{
 
 .text-center p{
     margin-top: 20px;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 .text-center a{
     text-decoration: none;
@@ -125,16 +126,16 @@ div:has(input:focus) > label{
 }
 
 .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 30px 10px 30px 20px;
-    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px 10px 30px 25px;
+    text-align: start;
 }
 
 .griglia-attività{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 160px);
-    gap: clamp(10px, 2vw, 1000px);
+    grid-template-columns: repeat(auto-fit, 120px);
+    gap: clamp(5px, 2vw, 40px);
     padding: 10px 0 30px 0;
     justify-items: center;
 }
@@ -142,11 +143,11 @@ div:has(input:focus) > label{
 .attività{
     background-color: var(--background-color);
     border: 2px solid var(--hover-color);
-    border-radius: 10px;
+    border-radius: 20px;
     width: 100%;
-    max-width: 150px;
+    max-width: 120px;
     padding: 20px 10px;
-    height: 150px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,6 +155,7 @@ div:has(input:focus) > label{
     cursor: pointer;
     user-select: none;
     position: relative;
+    transition: all 0.2s ease;
 }
 
 .attività input{
@@ -161,16 +163,15 @@ div:has(input:focus) > label{
 }
 .attività input[type="checkbox"]:checked + img {
     transform: scale(1.1);
-    filter: brightness(1.1);
-  }
-  .attività input[type="checkbox"]:checked ~ span {
+}
+.attività input[type="checkbox"]:checked ~ span {
     font-weight: bolder;
-  }
+}
 
-  .attività:has(input[type="checkbox"]:checked) {
+.attività:has(input[type="checkbox"]:checked) {
     border-color: var(--btn-icon-background-color);
     background-color: #e6f0ff;
-  }
+}
 
 .attività:hover {
     border-color: var(--btn-icon-background-color);
@@ -182,18 +183,18 @@ div:has(input:focus) > label{
 }
   
 .attività img {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     margin-bottom: 10px;
-    transition: transform 0.2s ease;
-  }
+}
   
-  .attività span {
-    font-weight: 600;
-    font-size: 1rem;
+.attività span {
+    font-weight: 500;
+    font-size: 1.1rem;
     color: var(--text-color);
-  }
+    text-align: center;
+}
 
 @media(max-width: 500px){
     .text-center{
@@ -203,6 +204,15 @@ div:has(input:focus) > label{
 @media(min-width: 992px){
     .text-center{
         width: 95%;
-        max-width: 800px;
+        max-width: 700px;
     }
+}
+
+.senza-bordi {
+    border-radius: 0 0 0 0;
+}
+
+.reset{
+    border-radius: 0 10px 10px 0;
+    height: 50px;   
 }
