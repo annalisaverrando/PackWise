@@ -6,427 +6,1421 @@
         <title>Lista</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script type="application/javascript" src="lista.js" defer></script>
     </head>
     <body>
+        <div class="page-lista">
+            <h1>Lista del viaggio</h1>
         <div class="lista-container">
-            <div class="sezione">
-                <h2>Essenziali</h2>
-                <div>
-                    <input type="checkbox" name="essenziali" value="caricatore-del-cellulare" id="caricatore-del-cellulare">
-                    <label for="caricatore-del-cellulare">Caricatore del cellulare</label>
+            <div class="sezione" id="essenziali">
+                <div class="sezione-header">
+                    <h2>Essenziali</h2>
+                        <div class="sezione-controls">
+                            <button class="btn-add" title="Aggiungi elemento">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                            <button class="btn-toggle" title="Espandi/Comprimi">
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </div>
                 </div>
-                <div>
-                    <input type="checkbox" name="essenziali" value="cellulare" id="cellulare">
-                    <label for="cellulare">Cellulare</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="essenziali" value="chiavi-di-casa" id="chiavi-di-casa">
-                    <label for="chiavi-di-casa">Chiavi di casa</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="essenziali" value="cuffie" id="cuffie">
-                    <label for="cuffie">Cuffie</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="essenziali" value="documento-identita" id="documento-identita">
-                    <label for="documento-identita">Documento d'identità</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="essenziali" value="farmaci" id="farmaci">
-                    <label for="farmaci">Farmaci</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="essenziali" value="portafoglio" id="portafoglio">
-                    <label for="portafoglio">Portafoglio</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="accendino" id="accendino">
-                    <label for="accendino">Accendino</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="kit-di-prontosoccorso" id="kit-di-prontosoccorso">
-                    <label for="kit-di-prontosoccorso">Kit di pronto soccorso</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="sacco-a-pelo" id="sacco-a-pelo">
-                    <label for="sacco-a-pelo">Sacco a pelo</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="tenda" id="tenda">
-                    <label for="tenda">Tenda</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="torcia" id="torcia">
-                    <label for="torcia">Torcia</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Abbigliamento</h2>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="biancheria" id="biancheria">
-                    <label for="biancheria">Biancheria</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="calzini" id="calzini">
-                    <label for="calzini">Calzini</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="cintura" id="cintura">
-                    <label for="cintura">Cintura</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="giaccone" id="giaccone">
-                    <label for="giaccone">Giaccone</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="gonna" id="gonna">
-                    <label for="gonna">Gonna</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="magliette" id="magliette">
-                    <label for="magliette">Magliette</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="maglioni" id="maglioni">
-                    <label for="maglioni">Maglioni</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="pantaloni" id="pantaloni">
-                    <label for="pantaloni">Pantaloni</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="pigiama" id="pigiama">
-                    <label for="pigiama">Pigiama</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="scarpe" id="scarpe">
-                    <label for="scarpe">Scarpe</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="sciarpa" id="sciarpa">
-                    <label for="sciarpa">Sciarpa</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="abbigliamento" value="vestito" id="vestito">
-                    <label for="vestito">Vestito</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Toeletta</h2>
-                <div>
-                    <input type="checkbox" name="toeletta" value="cotton-fioc" id="cotton-fioc">
-                    <label for="cotton-fioc">Cotton fioc</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="crema-solare" id="crema-solare">
-                    <label for="crema-solare">Crema solare</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="crema-viso" id="crema-viso">
-                    <label for="crema-viso">Crema viso</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="dentifricio" id="dentifricio">
-                    <label for="dentifricio">Dentifricio</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="deodorante" id="deodorante">
-                    <label for="deodorante">Deodorante</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="pettine" id="pettine">
-                    <label for="pettine">Pettine</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="profumo" id="profumo">
-                    <label for="profumo">Profumo</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="sapone" id="sapone">
-                    <label for="sapone">Sapone</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="shampoo" id="shampoo">
-                    <label for="shampoo">Shampoo</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="spazzola" id="spazzola">
-                    <label for="spazzola">Spazzola</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="spazzolino" id="spazzolino">
-                    <label for="spazzolino">Spazzolino</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="struccante" id="struccante">
-                    <label for="struccante">Struccante</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="tagliaunghie" id="tagliaunghie">
-                    <label for="tagliaunghie">Tagliaunghie</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="toeletta" value="trucco" id="trucco">
-                    <label for="trucco">Trucco</label>
-                </div>
-            </div>           
-            <div class="sezione">
-                <h2>Internazionale</h2>
-                <div>
-                    <input type="checkbox" name="internazionale" value="adattatore" id="adattatore">
-                    <label for="adattatore">Adattatore</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="internazionale" value="passaporto" id="passaporto">
-                    <label for="passaporto">Passaporto</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="internazionale" value="permesso-di-soggiorno" id="permesso-di-soggiorno">
-                    <label for="permesso-di-soggiorno">Permesso di soggiorno</label>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="caricatore-del-cellulare" id="caricatore-del-cellulare">
+                            <label for="caricatore-del-cellulare">Caricatore del cellulare</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="cellulare" id="cellulare">
+                            <label for="cellulare">Cellulare</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="chiavi-di-casa" id="chiavi-di-casa">
+                            <label for="chiavi-di-casa">Chiavi di casa</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="cuffie" id="cuffie">
+                            <label for="cuffie">Cuffie</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="documento-identita" id="documento-identita">
+                            <label for="documento-identita">Documento d'identità</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="farmaci" id="farmaci">
+                            <label for="farmaci">Farmaci</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="essenziali" value="portafoglio" id="portafoglio">
+                            <label for="portafoglio">Portafoglio</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="sezione">
-                <h2>Lavoro</h2>
-                <div>
-                    <input type="checkbox" name="lavoro" value="caricatore-del-computer" id="caricatore-del-computer">
-                    <label for="caricatore-del-computer">Caricatore del computer</label>
+            <div class="sezione" id="abbigliamento">
+                <div class="sezione-header">
+                    <h2>Abbigliamento</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <input type="checkbox" name="lavoro" value="computer" id="computer">
-                    <label for="computer">Computer</label>
-                </div>
-            </div>           
-            <div class="sezione">
-                <h2>Escursionismo</h2>
-                <div>
-                    <input type="checkbox" name="escursionismo" value="scarpe-da-trekking" id="scarpe-da-trekking">
-                    <label for="scarpe-da-trekking">Scarpe da trekking</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="escursionismo" value="abbigliamento-da-trekking" id="abbigliamento-da-trekking">
-                    <label for="abbigliamento-da-trekking">Abbigliamento da trekking</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="escursionismo" value="bastoncini-da-trekking" id="scarpe-da-trekking">
-                    <label for="bastoncini-da-trekking">Bastoncini da trekking</label>
-                </div>
-            </div>           
-            <div class="sezione">
-                <h2>Cena di gala</h2>
-                <div>
-                    <input type="checkbox" name="cena-di-gala" value="vestito-elegante" id="vestito-elegante">
-                    <label for="vestito-elegante">Vestito elegante</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="cena-di-gala" value="scarpe-eleganti" id="scarpe-eleganti">
-                    <label for="scarpe-eleganti">Scarpe eleganti</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="cena-di-gala" value="gioielli" id="gioielli">
-                    <label for="gioielli">Gioielli</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Fotografia</h2>
-                <div>
-                    <input type="checkbox" name="fotografia" value="caricabatterie" id="caricabatterie">
-                    <label for="caricabatterie">Caricabatterie</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="fotografia" value="lenti" id="lenti">
-                    <label for="lenti">Lenti</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="fotografia" value="macchina-fotografica" id="macchina-fotografica">
-                    <label for="macchina-fotografica">Macchina fotografica</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="fotografia" value="schede-di-memoria" id="schede-di-memoria">
-                    <label for="schede-di-memoria">Schede di memoria</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Palestra</h2>
-                <div>
-                    <input type="checkbox" name="palestra" value="asciugamano-da-palestra" id="asciugamano-da-palestra">
-                    <label for="asciugamano-da-palestra">Asciugamano da palestra</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="palestra" value="abbigliamento-da-palestra" id="abbigliamento-da-palestra">
-                    <label for="abbigliamento-da-palestra">Abbigliamento da palestra</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="palestra" value="scarpe-da-palestra" id="scarpe-da-palestra">
-                    <label for="scarpe-da-palestra">Scarpe da palestra</label>
-                </div>
-            </div>  
-            <div class="sezione">
-                <h2>Spiaggia</h2>
-                <div>
-                    <input type="checkbox" name="spiaggia" value="ciabatte" id="ciabatte">
-                    <label for="ciabatte">Ciabatte</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="spiaggia" value="crema-solare" id="crema-solare">
-                    <label for="crema-solare">Crema solare</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="spiaggia" value="costume" id="costume">
-                    <label for="costume">Costume</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="spiaggia" value="occhiali-da-sole" id="occhiali-da-sole">
-                    <label for="occhiali-da-sole">Occhiali da sole</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="spiaggia" value="ombrellone" id="ombrellone">
-                    <label for="ombrellone">Ombrellone</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="spiaggia" value="telo-mare" id="telo-mare">
-                    <label for="telo-mare">Telo mare</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Piscina</h2>
-                <div>
-                    <input type="checkbox" name="piscina" value="ciabatte" id="ciabatte">
-                    <label for="ciabatte">Ciabatte</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="piscina" value="costume" id="costume">
-                    <label for="costume">Costume</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="piscina" value="cuffia" id="cuffia">
-                    <label for="cuffia">Cuffia</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="piscina" value="occhialini" id="occhialini">
-                    <label for="occhialini">Occhialini</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Sport invernali</h2>
-                <div>
-                    <input type="checkbox" name="sport-invernali" value="attrezzatura-scii" id="attrezzatura-scii">
-                    <label for="attrezzatura-scii">Attrezzatura scii</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="sport-invernali" value="cappello" id="cappello">
-                    <label for="cappello">Cappello</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="sport-invernali" value="guanti" id="guanti">
-                    <label for="guanti">Guanti</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="sport-invernali" value="occhiali" id="occhiali">
-                    <label for="occhiali">Occhiali</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="sport-invernali" value="tuta-da-scii" id="tuta-da-scii">
-                    <label for="tuta-da-scii">Tuta da scii</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Campeggio</h2>
-                <div>
-                    <input type="checkbox" name="campeggio" value="accendino" id="accendino">
-                    <label for="accendino">Accendino</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="kit-di-prontosoccorso" id="kit-di-prontosoccorso">
-                    <label for="kit-di-prontosoccorso">Kit di pronto soccorso</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="sacco-a-pelo" id="sacco-a-pelo">
-                    <label for="sacco-a-pelo">Sacco a pelo</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="tenda" id="tenda">
-                    <label for="tenda">Tenda</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="campeggio" value="torcia" id="torcia">
-                    <label for="torcia">Torcia</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Auto</h2>
-                <div>
-                    <input type="checkbox" name="auto" value="chiavi-della-macchina" id="chiavi-della-macchina">
-                    <label for="chiavi-della-macchina">Chiavi della macchina</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="auto" value="patente" id="patente">
-                    <label for="patente">Patente</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="auto" value="libretto" id="libretto">
-                    <label for="libretto">Libretto</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="auto" value="assicurazione" id="assicurazione">
-                    <label for="assicurazione">Assicurazione</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Moto</h2>
-                <div>
-                    <input type="checkbox" name="moto" value="abbigliamento-moto" id="abbigliamento-moto">
-                    <label for="abbigliamento-moto">Abbigliamento moto</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="moto" value="casco" id="casco">
-                    <label for="casco">Casco</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="moto" value="documenti-moto" id="documenti-moto">
-                    <label for="documenti-moto">Documenti moto</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="moto" value="guanti" id="guanti">
-                    <label for="guanti">Guanti</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="moto" value="patente" id="patente">
-                    <label for="patente">Patente</label>
-                </div>
-            </div>
-            <div class="sezione">
-                <h2>Treno</h2>
-                <div>
-                    <input type="checkbox" name="treno" value="biglietti-treno" id="biglietti-treno">
-                    <label for="biglietti-treno">Biglietti del treno</label>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="biancheria" id="biancheria">
+                            <label for="biancheria">Biancheria</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="calzini" id="calzini">
+                            <label for="calzini">Calzini</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="cintura" id="cintura">
+                            <label for="cintura">Cintura</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="giaccone" id="giaccone">
+                            <label for="giaccone">Giaccone</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="gonna" id="gonna">
+                            <label for="gonna">Gonna</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="magliette" id="magliette">
+                            <label for="magliette">Magliette</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="maglioni" id="maglioni">
+                            <label for="maglioni">Maglioni</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="pantaloni" id="pantaloni">
+                            <label for="pantaloni">Pantaloni</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="pigiama" id="pigiama">
+                            <label for="pigiama">Pigiama</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="scarpe" id="scarpe">
+                            <label for="scarpe">Scarpe</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="sciarpa" id="sciarpa">
+                            <label for="sciarpa">Sciarpa</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="abbigliamento" value="vestito" id="vestito">
+                            <label for="vestito">Vestito</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="sezione">
-                <h2>Aereo</h2>
-                <div>
-                    <input type="checkbox" name="aereo" value="biglietti-aereo" id="biglietti-aereo">
-                    <label for="biglietti-aereo">Biglietti della aereo</label>
+            <div class="sezione" id="toeletta">
+                <div class="sezione-header">
+                    <h2>Toeletta</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <input type="checkbox" name="aereo" value="passaporto" id="passaporto">
-                    <label for="passaporto">Passaporto</label>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="cotton-fioc" id="cotton-fioc">
+                            <label for="cotton-fioc">Cotton fioc</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="crema-solare" id="crema-solare">
+                            <label for="crema-solare">Crema solare</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="crema-viso" id="crema-viso">
+                            <label for="crema-viso">Crema viso</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="dentifricio" id="dentifricio">
+                            <label for="dentifricio">Dentifricio</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="deodorante" id="deodorante">
+                            <label for="deodorante">Deodorante</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="pettine" id="pettine">
+                            <label for="pettine">Pettine</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="profumo" id="profumo">
+                            <label for="profumo">Profumo</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="sapone" id="sapone">
+                            <label for="sapone">Sapone</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="shampoo" id="shampoo">
+                            <label for="shampoo">Shampoo</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="spazzola" id="spazzola">
+                            <label for="spazzola">Spazzola</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="spazzolino" id="spazzolino">
+                            <label for="spazzolino">Spazzolino</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="struccante" id="struccante">
+                            <label for="struccante">Struccante</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="tagliaunghie" id="tagliaunghie">
+                            <label for="tagliaunghie">Tagliaunghie</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="toeletta" value="trucco" id="trucco">
+                            <label for="trucco">Trucco</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="sezione">
-                <h2>Barca</h2>
-                <div>
-                    <input type="checkbox" name="barca" value="biglietti-barca" id="biglietti-barca">
-                    <label for="biglietti-barca">Biglietti della barca</label>
+            <div class="sezione" id="internazionale">
+                <div class="sezione-header">
+                    <h2>Internazionale</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="internazionale" value="adattatore" id="adattatore">
+                            <label for="adattatore">Adattatore</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="internazionale" value="passaporto" id="passaporto">
+                            <label for="passaporto">Passaporto</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="internazionale" value="permesso-di-soggiorno" id="permesso-di-soggiorno">
+                            <label for="permesso-di-soggiorno">Permesso di soggiorno</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="sezione">
-                <h2>Corriera</h2>
-                <div>
-                    <input type="checkbox" name="corriera" value="biglietti-corriera" id="biglietti-corriera">
-                    <label for="biglietti-corriera">Biglietti della corriera</label>
+            <div class="sezione" id="lavoro">
+                <div class="sezione-header">
+                    <h2>Lavoro</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="lavoro" value="caricatore-del-computer" id="caricatore-del-computer">
+                            <label for="caricatore-del-computer">Caricatore del computer</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="lavoro" value="computer" id="computer">
+                            <label for="computer">Computer</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <div class="sezione" id="escursionismo">
+                <div class="sezione-header">
+                    <h2>Escursionismo</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="escursionismo" value="scarpe-da-trekking" id="scarpe-da-trekking">
+                            <label for="scarpe-da-trekking">Scarpe da trekking</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="escursionismo" value="abbigliamento-da-trekking" id="abbigliamento-da-trekking">
+                            <label for="abbigliamento-da-trekking">Abbigliamento da trekking</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="escursionismo" value="bastoncini-da-trekking" id="bastoncini-da-trekking">
+                            <label for="bastoncini-da-trekking">Bastoncini da trekking</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="cena-di-gala">
+                <div class="sezione-header">
+                    <h2>Cena di gala</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="cena-di-gala" value="vestito-elegante" id="vestito-elegante">
+                            <label for="vestito-elegante">Vestito elegante</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="cena-di-gala" value="scarpe-eleganti" id="scarpe-eleganti">
+                            <label for="scarpe-eleganti">Scarpe eleganti</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="cena-di-gala" value="gioielli" id="gioielli">
+                            <label for="gioielli">Gioielli</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="fotografia">
+                <div class="sezione-header">
+                    <h2>Fotografia</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="fotografia" value="macchina-fotografica" id="macchina-fotografica">
+                            <label for="macchina-fotografica">Macchina fotografica</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="fotografia" value="caricabatterie" id="caricabatterie">
+                            <label for="caricabatterie">Caricabatterie</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="fotografia" value="lenti" id="lenti">
+                            <label for="lenti">Lenti</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="fotografia" value="schede-di-memoria" id="schede-di-memoria">
+                            <label for="schede-di-memoria">Schede di memoria</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="palestra">
+                <div class="sezione-header">
+                    <h2>Palestra</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="palestra" value="asciugamano-da-palestra" id="asciugamano-da-palestra">
+                            <label for="asciugamano-da-palestra">Asciugamano da palestra</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="palestra" value="abbigliamento-da-palestra" id="abbigliamento-da-palestra">
+                            <label for="abbigliamento-da-palestra">Abbigliamento da palestra</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="palestra" value="scarpe-da-palestra" id="scarpe-da-palestra">
+                            <label for="scarpe-da-palestra">Scarpe da palestra</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="spiaggia">
+                <div class="sezione-header">
+                    <h2>Spiaggia</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="spiaggia" value="ciabatte" id="ciabatte-spiaggia">
+                            <label for="ciabatte-spiaggia">Ciabatte</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="spiaggia" value="crema-solare" id="crema-solare-spiaggia">
+                            <label for="crema-solare-spiaggia">Crema solare</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="spiaggia" value="costume" id="costume-spiaggia">
+                            <label for="costume-spiaggia">Costume</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="spiaggia" value="occhiali-da-sole" id="occhiali-da-sole-spiaggia">
+                            <label for="occhiali-da-sole-spiaggia">Occhiali da sole</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="spiaggia" value="ombrellone" id="ombrellone-spiaggia">
+                            <label for="ombrellone-spiaggia">Ombrellone</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="spiaggia" value="telo-mare" id="telo-mare-spiaggia">
+                            <label for="telo-mare-spiaggia">Telo mare</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="piscina">
+                <div class="sezione-header">
+                    <h2>Piscina</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="piscina" value="ciabatte" id="ciabatte-piscina">
+                            <label for="ciabatte-piscina">Ciabatte</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="piscina" value="costume" id="costume-piscina">
+                            <label for="costume-piscina">Costume</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="piscina" value="cuffia" id="cuffia-piscina">
+                            <label for="cuffia-piscina">Cuffia</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="piscina" value="occhialini" id="occhialini-piscina">
+                            <label for="occhialini-piscina">Occhialini</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="moto">
+                <div class="sezione-header">
+                    <h2>Moto</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="moto" value="abbigliamento-moto" id="abbigliamento-moto">
+                            <label for="abbigliamento-moto">Abbigliamento moto</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="moto" value="casco" id="casco-moto">
+                            <label for="casco-moto">Casco</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="moto" value="documenti-moto" id="documenti-moto">
+                            <label for="documenti-moto">Documenti moto</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="moto" value="guanti" id="guanti-moto">
+                            <label for="guanti-moto">Guanti</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="moto" value="patente" id="patente-moto">
+                            <label for="patente-moto">Patente</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="treno">
+                <div class="sezione-header">
+                    <h2>Treno</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="treno" value="biglietti-treno" id="biglietti-treno">
+                            <label for="biglietti-treno">Biglietti del treno</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="aereo">
+                <div class="sezione-header">
+                    <h2>Aereo</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="aereo" value="biglietti-aereo" id="biglietti-aereo">
+                            <label for="biglietti-aereo">Biglietti dell'aereo</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="check-item">
+                            <input type="checkbox" name="aereo" value="passaporto" id="passaporto-aereo">
+                            <label for="passaporto-aereo">Passaporto</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="barca">
+                <div class="sezione-header">
+                    <h2>Barca</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="barca" value="biglietti-barca" id="biglietti-barca">
+                            <label for="biglietti-barca">Biglietti della barca</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sezione" id="corriera">
+                <div class="sezione-header">
+                    <h2>Corriera</h2>
+                    <div class="sezione-controls">
+                        <button class="btn-add" title="Aggiungi elemento">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn-toggle" title="Espandi/Comprimi">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sezione-content">
+                    <div class="item-list">
+                        <div class="check-item">
+                            <input type="checkbox" name="corriera" value="biglietti-corriera" id="biglietti-corriera">
+                            <label for="biglietti-corriera">Biglietti della corriera</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" style="display: none;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <span class="quantity-display" style="display: none;">1</span>
+                                <button class="quantity-btn plus-btn">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </div>
+                            <button class="btn-delete" title="Elimina">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
