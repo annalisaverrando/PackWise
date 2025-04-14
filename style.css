@@ -369,6 +369,14 @@ form div:has(input:focus) > label{
     font-weight: 900;
 }
 
+.edit-label {
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-family: inherit;
+    border-bottom: 2px solid var(--btn-icon-background-color);
+}
+
 
 /*RESPONSIVE*/
 @media(max-width: 500px){
