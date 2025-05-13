@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="PlannerStyle.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet" /> -->
+    <title>Pianificatore</title>
+  </head>
+  <body>
+    <header>
+      <img src="assets/Logo.png" class="logo" />
+      <h1 class="app-title">PackWise</h1>
+      <span class="line"></span>
+      <h2 class="app-section">Planner</h2>
+    </header>
+
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="vacation-details">
+          <h3 class="details-title">Dettagli Vacanza</h3>
+          <div class="form-group">
+            <label for="vacation-name">Nome vacanza</label>
+            <input
+              type="text"
+              id="vacation-name"
+              placeholder="Es. Vacanza a Roma"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="vacation-start">Data inizio</label>
+            <input type="date" id="vacation-start" />
+          </div>
+
+          <div class="form-group">
+            <label for="vacation-end">Data fine</label>
+            <input type="date" id="vacation-end" />
+          </div>
+
+          <button class="update btn-primary">Aggiorna dettagli</button>
+        </div>
+      </div>
+      <div class="calendar-container">
+        <div class="calendar-bar">
+          <nav class="date-navigation">
+            <span class="current-month"><strong>Maggio - </strong>2025</span>
+            <button class="prev-week nav-button">&lt;</button>
+            <button class="next-week nav-button">&gt;</button>
+          </nav>
+          <button class="save-button btn-primary">Salva piano</button>
+          <button class="bag-button btn-secondary">Valigia</button>
+        </div>
+        <div class="calendar">
+          <div class="calendar-header">
+            <div class="day-header">Lun</div>
+            <div class="day-header">Mar</div>
+            <div class="day-header">Mer</div>
+            <div class="day-header">Gio</div>
+            <div class="day-header">Ven</div>
+            <div class="day-header">Sab</div>
+            <div class="day-header">Dom</div>
+          </div>
+
+          <div class="calendar-grid">
+            <div class="day-cell" data-date="12-05-2025">
+              <div class="day-number">12</div>
+            </div>
+            <div class="day-cell" data-date="13-05-2025">
+              <div class="day-number">13</div>
+            </div>
+            <div class="day-cell" data-date="14-05-2025">
+              <div class="day-number">14</div>
+            </div>
+            <div class="day-cell" data-date="12-05-2025">
+              <div class="day-number">15</div>
+            </div>
+            <div class="day-cell" data-date="12-05-2025">
+              <div class="day-number">16</div>
+            </div>
+            <div class="day-cell" data-date="12-05-2025">
+              <div class="day-number">17</div>
+            </div>
+            <div class="day-cell" data-date="12-05-2025">
+              <div class="day-number">18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="add-event-btn" id="add-event-btn">+</button>
+
+    <!--Codice per inserimento nuovi eventi-->
+  </body>
+</html>

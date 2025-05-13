@@ -1,0 +1,238 @@
+:root {
+  --primary-color: #0078b6;
+  --secondary-color: #00a9d6;
+  --accent-color: #00bed6;
+  --border-color: #e0e0e0;
+  --event-bg: #d6f2f9;
+  --event-border: #00bed6;
+  --light-blue: #e6f7fb;
+  --dark-blue: #005b8c;
+  --blue-gray: #607d8b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+header {
+  height: 64px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--accent-color)
+  );
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+.logo {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.app-title {
+  font-size: 22px;
+  color: white;
+  font-family: "Rubik";
+}
+
+.line {
+  margin-left: 15px;
+  height: 30px;
+  border: 1px solid white;
+}
+
+.app-section {
+  font-size: 20px;
+  color: white;
+  margin-left: 15px;
+  font-family: "Rubik";
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.btn-secondary:hover {
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.nav-button {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  color: black;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nav-button:hover {
+  background-color: #f5f5f5;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper {
+  display: flex;
+  flex: 1;
+  height: 90.5vh;
+}
+
+/* ---CALENDARIO--- */
+
+.calendar-container {
+  overflow-y: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: white;
+  padding: 15px;
+}
+
+.calendar-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.save-button {
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.date-navigation {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.current-month {
+  margin-left: 10px;
+  margin-right: 2rem;
+}
+
+.calendar {
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--border-color);
+  background-color: #f8f9fa;
+  border-radius: 15px;
+}
+
+.day-header {
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+  border-right: 1px solid var(--border-color);
+}
+
+.day-header:last-child {
+  border-right: none;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day-cell {
+  border-right: 1px solid var(--border-color);
+  min-height: 500px;
+  padding: 5px;
+}
+
+.day-cell:last-child {
+  border-right: none;
+}
+
+.day-number {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+/* ---SIDEBAR--- */
+
+.sidebar {
+  width: 250px;
+  padding: 1rem;
+  overflow-y: auto;
+  /* background-color: var(--light-blue); */
+  border-right: 1px solid var(--border-color);
+}
+
+.vacation-details {
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.update {
+  align-self: baseline;
+}
+
+.add-event-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
