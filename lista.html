@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script type="application/javascript" src="lista.js" defer></script>
+        <script type="application/javascript" src="js/lista.js" defer></script>
     </head>
     <body>
         <div class="page-lista">
@@ -1664,5 +1664,20 @@
                 </div>
             </div>
         </div>
+        <script>
+            // Recupera i dati da sessionStorage
+            const viaggio_id = sessionStorage.getItem('viaggio_id');
+            const email = sessionStorage.getItem('email');
+            // Recupera le attività selezionate da sessionStorage
+            const selectedActivities = JSON.parse(sessionStorage.getItem('selected_activities'));
+
+            // Verifica se ci sono attività selezionate
+            if (selectedActivities) {
+                console.log("Attività selezionate:", selectedActivities);
+            } else {
+                console.log("Nessuna attività selezionata.");
+}
+
+        </script>
     </body>
 </html>

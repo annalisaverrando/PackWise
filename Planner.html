@@ -57,7 +57,7 @@
             <button class="next-week nav-button">&gt;</button>
           </nav>
           <button class="save-button btn-primary">Salva piano</button>
-          <button class="bag-button btn-secondary">Valigia</button>
+          <button id="valigiaBtn" class="bag-button btn-secondary">Valigia</button>
         </div>
         <div class="calendar">
           <div class="calendar-header">
@@ -100,5 +100,29 @@
     <button class="add-event-btn" id="add-event-btn">+</button>
 
     <!--Codice per inserimento nuovi eventi-->
+    <script>
+      document.getElementById('valigiaBtn').addEventListener('click', function() {
+        const viaggio_id = sessionStorage.getItem('viaggio_id');
+        const selectedActivities = JSON.parse(sessionStorage.getItem('selected_activities')) || [];
+
+        // Nuovo array per raccogliere le coppie attività-data
+        const activitiesWithDates = [];
+        // INSERIRE QUI I DATI RACCOLTI DAL PLANNER
+
+        const dataToSend = {
+            viaggio_id: viaggio_id,
+            selectedActivities: selectedActivities,
+            activitiesWithDates: activitiesWithDates
+        };
+
+        // Crea una richiesta AJAX per inviare i dati al PHP
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "crea_lista.php", true); 
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        const dataToSendEncoded = encodeURIComponent(JSON.stringify(dataToSend));
+        xhr.send(dataToSendEncoded);
+      });
+    </script>
   </body>
 </html>

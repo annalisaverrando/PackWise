@@ -1,0 +1,22 @@
+1. registrazione/login: nel database aggiornamento tabella utenti
+2. reindirizzamento a dashboard.php:
+    - creazione nuovo viaggio: reindirizzamento a viaggio.html (3a)
+    - visualizzazione viaggi precedenti: reindirizzamento a dettagli_viaggio.php?id=id_viaggio (3b)
+3a. viaggio.html: form di inserimento destinazione e date che reindirizza a crea_viaggio.php
+4a. crea_viaggio.php: inserisce nella tabella viaggi del db e nel sessionStorage i dati e reindirizza ad attivita.html
+5a. attivita.html: selezione attivita con checkbox, salvate in sessionStorage
+6a. planner.html: calendario, invia richiesta ajax a crea_lista.php
+7a. crea_lista.php:
+    - aggiunge nel db nella tabella valigia gli oggetti a seconda delle selezioni,
+    - aggiunge nel db nella cartella attivita i dati del planner
+    - reindirizza a dettagli_viaggio.php?id=id_viaggio 
+        (DA CAPIRE: secondo me non funziona perche planner manda i dati ma non viene reindirizzato)
+3b/8a. dettagli_viaggio.php?id=id_viaggio:
+    - recupera dal database gli oggetti della valigia
+    - ad ogni interazione con la lista lista.js manda una richiesta ajax a aggiornamento_db.php, che modifica il db
+
+
+COSA MANCA:
+- stile della pagina dashboard.php,
+- sistemare crea_lista.php
+- il backend del planner (anche capire come visualizzarlo dal database quando un utente vuole visualizzare i viaggi precedenti)

@@ -144,8 +144,24 @@
                     <span>Bambino</span>
                 </label>
             </div>
-            <button id="pianifica" type="submit" class="btn btn-primary">Passa alla pianificazione</button>
+            <button id="pianifica" type="submit" class="btn btn-primary" onclick="submitForm()">Passa alla pianificazione</button>
         </div>
+        <script>
+            // Funzione per gestire l'invio del form
+            function submitForm() {
+                const selectedActivities = [];
 
+                // Recupera tutte le attività selezionate
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                    selectedActivities.push(checkbox.value);
+                });
+
+                // Salva le attività selezionate in sessionStorage
+                sessionStorage.setItem('selected_activities', JSON.stringify(selectedActivities));
+
+                // Reindirizza alla pagina planner.html
+                window.location.href = 'planner.html'; 
+            }
+        </script>
     </body>
 </html>
