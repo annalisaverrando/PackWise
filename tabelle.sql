@@ -22,4 +22,12 @@ CREATE TABLE valigia (
     PRIMARY KEY (id_viaggio, nome_oggetto)
 );
 
-
+CREATE TABLE eventi (
+    id SERIAL PRIMARY KEY,
+    id_viaggio INTEGER REFERENCES viaggi(id) ON DELETE CASCADE,
+    titolo VARCHAR(255) NOT NULL,
+    data_evento DATE NOT NULL,
+    ora_inizio TIME,
+    ora_fine TIME,
+    note TEXT
+);

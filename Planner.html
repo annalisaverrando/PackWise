@@ -12,6 +12,11 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="PlannerScript.js"></script>
     <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet" /> -->
     <title>Pianificatore</title>
   </head>
@@ -52,12 +57,14 @@
       <div class="calendar-container">
         <div class="calendar-bar">
           <nav class="date-navigation">
-            <span class="current-month"><strong>Maggio - </strong>2025</span>
-            <button class="prev-week nav-button">&lt;</button>
-            <button class="next-week nav-button">&gt;</button>
+            <span class="current-month" id="current-month"></span>
+            <button class="prev-week nav-button" id="prev-week">&lt;</button>
+            <button class="next-week nav-button" id="next-week">&gt;</button>
           </nav>
           <button class="save-button btn-primary">Salva piano</button>
-          <button id="valigiaBtn" class="bag-button btn-secondary">Valigia</button>
+          <button id="valigiaBtn" class="bag-button btn-secondary">
+            Valigia
+          </button>
         </div>
         <div class="calendar">
           <div class="calendar-header">
@@ -70,28 +77,8 @@
             <div class="day-header">Dom</div>
           </div>
 
-          <div class="calendar-grid">
-            <div class="day-cell" data-date="12-05-2025">
-              <div class="day-number">12</div>
-            </div>
-            <div class="day-cell" data-date="13-05-2025">
-              <div class="day-number">13</div>
-            </div>
-            <div class="day-cell" data-date="14-05-2025">
-              <div class="day-number">14</div>
-            </div>
-            <div class="day-cell" data-date="12-05-2025">
-              <div class="day-number">15</div>
-            </div>
-            <div class="day-cell" data-date="12-05-2025">
-              <div class="day-number">16</div>
-            </div>
-            <div class="day-cell" data-date="12-05-2025">
-              <div class="day-number">17</div>
-            </div>
-            <div class="day-cell" data-date="12-05-2025">
-              <div class="day-number">18</div>
-            </div>
+          <div class="calendar-grid" id="calendar-grid">
+            <!--Celle generate automaticamente dal js-->
           </div>
         </div>
       </div>
@@ -99,30 +86,95 @@
 
     <button class="add-event-btn" id="add-event-btn">+</button>
 
-    <!--Codice per inserimento nuovi eventi-->
-    <script>
-      document.getElementById('valigiaBtn').addEventListener('click', function() {
-        const viaggio_id = sessionStorage.getItem('viaggio_id');
-        const selectedActivities = JSON.parse(sessionStorage.getItem('selected_activities')) || [];
+    <!--Modal di aggiunta evento-->
+    <div class="modal-content" id="modal-add">
+      <div class="modal-container">
+        <h3 class="add-title">Aggiungi Evento</h3>
+        <div class="form-group">
+          <label for="event-title">Titolo evento</label>
+          <input type="text" id="event-title" placeholder="Es. Visita museo" />
+        </div>
 
-        // Nuovo array per raccogliere le coppie attività-data
-        const activitiesWithDates = [];
-        // INSERIRE QUI I DATI RACCOLTI DAL PLANNER
+        <div class="form-group">
+          <label for="event-date">Data</label>
+          <input type="date" id="event-date" />
+        </div>
 
-        const dataToSend = {
-            viaggio_id: viaggio_id,
-            selectedActivities: selectedActivities,
-            activitiesWithDates: activitiesWithDates
-        };
+        <div class="form-group">
+          <label for="start-time">Ora inizio</label>
+          <input type="time" id="start-time" />
+        </div>
 
-        // Crea una richiesta AJAX per inviare i dati al PHP
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "crea_lista.php", true); 
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        <div class="form-group">
+          <label for="end-time">Ora fine</label>
+          <input type="time" id="end-time" />
+        </div>
 
-        const dataToSendEncoded = encodeURIComponent(JSON.stringify(dataToSend));
-        xhr.send(dataToSendEncoded);
-      });
-    </script>
+        <div class="form-group">
+          <label for="event-notes">Note</label>
+          <textarea
+            id="event-notes"
+            rows="3"
+            placeholder="Note aggiuntive"
+          ></textarea>
+        </div>
+
+        <button class="btn-secondary" id="cancel-add">Annulla</button>
+        <button class="btn-primary" id="confirm-add">Aggiungi</button>
+      </div>
+    </div>
+
+    <!--Modal dettagli evento-->
+    <div class="modal-content" id="modal-details">
+      <div class="modal-container">
+        <h3 class="event-details-title" id="event-details-title"></h3>
+        <div class="event-details" id="event-details"></div>
+        <button class="btn-secondary" id="delete-event">Elimina</button>
+        <button class="btn-secondary" id="edit-event">Modifica</button>
+        <button class="btn-secondary" id="close-event">Chiudi</button>
+      </div>
+    </div>
+
+    <!--Modal modifica evento-->
+    <div class="modal-content" id="modal-edit">
+      <div class="modal-container">
+        <h3 class="edit-title">Modifica Evento</h3>
+        <div class="form-group">
+          <label for="edit-event-title">Titolo evento</label>
+          <input
+            type="text"
+            id="edit-event-title"
+            placeholder="Es. Visita museo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="edit-event-date">Data</label>
+          <input type="date" id="edit-event-date" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit-start-time">Ora inizio</label>
+          <input type="time" id="edit-start-time" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit-end-time">Ora fine</label>
+          <input type="time" id="edit-end-time" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit-event-notes">Note</label>
+          <textarea
+            id="edit-event-notes"
+            rows="3"
+            placeholder="Note aggiuntive"
+          ></textarea>
+        </div>
+
+        <button class="btn-secondary" id="cancel-edit">Annulla</button>
+        <button class="btn-primary" id="confirm-edit">Modifica</button>
+      </div>
+    </div>
   </body>
 </html>
