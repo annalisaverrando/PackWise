@@ -1,0 +1,54 @@
+/* Common styles and variables extracted from style.css */
+
+:root{
+    --background-color: #f5f8fa;
+    --background2-color: #e6e4f0;
+    --text-color:#000000;
+    --error-color: #f06272;
+    --btn-icon-background-color: #5f8ecc;
+    --hover-color:#191970;
+    --shadow-color: #898989;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'arial', sans-serif;
+    font-size: 14px;
+    color:var(--text-color);
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+
+h1{
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px 0 20px 0;
+}
+h2{
+    font-size: 1.7rem;
+}
+.btn-primary {
+    background-color: var(--btn-icon-background-color); 
+    border-color: var(--btn-icon-background-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.btn-primary:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+} 

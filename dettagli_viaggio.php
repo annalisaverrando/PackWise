@@ -36,9 +36,10 @@ $current_category = '';
     <meta charset="UTF-8">
     <title>Dettagli Viaggio</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/commonStyle.css">
+        <link rel="stylesheet" href="css/listaStyle.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script type="application/javascript" src="js/lista.js" defer></script>   
+        <script type="application/javascript" src="js/listaScript.js" defer></script>   
 </head>
 <body>
     <h1>Dettagli del Viaggio: <?php echo $viaggio['destinazione']; ?></h1>

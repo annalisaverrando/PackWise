@@ -21,7 +21,7 @@ $email = $_SESSION['email'];
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/commonStyle.css">
 </head>
 <body>
     <h1>Benvenuto</h1>

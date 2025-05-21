@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         <meta charset="UTF-8">
         <title>Registrazione</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/commonStyle.css">
+        <link rel="stylesheet" href="css/formStyle.css">
     </head>
     <body>
         <?php
