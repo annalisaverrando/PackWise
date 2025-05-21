@@ -50,6 +50,11 @@ header {
   font-family: "Rubik";
 }
 
+.title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .line {
   margin-left: 15px;
   height: 30px;
@@ -62,6 +67,32 @@ header {
   margin-left: 15px;
   font-family: "Rubik";
 }
+
+.profile {
+  margin-left: auto;
+}
+
+.user-logo {
+  height: 60px;
+  position: relative;
+}
+
+/* .logout-img {
+  height: 30px;
+}
+
+.modal-user {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: white;
+  border: 1px solid grey;
+  padding: 30px;
+  border-radius: 8px;
+} */
 
 button {
   padding: 6px 12px;
@@ -129,7 +160,7 @@ button {
   margin-bottom: 15px;
 }
 
-.save-button {
+.bag-button {
   margin-left: auto;
   margin-right: 30px;
 }
@@ -188,8 +219,32 @@ button {
 }
 
 .day-number {
-  margin-bottom: 5px;
-  font-size: 0.9rem;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  height: 19px;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.badge-start {
+  background-color: rgba(45, 212, 56, 0.15);
+  border: 1px solid #2ecc71;
+}
+
+.badge-end {
+  background-color: rgba(255, 99, 71, 0.2);
+  border: 1px solid #ff6347;
 }
 
 /* ---SIDEBAR--- */

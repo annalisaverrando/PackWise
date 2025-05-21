@@ -96,6 +96,12 @@ $current_category = '';
         ?>
         </div>
         <a href="dashboard.php">Torna ai tuoi viaggi</a>
+        <?php
+        echo "<script>";
+        echo "sessionStorage.viaggio_id = $viaggio_id";
+        echo "</script>";
+        ?>
+        <a href="planner.html">Vai al planner</a>
     </div>
 </body>
 </html>

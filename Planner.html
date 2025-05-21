@@ -23,10 +23,26 @@
   <body>
     <header>
       <img src="assets/Logo.png" class="logo" />
-      <h1 class="app-title">PackWise</h1>
+      <h1 class="app-title">
+        <a href="dashboard.php" class="title-link">PackWise</a>
+      </h1>
       <span class="line"></span>
       <h2 class="app-section">Planner</h2>
+      <div class="profile" id="profile">
+        <img src="assets/user.png" class="user-logo" id="user-logo" />
+      </div>
     </header>
+
+    <!--Modal content per il profilo utente-->
+    <!-- <div class="modal-user" id="modal-logout">
+      <div class="email" id="email"></div>
+      <div class="logout">
+        <img src="assets/logout.png" class="logout-img" />
+        <span class="logout-span">
+          <a href="dashboard.php" class="logout-link"> Logout </a>
+        </span>
+      </div>
+    </div> -->
 
     <div class="wrapper">
       <div class="sidebar">
@@ -51,7 +67,9 @@
             <input type="date" id="vacation-end" />
           </div>
 
-          <button class="update btn-primary">Aggiorna dettagli</button>
+          <button class="update btn-primary" id="update">
+            Aggiorna dettagli
+          </button>
         </div>
       </div>
       <div class="calendar-container">
@@ -61,9 +79,8 @@
             <button class="prev-week nav-button" id="prev-week">&lt;</button>
             <button class="next-week nav-button" id="next-week">&gt;</button>
           </nav>
-          <button class="save-button btn-primary">Salva piano</button>
-          <button id="valigiaBtn" class="bag-button btn-secondary">
-            Valigia
+          <button id="valigiaBtn" class="bag-button btn-primary">
+            Torna alla valigia
           </button>
         </div>
         <div class="calendar">

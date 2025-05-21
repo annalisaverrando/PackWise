@@ -1,6 +1,8 @@
 const viaggio_id = sessionStorage.getItem("viaggio_id");
 let currentDate = new Date();
 let currentEventId;
+let departure_date;
+let return_date;
 
 document.addEventListener("DOMContentLoaded", function () {
   //Invio l'id viaggio al server PHP per poter recuperare le informazioni del viaggio
@@ -16,25 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((info) => {
-      let data_inizio = info.data_inizio;
-      let data_fine = info.data_fine;
+      departure_date = info.data_inizio;
+      return_date = info.data_fine;
       let destinazione = info.destinazione;
 
       //Setto la data nella sidebar
-      document.getElementById("vacation-start").value = data_inizio;
-      document.getElementById("vacation-end").value = data_fine;
+      document.getElementById("vacation-start").value = departure_date;
+      document.getElementById("vacation-end").value = return_date;
       document.getElementById("vacation-name").value = destinazione;
 
       //Calcolo le date della settimana di partenza
-      let data = new Date(data_inizio);
-
-      let giornoSettimana = data.getDay();
-      let diff = giornoSettimana === 0 ? -6 : 1 - giornoSettimana;
-      let lunedi = new Date(data);
-      lunedi.setDate(data.getDate() + diff);
-
-      //Setto la data corrente a lunedì
-      currentDate = new Date(lunedi);
+      calculateMonday();
 
       //Genero la griglia
       renderCalendar();
@@ -48,6 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function setupEventListeners() {
+  //CLICK SU ICONA UTENTE
+  /* document
+    .getElementById("user-logo")
+    .addEventListener("click", () => userModal()); */
+
   //NAVIGAZIONE DATE
   document
     .getElementById("prev-week")
@@ -55,6 +54,16 @@ function setupEventListeners() {
   document
     .getElementById("next-week")
     .addEventListener("click", () => navigateCalendar(7));
+
+  //BOTTONE TORNA ALLA VALIGIA
+  document
+    .getElementById("valigiaBtn")
+    .addEventListener("click", () => goToBag());
+
+  //BOTTONE AGGIORNA DETTAGLI
+  document
+    .getElementById("update")
+    .addEventListener("click", () => updateVacationDetails());
 
   //BOTTONE CREA EVENTO (+)
   document
@@ -97,6 +106,58 @@ function setupEventListeners() {
     .addEventListener("click", () => closeEditPanel());
 }
 
+//Gestisce il pannello che si apre al click dell'icona profilo
+/* function userModal() {
+  let modalUser = document.getElementById("modal-user");
+  fetch("emailUtente.php")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.email) {
+        let emailDiv = document.getElementById("email");
+        emailDiv.textContent = `${data.email}`;
+        let modalLogout = document.getElementById("modal-logout");
+        modalLogout.style.display = "flex";
+      }
+    });
+} */
+
+//Calcola il lunedì della settimana di partenza
+function calculateMonday() {
+  let data = new Date(departure_date);
+
+  let giornoSettimana = data.getDay();
+  let diff = giornoSettimana === 0 ? -6 : 1 - giornoSettimana;
+  let lunedi = new Date(data);
+  lunedi.setDate(data.getDate() + diff);
+
+  //Setto la data corrente a lunedì
+  currentDate = new Date(lunedi);
+}
+//Aggiorna mese e anno del calendario
+function setMonthYear() {
+  //Imposto mese e anno
+  const italianMonth = [
+    "Gennaio",
+    "Febbraio",
+    "Marzo",
+    "Aprile",
+    "Maggio",
+    "Giugno",
+    "Luglio",
+    "Agosto",
+    "Settembre",
+    "Ottobre",
+    "Novembre",
+    "Dicembre",
+  ];
+
+  let month = italianMonth[currentDate.getMonth()];
+  let year = currentDate.getFullYear();
+  document.getElementById(
+    "current-month"
+  ).innerHTML = `<strong>${month}</strong> - ${year}`;
+}
+
 //Crea la cella del giorno 'date'
 function createDayCell(date) {
   let giorno = new Date(date);
@@ -106,7 +167,24 @@ function createDayCell(date) {
 
   let numberDiv = document.createElement("div");
   numberDiv.className = "day-number";
-  numberDiv.textContent = giorno.getDate().toString();
+
+  let daySpan = document.createElement("span");
+  daySpan.textContent = giorno.getDate().toString();
+  numberDiv.appendChild(daySpan);
+
+  if (date == departure_date) {
+    let departureBadge = document.createElement("span");
+    departureBadge.classList.add("badge", "badge-start");
+    departureBadge.textContent = "Partenza✈️";
+    numberDiv.appendChild(departureBadge);
+  }
+
+  if (date == return_date) {
+    let returnBadge = document.createElement("span");
+    returnBadge.classList.add("badge", "badge-end");
+    returnBadge.textContent = "Ritorno🏠";
+    numberDiv.appendChild(returnBadge);
+  }
 
   dayCell.appendChild(numberDiv);
   //Aggiungo il listener che permette di creare eventi cliccando sulla cella
@@ -144,35 +222,50 @@ function renderCalendar() {
   loadEvents(week);
 }
 
-//Aggiorna mese e anno del calendario
-function setMonthYear() {
-  //Imposto mese e anno
-  const italianMonth = [
-    "Gennaio",
-    "Febbraio",
-    "Marzo",
-    "Aprile",
-    "Maggio",
-    "Giugno",
-    "Luglio",
-    "Agosto",
-    "Settembre",
-    "Ottobre",
-    "Novembre",
-    "Dicembre",
-  ];
-
-  let month = italianMonth[currentDate.getMonth()];
-  let year = currentDate.getFullYear();
-  document.getElementById(
-    "current-month"
-  ).innerHTML = `<strong>${month}</strong> - ${year}`;
-}
-
 //Passa alla settimana successiva/precedente e genera nuovamente le celle del calendario
 function navigateCalendar(days) {
   currentDate.setDate(currentDate.getDate() + days);
   renderCalendar();
+}
+
+//Torna alla valigia
+function goToBag() {
+  window.location.href = `dettagli_viaggio.php?id=${encodeURIComponent(
+    viaggio_id
+  )}`;
+}
+
+//Aggiorna nome, date di inizio e fine vacanza
+function updateVacationDetails() {
+  let titolo = document.getElementById("vacation-name").value;
+  let start = document.getElementById("vacation-start").value;
+  let end = document.getElementById("vacation-end").value;
+
+  fetch("aggiornaViaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      titolo,
+      start,
+      end,
+      viaggio_id,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data.status == "ok") {
+        console.log(data.message);
+        alert("Errore durante l'inserimento");
+      } else {
+        departure_date = start;
+        return_date = end;
+
+        //Calcolo il lunedì della nuova settimana di vacanza
+        calculateMonday(new Date(start));
+        //Aggiorno la data corrente
+        renderCalendar();
+      }
+    });
 }
 
 //Mostra il pannello per inserimento di un nuovo evento
