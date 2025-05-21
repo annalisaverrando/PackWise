@@ -1,5 +1,6 @@
 const viaggio_id = sessionStorage.getItem("viaggio_id");
 let currentDate = new Date();
+let currentEventId;
 
 document.addEventListener("DOMContentLoaded", function () {
   //Invio l'id viaggio al server PHP per poter recuperare le informazioni del viaggio
@@ -70,10 +71,30 @@ function setupEventListeners() {
     .getElementById("confirm-add")
     .addEventListener("click", () => addEvent());
 
-  //BOTTONE CHIUDI DEL PANNELLO DI MODIFICA
+  //BOTTONE CHIUDI DEL PANNELLO DI DETTGLI EVENTO
   document
     .getElementById("close-event")
-    .addEventListener("click", () => closeEditEvent());
+    .addEventListener("click", () => closeDetailsEvent());
+
+  //BOTTONE MODIFICA DEL PANNELLO DI DETTAGLI EVENTO
+  document
+    .getElementById("edit-event")
+    .addEventListener("click", () => openEditPanel(currentEventId));
+
+  //BOTTONE ELIMINA DEL PANNELLO DI DETTAGLI EVENTO
+  document
+    .getElementById("delete-event")
+    .addEventListener("click", () => deleteEvent(currentEventId));
+
+  //BOTTONE MODIFICA DEL PANNELLO DI MODIFICA EVENTO
+  document
+    .getElementById("confirm-edit")
+    .addEventListener("click", () => editEvent(currentEventId));
+
+  //BOTTONE ANNULLA NEL PANNELLO DI MODIFICA EVENTO
+  document
+    .getElementById("cancel-edit")
+    .addEventListener("click", () => closeEditPanel());
 }
 
 //Crea la cella del giorno 'date'
@@ -193,7 +214,7 @@ function addEvent() {
   let action = "add";
 
   //Invio i dati al PHP che li aggiungerà al db
-  fetch("aggiungiEvento.php", {
+  fetch("gestisciEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -285,8 +306,6 @@ function openDetailsPanel(id) {
 
       document.getElementById("event-details-title").innerText = info.titolo;
 
-      let delete_btn = document.getElementById("delete-event"); //Usato come riferimento per inserire i div che contengono le info
-
       let data = document.createElement("div");
       data.innerHTML = `<strong>Data:</strong> ${info.data_evento}`;
       data.className = "event-detail";
@@ -304,7 +323,7 @@ function openDetailsPanel(id) {
 
       if (info.ora_fine) {
         let end = document.createElement("div");
-        end.innerHTML = `<strong>Ora inizio:</strong> ${info.ora_fine.slice(
+        end.innerHTML = `<strong>Ora fine:</strong> ${info.ora_fine.slice(
           0,
           5
         )}`;
@@ -318,20 +337,44 @@ function openDetailsPanel(id) {
       detailsDiv.appendChild(notes);
 
       document.getElementById("modal-details").style.display = "flex";
-      document
-        .getElementById("edit-event")
-        .addEventListener("click", () => openEditPanel(id));
+
+      currentEventId = id;
     })
     .catch((error) => {
       console.error("Errore nel caricamento delle info dell'evento: ", error);
     });
 }
 
-function closeEditEvent() {
+//Chiude il pannello dettagli evento
+function closeDetailsEvent() {
   let panel = document.getElementById("modal-details");
   panel.style.display = "none";
 }
 
+//Elimina l'evento selezionato
+function deleteEvent(id) {
+  let action = "delete";
+  fetch("gestisciEvento.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action,
+      id,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status != "ok") {
+        console.log("Status: error:2", data.message);
+        alert("Errore durante l'eliminzazione");
+      } else {
+        renderCalendar();
+        document.getElementById("modal-details").style.display = "none";
+      }
+    });
+}
+
+//Apre il pannello di modifica evento
 function openEditPanel(id) {
   fetch("infoEvento.php", {
     method: "POST",
@@ -359,25 +402,32 @@ function openEditPanel(id) {
       end_time.value = info.ora_fine;
       notes.value = info.note;
 
-      closeEditEvent();
+      closeDetailsEvent();
       document.getElementById("modal-edit").style.display = "flex";
 
-      document
-        .getElementById("confirm-edit")
-        .addEventListener("click", () => editEvent(id));
+      currentEventId = id;
     });
 }
 
+//Scarta le modifiche e chiude il pannello di modifica
+function closeEditPanel() {
+  let editPanel = document.getElementById("modal-edit");
+  editPanel.style.display = "none";
+}
+
+//Salva le modifiche apportate all'evento
 function editEvent(id) {
   let action = "update";
 
   let title = document.getElementById("edit-event-title").value;
   let date = document.getElementById("edit-event-date").value;
   let start_time = document.getElementById("edit-start-time").value;
+  start_time = start_time == "" ? null : start_time;
   let end_time = document.getElementById("edit-end-time").value;
+  end_time = end_time == "" ? null : end_time;
   let notes = document.getElementById("edit-event-notes").value;
 
-  fetch("aggiungiEvento.php", {
+  fetch("gestisciEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -397,8 +447,8 @@ function editEvent(id) {
         console.log(data.message);
         alert("Errore durante l'inserimento");
       } else {
-        console.log("Sono nell'else");
-        document.getElementById("modal-edit").style.display = "none";
+        renderCalendar();
+        closeEditPanel();
       }
     })
     .catch((error) => {
