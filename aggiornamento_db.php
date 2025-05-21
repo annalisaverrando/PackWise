@@ -8,18 +8,25 @@ if (!isset($_SESSION['email'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recupera i dati inviati dalla richiesta AJAX
-    $action = $_POST['action'];
-    $viaggio_id = $_POST['viaggio_id'];
-    $oggetto = isset($_POST['oggetto']) ? $_POST['oggetto'] : null;
-    $quantita = isset($_POST['quantita']) ? $_POST['quantita'] : null;
-    $stato = isset($_POST['stato']) ? $_POST['stato'] : null;
-    $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : null;
+    // Leggi i dati JSON dalla richiesta
+    $json_data = file_get_contents('php://input');
+    $data = json_decode($json_data, true);
+    
+     // Estrai i dati dal JSON
+    $action = $data['action'];
+    $viaggio_id = $data['viaggio_id'];
+    $oggetto = isset($data['oggetto']) ? $data['oggetto'] : null;
+    $quantita = isset($data['quantita']) ? $data['quantita'] : null;
+    $stato = isset($data['stato']) ? $data['stato'] : null;
+    $categoria = isset($data['categoria']) ? $data['categoria'] : null;
+    
+    
     // Controlla che i dati necessari siano presenti
     if (empty($viaggio_id) || empty($oggetto)) {
         echo "Dati mancanti.";
         exit;
     }
+    
     // Connessione al database
     $conn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres password=postgres")
         or die('Errore nella connessione: ' . pg_last_error());
@@ -32,18 +39,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Debug: Visualizza i dati che stai ricevendo
     error_log("Dati ricevuti: action=$action, viaggio_id=$viaggio_id, oggetto=$oggetto, quantita=$quantita, stato=$stato, categoria=$categoria");
 
-    if ($action == 'update') {
-        // Aggiorna lo stato e la quantità dell'oggetto
+    if ($action == 'updateQuantity') {
+        // Aggiorna solo la quantità dell'oggetto
         $update_query = "
             UPDATE valigia 
-            SET quantita = $1, stato = $2 
-            WHERE id_viaggio = $3 AND nome_oggetto = $4
+            SET quantita = $1 
+            WHERE id_viaggio = $2 AND nome_oggetto = $3
         ";
-        $result = pg_query_params($conn, $update_query, array($quantita, $stato ? true : false, $viaggio_id, $oggetto));
+        $result = pg_query_params($conn, $update_query, array($quantita, $viaggio_id, $oggetto));
+        
         if ($result) {
-            echo "Oggetto aggiornato con successo!";
+            echo "Quantità aggiornata con successo!";
         } else {
-            echo "Errore nell'aggiornamento: " . pg_last_error($conn);
+            echo "Errore nell'aggiornamento della quantità: " . pg_last_error($conn);
+        }
+    } else if ($action == 'updateStatus') {
+        // Aggiorna lo stato dell'oggetto
+        $update_query = "
+            UPDATE valigia 
+            SET stato = $1 
+            WHERE id_viaggio = $2 AND nome_oggetto = $3
+        ";
+        $result = pg_query_params($conn, $update_query, array($stato ? true : false, $viaggio_id, $oggetto));
+        
+        if ($result) {
+            echo "Stato aggiornato con successo!";
+        } else {
+            echo "Errore nell'aggiornamento dello stato: " . pg_last_error($conn);
         }
     } else if ($action == 'delete') {
         // Elimina l'oggetto dal viaggio

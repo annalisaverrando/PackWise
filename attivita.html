@@ -6,7 +6,7 @@
         <title>Attività</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="style.css">
-        <!--<script type="application/javascript" src="index.js" defer></script>-->
+        <script type="application/javascript" src="attivitaScript.js" defer></script>
     </head>
     <body>
         <div class="container">
@@ -144,24 +144,7 @@
                     <span>Bambino</span>
                 </label>
             </div>
-            <button id="pianifica" type="submit" class="btn btn-primary" onclick="submitForm()">Passa alla pianificazione</button>
+            <button id="submitBtn" type="submit" class="btn btn-primary">Crea la valigia</button>
         </div>
-        <script>
-            // Funzione per gestire l'invio del form
-            function submitForm() {
-                const selectedActivities = [];
-
-                // Recupera tutte le attività selezionate
-                document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
-                    selectedActivities.push(checkbox.value);
-                });
-
-                // Salva le attività selezionate in sessionStorage
-                sessionStorage.setItem('selected_activities', JSON.stringify(selectedActivities));
-
-                // Reindirizza alla pagina planner.html
-                window.location.href = 'planner.html'; 
-            }
-        </script>
     </body>
 </html>

@@ -74,6 +74,11 @@ function setupEventListeners() {
   document
     .getElementById("close-event")
     .addEventListener("click", () => closeEditEvent());
+
+  // BOTTONE VALIGIA
+  document
+    .getElementById("valigiaBtn")
+    .addEventListener("click", createSuitcase);
 }
 
 //Crea la cella del giorno 'date'
@@ -403,5 +408,34 @@ function editEvent(id) {
     })
     .catch((error) => {
       console.error("Errore : ", error);
+    });
+}
+
+// Funzione per creare la valigia
+function createSuitcase() {
+  // Recupera le attività selezionate dal sessionStorage
+  const selectedActivities = JSON.parse(sessionStorage.getItem('selected_activities')) || [];
+  
+  // Se non ci sono attività selezionate, mostra un messaggio
+  if (selectedActivities.length === 0) {
+    alert("Nessuna attività selezionata. Torna alla pagina attività per selezionarne alcune.");
+    return;
+  }
+
+  // Crea una richiesta POST a crea_lista.php
+  fetch("crea_lista.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `viaggio_id=${encodeURIComponent(viaggio_id)}&selectedActivities=${encodeURIComponent(JSON.stringify(selectedActivities))}`,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Errore durante la creazione della valigia");
+      }
+      // Reindirizzamento gestito dal server
+    })
+    .catch(error => {
+      console.error("Errore:", error);
+      alert("Si è verificato un errore durante la creazione della valigia.");
     });
 }

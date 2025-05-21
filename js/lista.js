@@ -1,29 +1,35 @@
 // Funzione che invia la richiesta AJAX al server per aggiungere, aggiornare o eliminare un oggetto
-function updateItem(action, viaggio_id, oggetto, quantita = null, stato = null, categoria=null) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "aggiornamento_db.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Response from server: " + xhr.responseText); // Verifica la risposta del server
-        }
-    };
-    
-    console.log("Dati inviati:", {
+function updateItem(action, viaggio_id, oggetto, quantita = null, stato = null, categoria = null) {
+    // Crea un oggetto con i dati da inviare
+    const payload = {
         action: action,
         viaggio_id: viaggio_id,
-        oggetto: oggetto,
-        quantita: quantita,
-        stato: stato,
-        categoria: categoria
-    });
-    // Costruisci i dati da inviare in base all'azione
-    var data = "action=" + action + "&viaggio_id=" + viaggio_id + "&oggetto=" + oggetto;
+        oggetto: oggetto
+    };
+    
+    if (quantita !== null) payload.quantita = quantita;
+    if (stato !== null) payload.stato = stato;
+    if (categoria !== null) payload.categoria = categoria;
+    
+    console.log("Dati inviati:", payload);
 
-    if (quantita !== null) data += "&quantita=" + quantita;
-    if (stato !== null) data += "&stato=" + stato;
-    if (categoria !== null) data += "&categoria=" + categoria;
-    xhr.send(data);
+    fetch("aggiornamento_db.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Errore durante l'aggiornamento");
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log("Response from server:", data);
+    })
+    .catch(error => {
+        console.error("Errore:", error);
+    });
 }
 
 
@@ -51,20 +57,20 @@ function initializeItem(item) {
     plusBtn.addEventListener('click', () => {
         quantity++;
         updateQuantityDisplay();
-        updateItem('update', viaggio_id, checkbox.id, quantity, checkbox.checked);
+        updateItem('updateQuantity', viaggio_id, checkbox.id, quantity);
     });
 
     minusBtn.addEventListener('click', () => {
         if (quantity > 1) {
             quantity--;
             updateQuantityDisplay();
-            updateItem('update', viaggio_id, checkbox.id, quantity, checkbox.checked);
+            updateItem('updateQuantity', viaggio_id, checkbox.id, quantity);
         }
     });
 
     // Checkbox
     checkbox.addEventListener('change', () => {
-        updateItem('update', viaggio_id, checkbox.id, quantity, checkbox.checked);
+        updateItem('updateStatus', viaggio_id, checkbox.id, null, checkbox.checked);
     });
     
     // Inizializza il pulsante elimina
