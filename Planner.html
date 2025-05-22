@@ -28,21 +28,17 @@
       </h1>
       <span class="line"></span>
       <h2 class="app-section">Planner</h2>
-      <div class="profile" id="profile">
+      <div class="user-container" id="user-container">
         <img src="assets/user.png" class="user-logo" id="user-logo" />
+        <!--Modal che appare quando l'utente è loggato-->
+        <div class="modal-logout modal hidden" id="modal-logout">
+          <div class="email" id="email"></div>
+          <div class="logout">
+            <button class="logout-btn" id="logout-btn">Logout</button>
+          </div>
+        </div>
       </div>
     </header>
-
-    <!--Modal content per il profilo utente-->
-    <!-- <div class="modal-user" id="modal-logout">
-      <div class="email" id="email"></div>
-      <div class="logout">
-        <img src="assets/logout.png" class="logout-img" />
-        <span class="logout-span">
-          <a href="dashboard.php" class="logout-link"> Logout </a>
-        </span>
-      </div>
-    </div> -->
 
     <div class="wrapper">
       <div class="sidebar">

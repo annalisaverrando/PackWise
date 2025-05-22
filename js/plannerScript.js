@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //Setto gli eventListeners
       setupEventListeners();
+
+      setEmail();
     })
     .catch((error) => {
       console.error("Errore nella richiesta:", error);
@@ -43,9 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function setupEventListeners() {
   //CLICK SU ICONA UTENTE
-  /* document
+  document
     .getElementById("user-logo")
-    .addEventListener("click", () => userModal()); */
+    .addEventListener("click", () => logoutPanel());
+
+  //CLICK SU BOTTONE LOGOUT
+  document
+    .getElementById("logout-btn")
+    .addEventListener("click", () => logoutButton());
 
   //NAVIGAZIONE DATE
   document
@@ -106,20 +113,29 @@ function setupEventListeners() {
     .addEventListener("click", () => closeEditPanel());
 }
 
-//Gestisce il pannello che si apre al click dell'icona profilo
-/* function userModal() {
-  let modalUser = document.getElementById("modal-user");
+//Setta l'email nel container per il logout
+function setEmail() {
   fetch("emailUtente.php")
     .then((response) => response.json())
     .then((data) => {
       if (data.email) {
         let emailDiv = document.getElementById("email");
         emailDiv.textContent = `${data.email}`;
-        let modalLogout = document.getElementById("modal-logout");
-        modalLogout.style.display = "flex";
       }
     });
-} */
+}
+
+//Gestisce il pannello che si apre al click dell'icona profilo
+function logoutPanel() {
+  let modalLogout = document.getElementById("modal-logout");
+  modalLogout.classList.toggle("hidden");
+}
+
+function logoutButton() {
+  fetch("logout.php").then(() => {
+    window.location.href = "login.php";
+  });
+}
 
 //Calcola il lunedì della settimana di partenza
 function calculateMonday() {
