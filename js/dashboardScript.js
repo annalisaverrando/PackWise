@@ -1,3 +1,5 @@
+let currentTrip;
+
 document.addEventListener("DOMContentLoaded", function () {
   loadTripPanel("all");
   setEmail();
@@ -45,6 +47,11 @@ function setupEventListeners() {
   document.getElementById("new-trip").addEventListener("click", () => {
     window.location.href = "viaggio.html";
   });
+
+  //BOTTONE SALVA NEL PANNELLO MODIFICA VIAGGIO
+  document
+    .getElementById("save-btn")
+    .addEventListener("click", () => editTrip(currentTrip));
 }
 
 //Setta l'email nel container per il logout
@@ -161,11 +168,13 @@ function createTripPanel(tripData) {
   let status = getTripStatus(tripData.data_inizio, tripData.data_fine);
 
   tripContainer.innerHTML = `<div class="trip-header">
-    <h3 class="trip-name">${tripData.destinazione}</h3>
+    <h3 class="trip-name">${tripData.nome}</h3>
     <span class="trip-status ${status.status}">${status.text}</span>
   </div>
   <div class=trip-details>
-    <p class="detail"><strong>🌍Destinazione:</strong></p>
+    <p class="detail"><strong>🌍Destinazione: </strong>${
+      tripData.destinazione
+    }</p>
     <p class="detail"><strong>📅Date:</strong> ${getDateRange(
       tripData.data_inizio,
       tripData.data_fine
@@ -180,7 +189,7 @@ function createTripPanel(tripData) {
     .querySelector(".btn-edit")
     .addEventListener("click", (event) => {
       event.stopPropagation();
-      openModal();
+      openModal(tripData.id);
     });
 
   tripContainer
@@ -204,6 +213,35 @@ function openDetails(id) {
   window.location.href = `dettagli_viaggio.php?id=${encodeURIComponent(id)}`;
 }
 
+function editTrip(viaggio_id) {
+  let name = document.getElementById("trip-name").value;
+  let destination = document.getElementById("trip-destination").value;
+  let start = document.getElementById("trip-start").value;
+  let end = document.getElementById("trip-end").value;
+
+  fetch("aggiornaViaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      destination,
+      start,
+      end,
+      viaggio_id,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data.status == "ok") {
+        console.log(data.message);
+        alert("Errore nella modifica del viaggio");
+      } else {
+        loadTripPanel("all");
+        closeModal();
+      }
+    });
+}
+
 function deleteTrip(id) {
   fetch("eliminaViaggio.php", {
     method: "POST",
@@ -225,9 +263,30 @@ function deleteTrip(id) {
     });
 }
 
-function openModal() {
-  let modal = document.getElementById("trip-modal");
-  modal.style.display = "flex";
+function openModal(id) {
+  fetch("get_date_viaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `viaggio_id=${encodeURIComponent(id)}`,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status == "error") {
+        alert("Error: ", data.error);
+      }
+
+      document.getElementById("trip-name").value = data.nome;
+      document.getElementById("trip-destination").value = data.destinazione;
+      document.getElementById("trip-start").value = data.data_inizio;
+      document.getElementById("trip-end").value = data.data_fine;
+
+      currentTrip = id;
+      let modal = document.getElementById("trip-modal");
+      modal.style.display = "flex";
+    })
+    .catch((error) => {
+      console.error("Errore durante il caricamento:", error);
+    });
 }
 
 function closeModal() {
