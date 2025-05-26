@@ -18,14 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((info) => {
+      let tripName = info.nome;
+      let destinazione = info.destinazione;
       departure_date = info.data_inizio;
       return_date = info.data_fine;
-      let destinazione = info.destinazione;
 
       //Setto la data nella sidebar
+      document.getElementById("vacation-name").value = tripName;
+      document.getElementById("vacation-destination").value = destinazione;
       document.getElementById("vacation-start").value = departure_date;
       document.getElementById("vacation-end").value = return_date;
-      document.getElementById("vacation-name").value = destinazione;
 
       //Calcolo le date della settimana di partenza
       calculateMonday();
@@ -254,7 +256,8 @@ function goToBag() {
 
 //Aggiorna nome, date di inizio e fine vacanza
 function updateVacationDetails() {
-  let titolo = document.getElementById("vacation-name").value;
+  let name = document.getElementById("vacation-name").value;
+  let destination = document.getElementById("vacation-destination").value;
   let start = document.getElementById("vacation-start").value;
   let end = document.getElementById("vacation-end").value;
 
@@ -262,7 +265,8 @@ function updateVacationDetails() {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      titolo,
+      name,
+      destination,
       start,
       end,
       viaggio_id,

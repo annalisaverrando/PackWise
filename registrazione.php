@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $_SESSION['email'] = $email;
                     $_SESSION['nome'] = $nome;
                     $_SESSION['cognome'] = $cognome;
-                    header("Location: dashboard.php");
+                    header("Location: dashboard.html");
                     exit;
                 } else {
                     echo "<h1>Errore nella registrazione: " . pg_last_error($conn) . "</h1>";

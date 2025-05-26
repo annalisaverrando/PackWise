@@ -1,52 +1,112 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Viaggio</title>
 
     <!-- Stili -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="css/commonStyle.css">
-    <link rel="stylesheet" href="css/formStyle.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.css">
-</head>
-<body>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/commonStyle.css" />
+    <link rel="stylesheet" href="css/formStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.css"
+    />
+  </head>
+  <body>
     <div class="text-center">
-        <h1>Nuovo viaggio</h1>
-        <form name="form_viaggio" action="crea_viaggio.php" method="POST">
-            <div class="mb-3">
-                <label for="inputDestinazione">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f5f8fa"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
-                </label>
-                <input type="text" name="destinazione" id="inputDestinazione" placeholder="Destinazione" class="form-control">
-            </div>
-            
-            <div class="mb-3">
-                <label for="daterange">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f5f8fa"><path d="M480-400q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Z"/></svg>
-                </label>
-                <input type="text" id="daterange" name="date" placeholder="Seleziona le date" class="form-control">
-            </div>
+      <h1>Nuovo viaggio</h1>
+      <form name="form_viaggio" action="crea_viaggio.php" method="POST">
+        <div class="mb-3">
+          <label for="inputNome">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#f5f8fa"
+            >
+              <path
+                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+              />
+            </svg>
+          </label>
+          <input
+            type="text"
+            name="nome"
+            id="inputNome"
+            placeholder="Nome del viaggio"
+            class="form-control"
+          />
+        </div>
 
-            <button id="attivita_btn" type="submit" class="btn btn-primary">Seleziona attività</button>    
-        </form>
+        <div class="mb-3">
+          <label for="inputDestinazione">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#f5f8fa"
+            >
+              <path
+                d="M640-120 360-200l-200 80q-17 7-33.5-3T110-144v-616q0-11 6-20t17-12l207-83q4-2 8.5-2t8.5 2l280 80 200-80q17-7 33.5 3t16.5 30v616q0 11-6 20t-17 12l-207 83q-4 2-8.5 2t-8.5-2ZM600-180v-560l-240-68v560l240 68ZM160-196l160-64v-560L160-756v560Zm640-568-160 64v560l160-64v-560Z"
+              />
+            </svg>
+          </label>
+          <input
+            type="text"
+            name="destinazione"
+            id="inputDestinazione"
+            placeholder="Destinazione"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="daterange">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#f5f8fa"
+            >
+              <path
+                d="M480-400q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Z"
+              />
+            </svg>
+          </label>
+          <input
+            type="text"
+            id="daterange"
+            name="date"
+            placeholder="Seleziona le date"
+            class="form-control"
+          />
+        </div>
+
+        <button id="attivita_btn" type="submit" class="btn btn-primary">
+          Seleziona attività
+        </button>
+      </form>
     </div>
 
     <!-- Script Litepicker -->
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
     <script>
-        window.addEventListener("DOMContentLoaded", function () {
-            new Litepicker({
-                element: document.getElementById('daterange'),
-                singleMode: false,
-                format: 'DD/MM/YYYY',
-                numberOfMonths: 1,
-                numberOfColumns: 1,
-                autoApply: true,
-                lang: 'it-IT'
-            });
+      window.addEventListener("DOMContentLoaded", function () {
+        new Litepicker({
+          element: document.getElementById("daterange"),
+          singleMode: false,
+          format: "DD/MM/YYYY",
+          numberOfMonths: 1,
+          numberOfColumns: 1,
+          autoApply: true,
+          lang: "it-IT",
         });
+      });
     </script>
-</body>
+  </body>
 </html>

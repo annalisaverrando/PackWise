@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         or die('Errore nella connessione: ' . pg_last_error());
 
     // Recupera i dati dal form
+    $nome = $_POST['nome'];
     $destinazione = $_POST['destinazione'];
     $date_range = $_POST['date'];
     
@@ -23,9 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data_fine_db = $data_fine_obj->format('Y-m-d');
         
         // Query per inserire il nuovo viaggio
-        $query = "INSERT INTO viaggi (email_utente, destinazione, data_inizio, data_fine) 
-                VALUES ($1, $2, $3, $4) RETURNING id";
-        $result = pg_query_params($conn, $query, array($email, $destinazione, $data_inizio_db, $data_fine_db));
+        $query = "INSERT INTO viaggi (email_utente, nome, destinazione, data_inizio, data_fine) 
+                VALUES ($1, $2, $3, $4, $5) RETURNING id";
+        $result = pg_query_params($conn, $query, array($email, $nome, $destinazione, $data_inizio_db, $data_fine_db));
 
         if ($result) {
             $row = pg_fetch_assoc($result);

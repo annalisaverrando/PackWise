@@ -9,7 +9,7 @@ $conn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres passw
 $email = $_SESSION['email'];
 $viaggio_id = $_POST['viaggio_id'];
 
-$query = "SELECT data_inizio, data_fine, destinazione FROM viaggi WHERE id = $1 and email_utente = $2";
+$query = "SELECT nome, destinazione, data_inizio, data_fine FROM viaggi WHERE id = $1 and email_utente = $2";
 $result = pg_query_params($conn, $query, array($viaggio_id, $email));
 
 $row = pg_fetch_assoc($result);
@@ -18,6 +18,7 @@ if($row) {
   header('Content-Type: application/json');
 
   echo json_encode([
+    "nome" => $row['nome'],
     "data_inizio" => $row['data_inizio'],
     "data_fine" => $row['data_fine'],
     "destinazione" => $row['destinazione']

@@ -8,6 +8,7 @@ CREATE TABLE utenti (
 CREATE TABLE viaggi (
     id SERIAL PRIMARY KEY,
     email_utente VARCHAR(255) REFERENCES utenti(email) ON DELETE CASCADE,
+    nome VARCHAR(255) NOT NULL,
     destinazione VARCHAR(255) NOT NULL,
     data_inizio DATE NOT NULL,
     data_fine DATE NOT NULL

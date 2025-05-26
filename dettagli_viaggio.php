@@ -42,7 +42,8 @@ $current_category = '';
         <script type="application/javascript" src="js/listaScript.js" defer></script>   
 </head>
 <body>
-    <h1>Dettagli del Viaggio: <?php echo $viaggio['destinazione']; ?></h1>
+    <h1>Dettagli del Viaggio: <?php echo $viaggio['nome']; ?></h1>
+    <p>Destinazione: <?php echo $viaggio['destinazione']; ?></p>
     <p>Data di inizio: <?php echo $viaggio['data_inizio']; ?></p>
     <p>Data di fine: <?php echo $viaggio['data_fine']; ?></p>
 
