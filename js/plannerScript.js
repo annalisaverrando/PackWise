@@ -133,7 +133,7 @@ function logoutPanel() {
 
 function logoutButton() {
   fetch("logout.php").then(() => {
-    window.location.href = "login.php";
+    window.location.href = "login.html";
   });
 }
 
@@ -149,6 +149,7 @@ function calculateMonday() {
   //Setto la data corrente a lunedì
   currentDate = new Date(lunedi);
 }
+
 //Aggiorna mese e anno del calendario
 function setMonthYear() {
   //Imposto mese e anno

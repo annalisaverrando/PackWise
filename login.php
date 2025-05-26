@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 // Confronta la password inserita con l'hash salvato nel database
                 if (password_verify($_POST['password'], $utente['password'])) {
                     $_SESSION['email'] = $email;
-                    header("Location: dashboard.php");
+                    header("Location: dashboard.html");
                     exit;
                     
                     //echo "<a href='dashboard.php'>clicca</a>";

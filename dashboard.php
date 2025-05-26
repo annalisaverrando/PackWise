@@ -13,39 +13,35 @@ $conn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres passw
 
 // Recupera i dati dell'utente loggato
 $email = $_SESSION['email'];
-?>
+$filter = $_POST["filter"];
 
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="css/commonStyle.css">
-</head>
-<body>
-    <h1>Benvenuto</h1>
-    <h2>Crea nuovo</h2>
-    <a href="viaggio.html" class="btn btn-primary">Vai a Crea Viaggio</a>
-    
-    <h2>Viaggi precedenti</h2>
-    <?php
-        // Recupera i viaggi dell'utente
-        $query_viaggi = "SELECT * FROM viaggi WHERE email_utente = $1";
-        $result_viaggi = pg_query_params($conn, $query_viaggi, array($email));
-        if (pg_num_rows($result_viaggi) > 0) {
-            while ($viaggio = pg_fetch_assoc($result_viaggi)) {
-                echo "<strong>" . $viaggio['destinazione'] . "</strong> - " . $viaggio['data_inizio'] . " a " . $viaggio['data_fine'];
-                echo "<a href='dettagli_viaggio.php?id=" . $viaggio['id'] . "'>Visualizza Dettagli</a><br>";
-            }
-        } else {
-            echo "Non hai ancora registrato alcun viaggio.";
-        }
-    ?>
+$date = date("Y-m-d");
 
-</body>
-</html>
+if($filter == "all"){
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1";
+    $result_viaggi = pg_query_params($conn, $query, array($email));
+} elseif($filter == "planned"){
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 < data_inizio";
+    $result_viaggi = pg_query_params($conn, $query, array($email, $date));
+} elseif($filter == "past"){
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 > data_fine";
+    $result_viaggi = pg_query_params($conn, $query, array($email, $date));
+} else{
+    $result_viaggi = false;
+}
 
-<?php
-pg_close($conn); // Chiudi la connessione al database
+$viaggi = [];
+
+if(!$result_viaggi){
+    echo json_encode(["status" => "error", "error" => pg_last_error()]);
+    exit;
+}
+
+if (pg_num_rows($result_viaggi) > 0) {
+    while ($viaggio = pg_fetch_assoc($result_viaggi)) {
+        $viaggi[] = $viaggio;
+    }
+}
+
+echo json_encode(["status" => "ok", "data" => $viaggi]);
 ?>

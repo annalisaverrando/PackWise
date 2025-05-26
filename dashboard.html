@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/baseStyle.css" />
+    <link rel="stylesheet" href="css/dashboardStyle.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/dashboardScript.js"></script>
+  </head>
+  <body>
+    <header>
+      <img src="assets/Logo.png" class="logo" />
+      <h1 class="app-title">
+        <a href="dashboard.php" class="title-link">PackWise</a>
+      </h1>
+      <span class="line"></span>
+      <h2 class="app-section">Dashboard</h2>
+      <div class="user-container" id="user-container">
+        <img src="assets/user.png" class="user-logo" id="user-logo" />
+        <!--Modal che appare quando l'utente è loggato-->
+        <div class="modal-logout active hidden" id="modal-logout">
+          <div class="email" id="email"></div>
+          <div class="logout">
+            <button class="logout-btn" id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrapper">
+      <div class="sidebar">
+        <h1>Benvenuto</h1>
+      </div>
+      <div class="dashboard">
+        <h2 class="your-trips">I tuoi viaggi</h2>
+        <div class="dashboard-bar">
+          <div class="filter-tabs">
+            <button class="filter-tab active" id="filter-all">Tutti</button>
+            <button class="filter-tab" id="filter-planned">In programma</button>
+            <button class="filter-tab" id="filter-past">Completati</button>
+          </div>
+          <button class="btn-primary new-trip" id="new-trip">
+            ➕ Nuovo Viaggio
+          </button>
+        </div>
+        <div class="main-container" id="main-container"></div>
+      </div>
+    </div>
+
+    <!--Modal content per la modifica di un viaggio-->
+    <div class="modal" id="trip-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title">Modifica Viaggio</h2>
+          <span class="close" onclick="closeModal()">×</span>
+        </div>
+        <form id="trip-form" action="aggiornaViaggio.php" method="POST">
+          <div class="form-group">
+            <label class="form-label" for="trip-name">Nome del viaggio</label>
+            <input
+              type="text"
+              id="trip-name"
+              class="form-input"
+              name="nome_viaggio"
+              placeholder="Es. Vacanze al mare"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="trip-destination"
+              >Destinazione</label
+            >
+            <input
+              type="text"
+              id="trip-destination"
+              class="form-input"
+              name="destinazione"
+              placeholder="Es. Roma"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="trip-start">Data inizio</label>
+            <input
+              type="date"
+              id="trip-start"
+              class="form-input"
+              name="data_inizio"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="trip-end">Data fine</label>
+            <input
+              type="date"
+              id="trip-end"
+              class="form-input"
+              name="data_fine"
+            />
+          </div>
+          <button type="submit" class="save-btn btn-edit">Salva</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
