@@ -120,7 +120,7 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--accent-color);
+  background: linear-gradient(45deg, #00b4db, #0083b0);
   color: white;
 }
 

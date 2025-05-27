@@ -78,35 +78,68 @@ function logoutButton() {
   });
 }
 
-function loadTripPanel(filter) {
-  fetch("dashboard.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `filter=${encodeURIComponent(filter)}`,
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response.status == "error") {
-        console.log(response.error);
-      } else {
-        let tripList = response.data;
-        let container = document.getElementById("main-container");
-        container.textContent = "";
-        if (tripList == []) {
-          let content = document.createElement("div");
-          content.textContent = "Non hai ancora nessun viaggio";
-          container.appendChild(content);
-        } else {
-          for (let trip of tripList) {
-            let tripElement = createTripPanel(trip);
-            container.appendChild(tripElement);
-          }
-        }
-      }
-    })
-    .catch((error) => {
-      console.error("Errore fetch: ", error);
+async function setBanner() {
+  let tripList = await loadTrip("planned");
+  let incomingTrip = tripList[0];
+
+  document.getElementById("banner-name").textContent = incomingTrip.nome;
+  document.getElementById(
+    "destination"
+  ).textContent = `${incomingTrip.destinazione}`;
+  document.getElementById("dates").textContent = getDateRange(
+    incomingTrip.data_inizio,
+    incomingTrip.data_fine
+  );
+
+  let today = new Date();
+  let start = new Date(incomingTrip.data_inizio);
+  let diffMill = start - today;
+  let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+
+  document.getElementById(
+    "countdown"
+  ).textContent = `${diffDays} giorni rimanenti`;
+
+  sessionStorage.viaggio_id = incomingTrip.id;
+}
+
+async function loadTrip(filter) {
+  try {
+    const response = await fetch("dashboard.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `filter=${encodeURIComponent(filter)}`,
     });
+
+    const json = await response.json();
+
+    if (json.status === "error") {
+      console.log(json.error);
+      return [];
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Errore fetch:", error);
+    return [];
+  }
+}
+
+async function loadTripPanel(filter) {
+  let tripList = await loadTrip(filter);
+  let container = document.getElementById("main-container");
+  container.textContent = "";
+  if (tripList == []) {
+    let content = document.createElement("div");
+    content.textContent = "Non hai ancora nessun viaggio";
+    container.appendChild(content);
+  } else {
+    for (let trip of tripList) {
+      let tripElement = createTripPanel(trip);
+      container.appendChild(tripElement);
+    }
+    setBanner();
+  }
 }
 
 function getDateRange(start, end) {
@@ -137,15 +170,15 @@ function getDateRange(start, end) {
   let endYear = end.getFullYear();
 
   if (startMonth == endMonth && startYear == endYear) {
-    return `<strong>Date: </strong>${startDay}-${endDay} ${startMonth} ${startYear}`;
+    return `${startDay}-${endDay} ${startMonth} ${startYear}`;
   }
   if (startMonth != endMonth && startYear == endYear) {
-    return `<strong>Date: </strong>${startDay} ${startMonth.slice(
+    return `${startDay} ${startMonth.slice(0, 3)} - ${endDay} ${endMonth.slice(
       0,
       3
-    )} - ${endDay} ${endMonth.slice(0, 3)} ${startYear}`;
+    )} ${startYear}`;
   }
-  return `<strong>Date: </strong>${startDay} ${startMonth.slice(
+  return `${startDay} ${startMonth.slice(
     0,
     3
   )} ${startYear} - ${endDay} ${endMonth.slice(0, 3)} ${endYear}`;
@@ -158,6 +191,19 @@ function getTripStatus(start, end) {
   if (date > end) return { status: "trip-completed", text: "COMPLETATO" };
   if (date < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
   return { status: "trip-active", text: "ATTIVO" };
+}
+
+function timeToGo(start) {
+  let today = new Date();
+  start = new Date(start);
+  let diffMill = start - today;
+  let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+
+  if (start >= today) {
+    return `<strong>⌛Partenza tra: </strong>${diffDays}g`;
+  } else {
+    return `<strong>🎞️Partenza avvenuta: </strong>${-diffDays}g fa`;
+  }
 }
 
 function createTripPanel(tripData) {
@@ -175,10 +221,11 @@ function createTripPanel(tripData) {
     <p class="detail"><strong>🌍Destinazione: </strong>${
       tripData.destinazione
     }</p>
-    <p class="detail">📅${getDateRange(
+    <p class="detail"><strong>📅Date: </strong>${getDateRange(
       tripData.data_inizio,
       tripData.data_fine
     )}</p>
+    <p class="datail">${timeToGo(tripData.data_inizio)}</p>
     <div class="trip-actions">
       <button class="btn-primary btn-edit">✏️ Modifica</button>
       <button class="btn-primary btn-delete">🗑️ Elimina</button>
