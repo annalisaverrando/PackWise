@@ -249,7 +249,7 @@ function navigateCalendar(days) {
 
 //Torna alla valigia
 function goToBag() {
-  window.location.href = `dettagli_viaggio.php?id=${encodeURIComponent(
+  window.location.href = `valigia.php?id=${encodeURIComponent(
     viaggio_id
   )}`;
 }

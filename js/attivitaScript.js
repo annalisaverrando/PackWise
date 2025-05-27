@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Aggiungi l'event listener al pulsante
     submitButton.addEventListener('click', submitAttivita);
+    
+    // Chiamata alla funzione setupEventListeners per gestire le interazioni con l'utente
+    setupEventListeners();
+    
+    // Imposta l'email dell'utente nel pannello di logout
+    setEmail();
 });
 
 // Funzione per gestire l'invio del form
@@ -44,7 +50,7 @@ function submitAttivita() {
         
         if (data.status === 'success') {
             // Vai direttamente alla pagina dei dettagli del viaggio
-            window.location.href = 'dettagli_viaggio.php?id=' + viaggio_id;
+            window.location.href = 'valigia.php?id=' + viaggio_id;
         } else {
             // Se c'è stato un errore, mostra il messaggio
             alert(data.message || "Errore durante la creazione della valigia");
@@ -55,3 +61,42 @@ function submitAttivita() {
         alert("Si è verificato un errore durante la creazione della valigia.");
     });
 } 
+
+
+
+function setupEventListeners() {
+    //CLICK SU ICONA UTENTE
+    document
+      .getElementById("user-logo")
+      .addEventListener("click", () => logoutPanel());
+  
+    //CLICK SU BOTTONE LOGOUT
+    document
+      .getElementById("logout-btn")
+      .addEventListener("click", () => logoutButton());
+  }
+  
+  //Setta l'email nel container per il logout
+  function setEmail() {
+    fetch("emailUtente.php")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.email) {
+          let emailDiv = document.getElementById("email");
+          emailDiv.textContent = `${data.email}`;
+        }
+      });
+  }
+  
+  //Gestisce il pannello che si apre al click dell'icona profilo
+  function logoutPanel() {
+    let modalLogout = document.getElementById("modal-logout");
+    modalLogout.classList.toggle("hidden");
+  }
+  
+  function logoutButton() {
+    fetch("logout.php").then(() => {
+      window.location.href = "login.html";
+    });
+  }
+  

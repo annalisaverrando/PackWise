@@ -257,7 +257,7 @@ function tripFilters(filter) {
 }
 
 function openDetails(id) {
-  window.location.href = `dettagli_viaggio.php?id=${encodeURIComponent(id)}`;
+  window.location.href = `valigia.php?id=${encodeURIComponent(id)}`;
 }
 
 function editTrip(viaggio_id) {

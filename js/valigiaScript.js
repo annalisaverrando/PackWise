@@ -1,4 +1,4 @@
-// Funzione che invia la richiesta AJAX al server per aggiungere, aggiornare o eliminare un oggetto
+// Funzione che invia la richiesta al server per aggiungere, aggiornare o eliminare un oggetto
 function updateItem(action, viaggio_id, oggetto, quantita = null, stato = null, categoria = null) {
     // Crea un oggetto con i dati da inviare
     const payload = {
@@ -163,7 +163,6 @@ function initializeApp() {
                 textInput.replaceWith(label);
                 
                 initializeItem(newItem);
-                // AJAX: aggiunta
                 updateItem('add', viaggio_id, elementName, 1, false, sezione.id);
             }
             
@@ -179,7 +178,53 @@ function initializeApp() {
 }
 
 
+
+function setupEventListeners() {
+    //CLICK SU ICONA UTENTE
+    document
+      .getElementById("user-logo")
+      .addEventListener("click", () => logoutPanel());
+  
+    //CLICK SU BOTTONE LOGOUT
+    document
+      .getElementById("logout-btn")
+      .addEventListener("click", () => logoutButton());
+  }
+  
+  //Setta l'email nel container per il logout
+  function setEmail() {
+    fetch("emailUtente.php")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.email) {
+          let emailDiv = document.getElementById("email");
+          emailDiv.textContent = `${data.email}`;
+        }
+      });
+  }
+  
+  //Gestisce il pannello che si apre al click dell'icona profilo
+  function logoutPanel() {
+    let modalLogout = document.getElementById("modal-logout");
+    modalLogout.classList.toggle("hidden");
+  }
+  
+  function logoutButton() {
+    fetch("logout.php").then(() => {
+      window.location.href = "login.html";
+    });
+  }
+  
+
 // Inizializza tutto quando il documento è caricato
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener("DOMContentLoaded", function() {
+    initializeApp();
+    
+    // Chiamata alla funzione setupEventListeners per gestire le interazioni con l'utente
+    setupEventListeners();
+    
+    // Imposta l'email dell'utente nel pannello di logout
+    setEmail();
+});
 
 

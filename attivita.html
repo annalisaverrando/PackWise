@@ -7,9 +7,30 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/commonStyle.css">
         <link rel="stylesheet" href="css/attivitaStyle.css">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet"/>
         <script type="application/javascript" src="js/attivitaScript.js" defer></script>
     </head>
     <body>
+        <header class="title-bar">
+            <img src="assets/Logo.png" class="logo" />
+            <h1 class="app-title">
+              <a href="dashboard.html" class="title-link">PackWise</a>
+            </h1>
+            <span class="line"></span>
+            <h2 class="app-section">Attività</h2>
+            <div class="user-container" id="user-container">
+              <img src="assets/user.png" class="user-logo" id="user-logo" />
+              <!--Modal che appare quando l'utente è loggato-->
+              <div class="modal-logout active hidden" id="modal-logout">
+                <div class="email" id="email"></div>
+                <div class="logout">
+                  <button class="btn btn-primary logout-btn" id="logout-btn">Logout</button>
+                </div>
+              </div>
+            </div>
+        </header>
         <div class="container">
             <h1>Seleziona le attività</h1>
             <h2>Alloggio</h2>
