@@ -18,13 +18,13 @@ $filter = $_POST["filter"];
 $date = date("Y-m-d");
 
 if($filter == "all"){
-    $query = "SELECT * FROM viaggi WHERE email_utente = $1";
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1 ORDER BY data_inizio";
     $result_viaggi = pg_query_params($conn, $query, array($email));
 } elseif($filter == "planned"){
-    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 < data_inizio";
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 < data_inizio ORDER BY data_inizio";
     $result_viaggi = pg_query_params($conn, $query, array($email, $date));
 } elseif($filter == "past"){
-    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 > data_fine";
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 > data_fine ORDER BY data_inizio";
     $result_viaggi = pg_query_params($conn, $query, array($email, $date));
 } else{
     $result_viaggi = false;

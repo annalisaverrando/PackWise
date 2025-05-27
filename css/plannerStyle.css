@@ -1,3 +1,14 @@
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 input,
 textarea,
 select {
@@ -197,6 +208,7 @@ select {
   border-radius: 8px;
   width: 90%;
   max-width: 500px;
+  animation: modalSlideIn 0.3s ease;
 }
 
 .add-title {

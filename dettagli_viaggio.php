@@ -15,8 +15,8 @@ $conn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres passw
 $viaggio_id = $_GET['id'];
 
 // Recupera i dettagli del viaggio
-$query_viaggio = "SELECT * FROM viaggi WHERE id = $1";
-$result_viaggio = pg_query_params($conn, $query_viaggio, array($viaggio_id));
+$query_viaggio = "SELECT * FROM viaggi WHERE id = $1 AND email_utente = $2";
+$result_viaggio = pg_query_params($conn, $query_viaggio, array($viaggio_id, $_SESSION['email']));
 $viaggio = pg_fetch_assoc($result_viaggio);
 
 // Recupera gli oggetti associati al viaggio

@@ -117,9 +117,6 @@ button {
   border-radius: 9px;
   cursor: pointer;
   font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn-primary {

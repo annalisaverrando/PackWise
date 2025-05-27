@@ -175,7 +175,7 @@ function createTripPanel(tripData) {
     <p class="detail"><strong>🌍Destinazione: </strong>${
       tripData.destinazione
     }</p>
-    <p class="detail"><strong>📅Date:</strong> ${getDateRange(
+    <p class="detail">📅${getDateRange(
       tripData.data_inizio,
       tripData.data_fine
     )}</p>
