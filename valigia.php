@@ -35,7 +35,6 @@ $current_category = '';
 <head>
     <meta charset="UTF-8">
     <title>Valigia</title>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/commonStyle.css">
         <link rel="stylesheet" href="css/valigiaStyle.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
