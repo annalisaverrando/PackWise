@@ -93,7 +93,7 @@ $current_category = '';
                             echo "<h2>" . ucfirst($current_category) . "</h2>";
                             echo "<div class='sezione-controls'>";
                             echo "<button class='btn-add' title='Aggiungi elemento'><i class='bi bi-plus-lg'></i></button>";
-                            echo "<button class='btn-toggle' title='Espandi/Comprimi' onclick='toggleContent(\"$current_category\");'><i class='bi bi-chevron-down' id='icon-$current_category'></i></button>";
+                            echo "<button class='btn-toggle' title='Espandi/Comprimi'><i class='bi bi-chevron-down' id='icon-$current_category'></i></button>";
                             echo "</div>";
                             echo "</div>";
                             echo "<div class='sezione-content'>";
