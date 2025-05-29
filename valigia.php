@@ -90,6 +90,7 @@ $current_category = '';
                             $current_category = $oggetto['categoria'];
                             echo "<div class='sezione' id='$current_category'>";
                             echo "<div class='sezione-header'>";
+                            echo "<img src='assets/" . $current_category . ".png' class='category-img'>"; 
                             echo "<h2>" . ucfirst($current_category) . "</h2>";
                             echo "<div class='sezione-controls'>";
                             echo "<button class='btn-add' title='Aggiungi elemento'><i class='bi bi-plus-lg'></i></button>";
