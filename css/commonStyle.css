@@ -207,7 +207,7 @@ button {
 .logout-btn {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+  background: var(--error-color);
   color: white;
   border: none;
   border-radius: 8px;
@@ -218,9 +218,8 @@ button {
 }
 
 .logout-btn:hover {
-  background: linear-gradient(135deg, #01b7ea 0%, #004ecb 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(252, 89, 60, 0.3);
 }
 
 .logout-btn:active {
