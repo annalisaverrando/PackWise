@@ -10,6 +10,10 @@ body {
   height: 100%;
 }
 
+.page-title {
+  margin: 20px 0;
+}
+
 .text-center {
   background-color: var(--background-color);
   border-radius: 20px;
