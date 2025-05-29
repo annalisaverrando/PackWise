@@ -60,7 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             SET stato = $1 
             WHERE id_viaggio = $2 AND nome_oggetto = $3
         ";
-        $result = pg_query_params($conn, $update_query, array($stato ? true : false, $viaggio_id, $oggetto));
+        $stato = ($stato === true || $stato === 'true' || $stato === 1 || $stato === '1') ? 'true' : 'false';
+        $result = pg_query_params($conn, $update_query, array($stato, $viaggio_id, $oggetto));
         
         if ($result) {
             echo "Stato aggiornato con successo!";

@@ -126,6 +126,7 @@ $current_category = '';
                 echo "</script>";
                 ?>
             </div>
+            <button class="add-section-btn" id="add-section-btn">+</button>
         </div>
     </div>
 </body>
