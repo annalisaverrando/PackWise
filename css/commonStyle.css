@@ -76,7 +76,7 @@ button {
 
 .title-bar {
   height: 64px;
-  background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+  background: linear-gradient(135deg, #5f8ecc 0%, #191970 100%);
   display: flex;
   align-items: center;
   padding: 1rem 2rem;

@@ -200,9 +200,9 @@ function timeToGo(start) {
   let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
 
   if (start >= today) {
-    return `<strong>⌛Partenza tra: </strong>${diffDays}g`;
+    return `<span class="weight">Partenza tra: </span>${diffDays}g`;
   } else {
-    return `<strong>🎞️Partenza avvenuta: </strong>${-diffDays}g fa`;
+    return `<span class="weight">Partenza avvenuta: </span>${-diffDays}g fa`;
   }
 }
 
@@ -218,17 +218,17 @@ function createTripPanel(tripData) {
     <span class="trip-status ${status.status}">${status.text}</span>
   </div>
   <div class=trip-details>
-    <p class="detail"><strong>🌍Destinazione: </strong>${
+    <p class="detail"><span class="weight">Destinazione: </span>${
       tripData.destinazione
     }</p>
-    <p class="detail"><strong>📅Date: </strong>${getDateRange(
+    <p class="detail"><span class="weight">Date: </span>${getDateRange(
       tripData.data_inizio,
       tripData.data_fine
     )}</p>
     <p class="datail">${timeToGo(tripData.data_inizio)}</p>
     <div class="trip-actions">
-      <button class="btn-primary btn-edit">✏️ Modifica</button>
-      <button class="btn-primary btn-delete">🗑️ Elimina</button>
+      <button class="btn-primary btn-edit"> Modifica</button>
+      <button class="btn-primary btn-delete"> Elimina</button>
     </div>
   </div>`;
 
