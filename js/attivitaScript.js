@@ -33,6 +33,13 @@ function submitAttivita() {
     return;
   }
 
+  const selectedActivities = [];
+  document
+    .querySelectorAll('input[type="checkbox"]:checked')
+    .forEach((checkbox) => {
+      selectedActivities.push(checkbox.value);
+    });
+
   // Crea una richiesta POST a crea_lista.php
   fetch("crea_lista.php", {
     method: "POST",

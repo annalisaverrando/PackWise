@@ -20,6 +20,12 @@ body {
   background: white;
 }
 
+.title-bar {
+  position: sticky; /*Title bar sticky*/
+  top: 0;
+  z-index: 1000; /*Title bar sticky*/
+}
+
 /*--HEADER--*/
 
 .container {
