@@ -18,6 +18,10 @@
       href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script
       type="application/javascript"
       src="js/attivitaScript.js"
@@ -46,143 +50,176 @@
       </div>
     </header>
     <div class="container">
-      <h1>Seleziona le attività</h1>
-      <h2>Alloggio</h2>
-      <div class="griglia-attività">
-        <label class="attività">
-          <input type="checkbox" name="alloggio" value="hotel" />
-          <img src="assets/hotel.png" alt="Hotel" />
-          <span>Hotel</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="alloggio" value="secondaCasa" />
-          <img src="assets/secondaCasa.png" alt="Seconda casa" />
-          <span>Seconda casa</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="alloggio" value="amici" />
-          <img src="assets/amici.png" alt="Amici/Famiglia" />
-          <span>Amici/Famiglia</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="alloggio" value="campeggio" />
-          <img src="assets/campeggio.png" alt="Campeggio" />
-          <span>Campeggio</span>
-        </label>
+      <div class="page-header">
+        <h1>Seleziona le tue attività</h1>
+        <p>
+          Scegli cosa farai durante il viaggio per ricevere una lista
+          personalizzata di oggetti da portare
+        </p>
       </div>
 
-      <h2>Transporti</h2>
-      <div class="griglia-attività">
-        <label class="attività">
-          <input type="checkbox" name="transporti" value="aereo" />
-          <img src="assets/aereo.png" alt="Aereo" />
-          <span>Aereo</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="transporti" value="auto" />
-          <img src="assets/auto.png" alt="Auto" />
-          <span>Auto</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="transporti" value="treno" />
-          <img src="assets/treno.png" alt="Treno" />
-          <span>Treno</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="transporti" value="moto" />
-          <img src="assets/moto.png" alt="Moto" />
-          <span>Moto</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="transporti" value="barca" />
-          <img src="assets/barca.png" alt="Barca" />
-          <span>Barca</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="transporti" value="corriera" />
-          <img src="assets/corriera.png" alt="Corriera" />
-          <span>Corriera</span>
-        </label>
+      <div class="category-section">
+        <div class="category-header">
+          <h2>Alloggio</h2>
+          <p class="category-subtitle">Dove alloggerai durante il viaggio?</p>
+        </div>
+        <div class="griglia-attività">
+          <label class="attività">
+            <input type="checkbox" name="alloggio" value="hotel" />
+            <img src="assets/hotel.png" alt="Hotel" />
+            <span>Hotel</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="alloggio" value="secondaCasa" />
+            <img src="assets/secondaCasa.png" alt="Seconda casa" />
+            <span>Seconda casa</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="alloggio" value="amici" />
+            <img src="assets/amici.png" alt="Amici/Famiglia" />
+            <span>Amici/Famiglia</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="alloggio" value="campeggio" />
+            <img src="assets/campeggio.png" alt="Campeggio" />
+            <span>Campeggio</span>
+          </label>
+        </div>
       </div>
-      <h2>Articoli e attività</h2>
-      <div class="griglia-attività">
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="essenziali" />
-          <img src="assets/essenziali.png" alt="Essenziali" />
-          <span>Essenziali</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="abbigliamento" />
-          <img src="assets/abbigliamento.png" alt="Abbigliamento" />
-          <span>Abbigliamento</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="toeletta" />
-          <img src="assets/toeletta.png" alt="Toeletta" />
-          <span>Articoli da toeletta</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="internazionale" />
-          <img src="assets/internazionale.png" alt="Internazionale" />
-          <span>Internazionale</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="lavoro" />
-          <img src="assets/lavoro.png" alt="Lavoro" />
-          <span>Lavoro</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="escursionismo" />
-          <img src="assets/escursionismo.png" alt="Escursionismo" />
-          <span>Escursionismo</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="gala" />
-          <img src="assets/gala.png" alt="Gala" />
-          <span>Cena di gala</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="fotografia" />
-          <img src="assets/fotografia.png" alt="Fotografia" />
-          <span>Fotografia</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="palestra" />
-          <img src="assets/palestra.png" alt="Palestra" />
-          <span>Palestra</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="spiaggia" />
-          <img src="assets/spiaggia.png" alt="Spiaggia" />
-          <span>Spiaggia</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="piscina" />
-          <img src="assets/piscina.png" alt="Piscina" />
-          <span>Piscina</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="articoli" value="invernali" />
-          <img src="assets/invernali.png" alt="Sport invernali" />
-          <span>Sport invernali</span>
-        </label>
+
+      <div class="category-section">
+        <div class="category-header">
+          <h2>Transporti</h2>
+          <p class="category-subtitle">Come ti sposterai?</p>
+        </div>
+        <div class="griglia-attività">
+          <label class="attività">
+            <input type="checkbox" name="transporti" value="aereo" />
+            <img src="assets/aereo.png" alt="Aereo" />
+            <span>Aereo</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="transporti" value="auto" />
+            <img src="assets/auto.png" alt="Auto" />
+            <span>Auto</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="transporti" value="treno" />
+            <img src="assets/treno.png" alt="Treno" />
+            <span>Treno</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="transporti" value="moto" />
+            <img src="assets/moto.png" alt="Moto" />
+            <span>Moto</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="transporti" value="barca" />
+            <img src="assets/barca.png" alt="Barca" />
+            <span>Barca</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="transporti" value="corriera" />
+            <img src="assets/corriera.png" alt="Corriera" />
+            <span>Corriera</span>
+          </label>
+        </div>
       </div>
-      <h2>Altro</h2>
-      <div class="griglia-attività">
-        <label class="attività">
-          <input type="checkbox" name="altro" value="lista" />
-          <img src="assets/lista.png" alt="Lista" />
-          <span>Lista di cose da fare</span>
-        </label>
-        <label class="attività">
-          <input type="checkbox" name="altro" value="bambino" />
-          <img src="assets/bambino.png" alt="Bambino" />
-          <span>Bambino</span>
-        </label>
+
+      <div class="category-section">
+        <div class="category-header">
+          <h2>Articoli e attività</h2>
+          <p class="category-subtitle">Cosa farai durante il viaggio?</p>
+        </div>
+        <div class="griglia-attività">
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="essenziali" />
+            <img src="assets/essenziali.png" alt="Essenziali" />
+            <span>Essenziali</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="abbigliamento" />
+            <img src="assets/abbigliamento.png" alt="Abbigliamento" />
+            <span>Abbigliamento</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="toeletta" />
+            <img src="assets/toeletta.png" alt="Toeletta" />
+            <span>Articoli da toeletta</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="internazionale" />
+            <img src="assets/internazionale.png" alt="Internazionale" />
+            <span>Internazionale</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="lavoro" />
+            <img src="assets/lavoro.png" alt="Lavoro" />
+            <span>Lavoro</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="escursionismo" />
+            <img src="assets/escursionismo.png" alt="Escursionismo" />
+            <span>Escursionismo</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="gala" />
+            <img src="assets/gala.png" alt="Gala" />
+            <span>Cena di gala</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="fotografia" />
+            <img src="assets/fotografia.png" alt="Fotografia" />
+            <span>Fotografia</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="palestra" />
+            <img src="assets/palestra.png" alt="Palestra" />
+            <span>Palestra</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="spiaggia" />
+            <img src="assets/spiaggia.png" alt="Spiaggia" />
+            <span>Spiaggia</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="piscina" />
+            <img src="assets/piscina.png" alt="Piscina" />
+            <span>Piscina</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="articoli" value="invernali" />
+            <img src="assets/invernali.png" alt="Sport invernali" />
+            <span>Sport invernali</span>
+          </label>
+        </div>
       </div>
-      <button id="submitBtn" type="submit" class="btn btn-primary">
-        Crea la valigia
-      </button>
+      <div class="category-section">
+        <div class="category-header">
+          <h2>Altro</h2>
+          <p class="category-subtitle">Esigenze speciali</p>
+        </div>
+        <div class="griglia-attività">
+          <label class="attività">
+            <input type="checkbox" name="altro" value="lista" />
+            <img src="assets/lista.png" alt="Lista" />
+            <span>Lista di cose da fare</span>
+          </label>
+          <label class="attività">
+            <input type="checkbox" name="altro" value="bambino" />
+            <img src="assets/bambino.png" alt="Bambino" />
+            <span>Bambino</span>
+          </label>
+        </div>
+      </div>
+      <div class="submit-section">
+        <button id="submitBtn" type="submit" class="btn-submit" disabled>
+          Crea la valigia
+        </button>
+        <p class="submit-hint">
+          Seleziona almeno 1 attività prima di continuare
+        </p>
+      </div>
     </div>
   </body>
 </html>

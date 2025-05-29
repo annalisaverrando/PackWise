@@ -1,71 +1,175 @@
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  color: #111827;
+  background: white;
+}
+
+/*--HEADER--*/
 
 .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 30px 10px 30px 25px;
-    text-align: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
 }
 
-.griglia-attività{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 120px);
-    gap: clamp(5px, 2vw, 40px);
-    padding: 10px 0 30px 0;
-    justify-items: center;
+.page-header {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
-.attività{
-    background-color: var(--background-color);
-    border: 2px solid var(--hover-color);
-    border-radius: 20px;
-    width: 100%;
-    max-width: 120px;
-    padding: 20px 10px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    transition: all 0.2s ease;
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
 }
 
-.attività input{
-    display: none;
+.page-header p {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/*--CONTAINER ATTIVITA--*/
+
+.category-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  animation: slideIn 0.4s ease-out;
+  animation-fill-mode: both;
+  transition: all 0.3s ease;
+}
+
+.category-section:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.category-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.category-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.category-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.griglia-attività {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.attività {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  background-color: var(--background-color);
+}
+
+.attività input {
+  display: none;
 }
 .attività input[type="checkbox"]:checked + img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 .attività input[type="checkbox"]:checked ~ span {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .attività:has(input[type="checkbox"]:checked) {
-    border-color: var(--btn-icon-background-color);
-    background-color: #e6f0ff;
+  border-color: var(--btn-icon-background-color);
+  background-color: #e6f0ff;
 }
 
 .attività:hover {
-    border-color: var(--btn-icon-background-color);
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-.attività:focus{
-    outline:none;
-    border-color: var(--hover-color);
+  border-color: var(--btn-icon-background-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
 }
-  
+.attività:focus {
+  outline: none;
+  border-color: var(--hover-color);
+}
+
 .attività img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    margin-bottom: 10px;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
-  
+
 .attività span {
-    font-weight: 500;
-    font-size: 1.1rem;
-    color: var(--text-color);
-    text-align: center;
-} 
+  font-weight: 500;
+  flex: 1;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.submit-section {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.btn-submit {
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.btn-submit:disabled {
+  background: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-hint {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
