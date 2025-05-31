@@ -37,7 +37,7 @@ select {
 .wrapper {
   display: flex;
   flex: 1;
-  height: 90.5vh;
+  border-radius: 8px;
 }
 
 /* ---CALENDARIO--- */
@@ -48,49 +48,51 @@ select {
   flex: 1;
   flex-direction: column;
   background-color: white;
-  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  padding: 0.9rem;
 }
 
 .bag-button {
   margin-left: auto;
-  margin-right: 30px;
 }
 
 .date-navigation {
-  font-size: 18px;
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.6rem;
 }
 
 .current-month {
-  margin-left: 10px;
   margin-right: 2rem;
 }
 
 .calendar {
   border: 1px solid var(--border-color);
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 .calendar-header {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(52px, 1fr));
   border-bottom: 1px solid var(--border-color);
   background-color: #f8f9fa;
   border-radius: 15px;
 }
 
 .day-header {
-  padding: 10px;
+  padding: 0.6rem;
   text-align: center;
   font-weight: 500;
   border-right: 1px solid var(--border-color);
@@ -102,7 +104,7 @@ select {
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(52px, 1fr));
 }
 
 .day-cell {
@@ -124,24 +126,23 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: black;
-  height: 19px;
-  padding: 0 0.5rem;
-  font-size: 0.75rem;
+  color: white;
+  width: 100%;
+  padding: 0.1rem 0;
+  font-size: clamp(5px, 1vw, 0.8rem);
   border-radius: 999px;
   font-weight: 500;
-  white-space: nowrap;
-  margin-left: 10px;
+  margin-bottom: 0.5rem;
 }
 
 .badge-start {
-  background-color: rgba(45, 212, 56, 0.15);
-  border: 1px solid #2ecc71;
+  background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+  /* border: 1px solid #2ecc71; */
 }
 
 .badge-end {
-  background-color: rgba(255, 99, 71, 0.2);
-  border: 1px solid #ff6347;
+  background: linear-gradient(135deg, #ff6b6b, #ffa8a8);
+  /* border: 1px solid #ff6347; */
 }
 
 /* ---SIDEBAR--- */
@@ -149,9 +150,6 @@ select {
 .sidebar {
   width: 250px;
   padding: 1rem;
-  overflow-y: auto;
-  border-right: 1px solid var(--border-color);
-  background-color: white;
 }
 
 .vacation-details {
@@ -162,6 +160,7 @@ select {
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 .form-group {
@@ -236,10 +235,105 @@ select {
 }
 
 .event {
+  font-size: clamp(0.7rem, 1vw, 15px);
   background-color: var(--event-bg);
   border-left: 3px solid var(--event-border);
   padding: 3px 5px;
-  margin-bottom: 3px;
+  margin-bottom: 0.4rem;
   border-radius: 3px;
   cursor: pointer;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .sidebar {
+    order: 2;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    max-height: 392px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .calendar-container {
+    order: 1;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .day-cell {
+    min-height: fit-content;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+
+  body {
+    margin: 0.5rem 0px;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+
+  .calendar-header {
+    grid-template-columns: repeat(7, minmax(40px, 1fr));
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, minmax(40px, 1fr));
+  }
+
+  .calendar-container {
+    order: 1;
+    padding: 2px;
+  }
+
+  .calendar {
+    font-size: 0.8rem;
+  }
+
+  .date-navigation {
+    font-size: 1.1rem;
+  }
+
+  .current-month {
+    margin-right: 10px;
+  }
+
+  .event {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    max-height: 47px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
 }

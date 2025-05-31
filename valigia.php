@@ -34,6 +34,7 @@ $current_category = '';
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valigia</title>
         <link rel="stylesheet" href="css/commonStyle.css">
         <link rel="stylesheet" href="css/valigiaStyle.css">

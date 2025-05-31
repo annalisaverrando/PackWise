@@ -22,14 +22,13 @@
 
 html {
   font-family: Work Sans, Helvetica, Arial, sans-serif;
-  font-size: 14px;
   color: var(--text-color);
 }
 
 body {
   min-height: 100vh;
   background-color: var(--background-color);
-  margin: 8px; /*Crea lo spazio sopra la title bar*/
+  margin: 0.5rem; /*Crea lo spazio sopra la title bar*/
 }
 
 /* h1 {

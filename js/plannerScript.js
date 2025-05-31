@@ -190,22 +190,22 @@ function createDayCell(date) {
   let daySpan = document.createElement("span");
   daySpan.textContent = giorno.getDate().toString();
   numberDiv.appendChild(daySpan);
+  dayCell.appendChild(numberDiv);
 
   if (date == departure_date) {
     let departureBadge = document.createElement("span");
     departureBadge.classList.add("badge", "badge-start");
     departureBadge.textContent = "Partenza✈️";
-    numberDiv.appendChild(departureBadge);
+    dayCell.appendChild(departureBadge);
   }
 
   if (date == return_date) {
     let returnBadge = document.createElement("span");
     returnBadge.classList.add("badge", "badge-end");
     returnBadge.textContent = "Ritorno🏠";
-    numberDiv.appendChild(returnBadge);
+    dayCell.appendChild(returnBadge);
   }
 
-  dayCell.appendChild(numberDiv);
   //Aggiungo il listener che permette di creare eventi cliccando sulla cella
   dayCell.addEventListener("click", function (e) {
     if (e.target === dayCell || e.target === numberDiv) {
@@ -249,9 +249,7 @@ function navigateCalendar(days) {
 
 //Torna alla valigia
 function goToBag() {
-  window.location.href = `valigia.php?id=${encodeURIComponent(
-    viaggio_id
-  )}`;
+  window.location.href = `valigia.php?id=${encodeURIComponent(viaggio_id)}`;
 }
 
 //Aggiorna nome, date di inizio e fine vacanza
