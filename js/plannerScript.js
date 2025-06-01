@@ -18,16 +18,27 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((info) => {
-      let tripName = info.nome;
-      let destinazione = info.destinazione;
       departure_date = info.data_inizio;
       return_date = info.data_fine;
 
-      //Setto la data nella sidebar
-      document.getElementById("vacation-name").value = tripName;
-      document.getElementById("vacation-destination").value = destinazione;
-      document.getElementById("vacation-start").value = departure_date;
-      document.getElementById("vacation-end").value = return_date;
+      //Setto le informazioni del viaggio nel banner
+      document.getElementById("banner-name").textContent = info.nome;
+      document.getElementById(
+        "destination"
+      ).textContent = `${info.destinazione}`;
+      document.getElementById("dates").textContent = getDateRange(
+        departure_date,
+        return_date
+      );
+
+      let today = new Date();
+      let start = new Date(departure_date);
+      let diffMill = start - today;
+      let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+
+      document.getElementById(
+        "countdown"
+      ).textContent = `${diffDays} giorni rimanenti`;
 
       //Calcolo le date della settimana di partenza
       calculateMonday();
@@ -56,6 +67,11 @@ function setupEventListeners() {
     .getElementById("logout-btn")
     .addEventListener("click", () => logoutButton());
 
+  //BOTTONE SALVA NEL PANNELLO MODIFICA DETTAGLI
+  document
+    .getElementById("save-btn")
+    .addEventListener("click", () => updateVacationDetails());
+
   //NAVIGAZIONE DATE
   document
     .getElementById("prev-week")
@@ -69,30 +85,20 @@ function setupEventListeners() {
     .getElementById("valigiaBtn")
     .addEventListener("click", () => goToBag());
 
-  //BOTTONE AGGIORNA DETTAGLI
+  //BOTTONE MODIFICA DETTAGLI
   document
-    .getElementById("update")
-    .addEventListener("click", () => updateVacationDetails());
+    .getElementById("detail-button")
+    .addEventListener("click", () => openTripPanel());
 
   //BOTTONE CREA EVENTO (+)
   document
     .getElementById("add-event-btn")
     .addEventListener("click", () => openAddEventPanel(currentDate));
 
-  //BOTTONE ANNULLA NEL PANEL AGGIUNGI EVENTO
-  document
-    .getElementById("cancel-add")
-    .addEventListener("click", () => closeAddEventPanel());
-
   //BOTTONE AGGIUNGI EVENTO
   document
     .getElementById("confirm-add")
     .addEventListener("click", () => addEvent());
-
-  //BOTTONE CHIUDI DEL PANNELLO DI DETTGLI EVENTO
-  document
-    .getElementById("close-event")
-    .addEventListener("click", () => closeDetailsEvent());
 
   //BOTTONE MODIFICA DEL PANNELLO DI DETTAGLI EVENTO
   document
@@ -108,12 +114,9 @@ function setupEventListeners() {
   document
     .getElementById("confirm-edit")
     .addEventListener("click", () => editEvent(currentEventId));
-
-  //BOTTONE ANNULLA NEL PANNELLO DI MODIFICA EVENTO
-  document
-    .getElementById("cancel-edit")
-    .addEventListener("click", () => closeEditPanel());
 }
+
+//---FUNZIONI USER---
 
 //Setta l'email nel container per il logout
 function setEmail() {
@@ -137,6 +140,214 @@ function logoutButton() {
   fetch("logout.php").then(() => {
     window.location.href = "login.html";
   });
+}
+
+//--FUNZIONI PER APERTURA E CHIUSURA DEI PANNELLI MODALI---
+
+//Apre il pannello di modifica viaggio
+function openTripPanel() {
+  fetch("get_date_viaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status == "error") {
+        alert("Error: ", data.error);
+      }
+
+      document.getElementById("trip-name").value = data.nome;
+      document.getElementById("trip-destination").value = data.destinazione;
+      document.getElementById("trip-start").value = data.data_inizio;
+      document.getElementById("trip-end").value = data.data_fine;
+
+      currentTrip = viaggio_id;
+      let modal = document.getElementById("trip-modal");
+      modal.style.display = "flex";
+    })
+    .catch((error) => {
+      console.error("Errore durante il caricamento:", error);
+    });
+}
+
+//Chiude il pannello di modifica viaggio
+function closeTripPanel() {
+  let modal = document.getElementById("trip-modal");
+  modal.style.display = "none";
+}
+
+//Apre il pannello per inserimento di un nuovo evento
+function openAddEventPanel(dateParam) {
+  let panel = document.getElementById("modal-add");
+
+  //Resetto tutti i campi
+  document.getElementById("event-title").value = "";
+  document.getElementById("start-time").value = "";
+  document.getElementById("end-time").value = "";
+  document.getElementById("event-notes").value = "";
+  document.getElementById("event-date").valueAsDate = dateParam;
+
+  panel.style.display = "flex";
+}
+
+//Chiude il pannello per inserimento di nuovo evento
+function closeAddEventPanel() {
+  let panel = document.getElementById("modal-add");
+  panel.style.display = "none";
+}
+
+//Apre il pannello dei dettagli di un evento
+function openDetailsPanel(id) {
+  //Prendere dal db le info dell'evento e mostrarle a schermo
+  fetch("infoEvento.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Errore nella risposta dal server (infoEvento)");
+      }
+      return response.json();
+    })
+    .then((info) => {
+      let detailsDiv = document.getElementById("event-details");
+      detailsDiv.innerHTML = "";
+
+      document.getElementById("event-details-title").innerText = info.titolo;
+
+      let data = document.createElement("div");
+      data.innerHTML = `<strong>Data:</strong> ${info.data_evento}`;
+      data.className = "event-detail";
+      detailsDiv.appendChild(data);
+
+      if (info.ora_inizio) {
+        let start = document.createElement("div");
+        start.innerHTML = `<strong>Ora inizio:</strong> ${info.ora_inizio.slice(
+          0,
+          5
+        )}`;
+        start.className = "event-detail";
+        detailsDiv.appendChild(start);
+      }
+
+      if (info.ora_fine) {
+        let end = document.createElement("div");
+        end.innerHTML = `<strong>Ora fine:</strong> ${info.ora_fine.slice(
+          0,
+          5
+        )}`;
+        end.className = "event-detail";
+        detailsDiv.appendChild(end);
+      }
+
+      let notes = document.createElement("div");
+      notes.innerHTML = `<strong>Note:</strong> ${info.note}`;
+      notes.className = "event-detail";
+      detailsDiv.appendChild(notes);
+
+      document.getElementById("modal-details").style.display = "flex";
+
+      currentEventId = id;
+    })
+    .catch((error) => {
+      console.error("Errore nel caricamento delle info dell'evento: ", error);
+    });
+}
+
+//Chiude il pannello dettagli evento
+function closeDetailsEvent() {
+  let panel = document.getElementById("modal-details");
+  panel.style.display = "none";
+}
+
+//Apre il pannello di modifica evento
+function openEditPanel(id) {
+  fetch("infoEvento.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Errore nella risposta dal server (infoEvento)");
+      }
+      return response.json();
+    })
+    .then((info) => {
+      let title = document.getElementById("edit-event-title");
+      let date = document.getElementById("edit-event-date");
+      let start_time = document.getElementById("edit-start-time");
+      let end_time = document.getElementById("edit-end-time");
+      let notes = document.getElementById("edit-event-notes");
+
+      title.value = info.titolo;
+      date.value = info.data_evento;
+      start_time.value = info.ora_inizio;
+      end_time.value = info.ora_fine;
+      notes.value = info.note;
+
+      closeDetailsEvent();
+      document.getElementById("modal-edit").style.display = "flex";
+
+      currentEventId = id;
+    });
+}
+
+//Chiude il pannello di modifica evento
+function closeEditPanel() {
+  let editPanel = document.getElementById("modal-edit");
+  editPanel.style.display = "none";
+}
+
+//---ALTRE FUNZIONI---
+
+//Calcola la stringa che indica le date del viaggio
+function getDateRange(start, end) {
+  const italianMonth = [
+    "Gennaio",
+    "Febbraio",
+    "Marzo",
+    "Aprile",
+    "Maggio",
+    "Giugno",
+    "Luglio",
+    "Agosto",
+    "Settembre",
+    "Ottobre",
+    "Novembre",
+    "Dicembre",
+  ];
+  start = new Date(start);
+  end = new Date(end);
+
+  let startDay = start.getDate();
+  let endDay = end.getDate();
+
+  let startMonth = italianMonth[start.getMonth()];
+  let endMonth = italianMonth[end.getMonth()];
+
+  let startYear = start.getFullYear();
+  let endYear = end.getFullYear();
+
+  if (startMonth == endMonth && startYear == endYear) {
+    return `${startDay}-${endDay} ${startMonth} ${startYear}`;
+  }
+  if (startMonth != endMonth && startYear == endYear) {
+    return `${startDay} ${startMonth.slice(0, 3)} - ${endDay} ${endMonth.slice(
+      0,
+      3
+    )} ${startYear}`;
+  }
+  return `${startDay} ${startMonth.slice(
+    0,
+    3
+  )} ${startYear} - ${endDay} ${endMonth.slice(0, 3)} ${endYear}`;
 }
 
 //Calcola il lunedì della settimana di partenza
@@ -254,10 +465,10 @@ function goToBag() {
 
 //Aggiorna nome, date di inizio e fine vacanza
 function updateVacationDetails() {
-  let name = document.getElementById("vacation-name").value;
-  let destination = document.getElementById("vacation-destination").value;
-  let start = document.getElementById("vacation-start").value;
-  let end = document.getElementById("vacation-end").value;
+  let name = document.getElementById("trip-name").value;
+  let destination = document.getElementById("trip-destination").value;
+  let start = document.getElementById("trip-start").value;
+  let end = document.getElementById("trip-end").value;
 
   fetch("aggiornaViaggio.php", {
     method: "POST",
@@ -283,28 +494,9 @@ function updateVacationDetails() {
         calculateMonday(new Date(start));
         //Aggiorno la data corrente
         renderCalendar();
+        closeTripPanel();
       }
     });
-}
-
-//Mostra il pannello per inserimento di un nuovo evento
-function openAddEventPanel(dateParam) {
-  let panel = document.getElementById("modal-add");
-
-  //Resetto tutti i campi
-  document.getElementById("event-title").value = "";
-  document.getElementById("start-time").value = "";
-  document.getElementById("end-time").value = "";
-  document.getElementById("event-notes").value = "";
-  document.getElementById("event-date").valueAsDate = dateParam;
-
-  panel.style.display = "flex";
-}
-
-//Chiude il pannello senza salvare i dati inseriti
-function closeAddEventPanel() {
-  let panel = document.getElementById("modal-add");
-  panel.style.display = "none";
 }
 
 //Inserisce l'evento all'interno del db e lo aggiunge al calendario
@@ -396,73 +588,6 @@ function loadEvents(week) {
     });
 }
 
-//Apre il pannello dei dettagli di un evento
-function openDetailsPanel(id) {
-  //Prendere dal db le info dell'evento e mostrarle a schermo
-  fetch("infoEvento.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id,
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Errore nella risposta dal server (infoEvento)");
-      }
-      return response.json();
-    })
-    .then((info) => {
-      let detailsDiv = document.getElementById("event-details");
-      detailsDiv.innerHTML = "";
-
-      document.getElementById("event-details-title").innerText = info.titolo;
-
-      let data = document.createElement("div");
-      data.innerHTML = `<strong>Data:</strong> ${info.data_evento}`;
-      data.className = "event-detail";
-      detailsDiv.appendChild(data);
-
-      if (info.ora_inizio) {
-        let start = document.createElement("div");
-        start.innerHTML = `<strong>Ora inizio:</strong> ${info.ora_inizio.slice(
-          0,
-          5
-        )}`;
-        start.className = "event-detail";
-        detailsDiv.appendChild(start);
-      }
-
-      if (info.ora_fine) {
-        let end = document.createElement("div");
-        end.innerHTML = `<strong>Ora fine:</strong> ${info.ora_fine.slice(
-          0,
-          5
-        )}`;
-        end.className = "event-detail";
-        detailsDiv.appendChild(end);
-      }
-
-      let notes = document.createElement("div");
-      notes.innerHTML = `<strong>Note:</strong> ${info.note}`;
-      notes.className = "event-detail";
-      detailsDiv.appendChild(notes);
-
-      document.getElementById("modal-details").style.display = "flex";
-
-      currentEventId = id;
-    })
-    .catch((error) => {
-      console.error("Errore nel caricamento delle info dell'evento: ", error);
-    });
-}
-
-//Chiude il pannello dettagli evento
-function closeDetailsEvent() {
-  let panel = document.getElementById("modal-details");
-  panel.style.display = "none";
-}
-
 //Elimina l'evento selezionato
 function deleteEvent(id) {
   let action = "delete";
@@ -484,47 +609,6 @@ function deleteEvent(id) {
         document.getElementById("modal-details").style.display = "none";
       }
     });
-}
-
-//Apre il pannello di modifica evento
-function openEditPanel(id) {
-  fetch("infoEvento.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id,
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Errore nella risposta dal server (infoEvento)");
-      }
-      return response.json();
-    })
-    .then((info) => {
-      let title = document.getElementById("edit-event-title");
-      let date = document.getElementById("edit-event-date");
-      let start_time = document.getElementById("edit-start-time");
-      let end_time = document.getElementById("edit-end-time");
-      let notes = document.getElementById("edit-event-notes");
-
-      title.value = info.titolo;
-      date.value = info.data_evento;
-      start_time.value = info.ora_inizio;
-      end_time.value = info.ora_fine;
-      notes.value = info.note;
-
-      closeDetailsEvent();
-      document.getElementById("modal-edit").style.display = "flex";
-
-      currentEventId = id;
-    });
-}
-
-//Scarta le modifiche e chiude il pannello di modifica
-function closeEditPanel() {
-  let editPanel = document.getElementById("modal-edit");
-  editPanel.style.display = "none";
 }
 
 //Salva le modifiche apportate all'evento

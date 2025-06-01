@@ -43,38 +43,15 @@
 
     <div class="wrapper">
       <div class="sidebar">
-        <div class="vacation-details">
-          <h3 class="details-title">Dettagli Vacanza</h3>
-          <div class="form-group">
-            <label for="vacation-name">Nome vacanza</label>
-            <input
-              type="text"
-              id="vacation-name"
-              placeholder="Es. Vacanza a Roma"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="vacation-destination">Destinazione</label>
-            <input
-              type="text"
-              id="vacation-destination"
-              placeholder="Es. Maldive"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="vacation-start">Data inizio</label>
-            <input type="date" id="vacation-start" />
-          </div>
-
-          <div class="form-group">
-            <label for="vacation-end">Data fine</label>
-            <input type="date" id="vacation-end" />
-          </div>
-
-          <button class="update btn-primary" id="update">
-            Aggiorna dettagli
+        <div class="banner">
+          <div class="decoration">📅</div>
+          <div class="banner-header">🌍 Dettagli viaggio</div>
+          <div class="banner-name" id="banner-name"></div>
+          <div class="destination" id="destination"></div>
+          <div class="dates" id="dates"></div>
+          <div class="countdown" id="countdown"></div>
+          <button class="detail-button btn-primary" id="detail-button">
+            📋 Modifica dettagli
           </button>
         </div>
       </div>
@@ -85,7 +62,7 @@
             <button class="prev-week nav-button" id="prev-week">&lt;</button>
             <button class="next-week nav-button" id="next-week">&gt;</button>
           </nav>
-          <button id="valigiaBtn" class="bag-button btn-primary">
+          <button id="valigiaBtn" class="bag-button btn-tertiary">
             Torna alla valigia
           </button>
         </div>
@@ -109,10 +86,49 @@
 
     <button class="add-event-btn" id="add-event-btn">+</button>
 
+    <div class="modal" id="trip-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title">Modifica Viaggio</h2>
+          <span class="close" onclick="closeTripPanel()">×</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="trip-name">Nome del viaggio</label>
+          <input
+            type="text"
+            id="trip-name"
+            class="form-input"
+            placeholder="Es. Vacanze al mare"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="trip-destination">Destinazione</label>
+          <input
+            type="text"
+            id="trip-destination"
+            class="form-input"
+            placeholder="Es. Roma"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="trip-start">Data inizio</label>
+          <input type="date" id="trip-start" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="trip-end">Data fine</label>
+          <input type="date" id="trip-end" class="form-input" />
+        </div>
+        <button class="btn-primary" id="save-btn">Salva</button>
+      </div>
+    </div>
+
     <!--Modal di aggiunta evento-->
-    <div class="modal-content" id="modal-add">
-      <div class="modal-container">
-        <h3 class="add-title">Aggiungi Evento</h3>
+    <div class="modal" id="modal-add">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="add-title">Aggiungi Evento</h3>
+          <span class="close" onclick="closeAddEventPanel()">×</span>
+        </div>
         <div class="form-group">
           <label for="event-title">Titolo evento</label>
           <input type="text" id="event-title" placeholder="Es. Visita museo" />
@@ -142,26 +158,30 @@
           ></textarea>
         </div>
 
-        <button class="btn-secondary" id="cancel-add">Annulla</button>
         <button class="btn-primary" id="confirm-add">Aggiungi</button>
       </div>
     </div>
 
     <!--Modal dettagli evento-->
-    <div class="modal-content" id="modal-details">
-      <div class="modal-container">
-        <h3 class="event-details-title" id="event-details-title"></h3>
+    <div class="modal" id="modal-details">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="event-details-title" id="event-details-title"></h3>
+          <span class="close" onclick="closeDetailsEvent()">×</span>
+        </div>
         <div class="event-details" id="event-details"></div>
         <button class="btn-secondary" id="delete-event">Elimina</button>
-        <button class="btn-secondary" id="edit-event">Modifica</button>
-        <button class="btn-secondary" id="close-event">Chiudi</button>
+        <button class="btn-primary" id="edit-event">Modifica</button>
       </div>
     </div>
 
     <!--Modal modifica evento-->
-    <div class="modal-content" id="modal-edit">
-      <div class="modal-container">
-        <h3 class="edit-title">Modifica Evento</h3>
+    <div class="modal" id="modal-edit">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="edit-title">Modifica Evento</h3>
+          <span class="close" onclick="closeEditPanel()">×</span>
+        </div>
         <div class="form-group">
           <label for="edit-event-title">Titolo evento</label>
           <input
@@ -194,8 +214,6 @@
             placeholder="Note aggiuntive"
           ></textarea>
         </div>
-
-        <button class="btn-secondary" id="cancel-edit">Annulla</button>
         <button class="btn-primary" id="confirm-edit">Modifica</button>
       </div>
     </div>
