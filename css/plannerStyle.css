@@ -269,10 +269,6 @@ select {
 }
 
 @media (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
-
   .wrapper {
     display: grid;
     grid-template-columns: 1fr;
@@ -307,10 +303,6 @@ select {
 }
 
 @media (max-width: 480px) {
-  html {
-    font-size: 12px;
-  }
-
   body {
     margin: 0.5rem 0px;
   }

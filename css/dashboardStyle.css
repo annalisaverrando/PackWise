@@ -1,5 +1,4 @@
 html {
-  font-size: 16px;
   color: #2d3748;
 }
 
@@ -304,10 +303,6 @@ select {
 }
 
 @media (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
-
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
@@ -327,10 +322,6 @@ select {
 }
 
 @media (max-width: 480px) {
-  html {
-    font-size: 12px;
-  }
-
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
