@@ -31,15 +31,6 @@ body {
   margin: 0.5rem; /*Crea lo spazio sopra la title bar*/
 }
 
-/* h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 20px 0 20px 0;
-}
-h2 {
-  font-size: 1.7rem;
-} */
-
 button {
   padding: 0.375rem 0.75rem;
   border: none;

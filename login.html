@@ -10,9 +10,14 @@
   <body>
     <div class="main-container">
       <div class="text-center">
-        <img src="assets/logo.png" class="logo" />
-        <h1 class="page-title">Login</h1>
+        <div class="logo-panel">
+          <img src="assets/logo.png" class="logo" />
+          <div class="packwise">PackWise</div>
+          <div class="tagline">Accedi al tuo account</div>
+        </div>
+        <!-- <h1 class="page-title">Login</h1> -->
         <form name="form_login" action="login.php" method="POST">
+          <div class="field-name">Email</div>
           <div>
             <label for="inputEmailLogin">
               <svg
@@ -35,6 +40,7 @@
               required
             />
           </div>
+          <div class="field-name">Password</div>
           <div>
             <label for="inputPasswordLogin">
               <svg
@@ -57,8 +63,8 @@
               required
             />
           </div>
-          <button id="login" type="submit" class="btn-primary form-btn">
-            Login
+          <button id="login" type="submit" class="btn-tertiary form-btn">
+            Accedi
           </button>
         </form>
         <p class="user-action">
