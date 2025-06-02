@@ -68,13 +68,17 @@ $current_category = '';
     <div class="wrapper">
         <!-- Prima colonna: Sidebar -->
         <div class="sidebar">
-            <div class="dettagli">
-                <h3 class="dettagli-titolo">Viaggio: <?php echo $viaggio['nome']; ?></h3>
-                <div class="dettagli-campo"><strong>🌍Destinazione: </strong> <?php echo $viaggio['destinazione']; ?></div>
-                <div class="dettagli-campo"><strong>📅Data di inizio: </strong><?php echo $viaggio['data_inizio']; ?></div>
-                <div class="dettagli-campo"><strong>📅Data di fine: </strong><?php echo $viaggio['data_fine']; ?></div>
+            <div class="banner">
+                <div class="decoration">✈️</div>
+                <div class="banner-header">🧳 Dettagli viaggio</div>
+                <div class="banner-name" id="banner-name"><?php echo $viaggio['nome']?></div>
+                <div class="destination" id="destination"><?php echo $viaggio['destinazione']?></div>
+                <div class="dates" id="dates"></div>
+                <div class="countdown" id="countdown"></div>
+                <button class="banner-button btn-primary" onclick="window.location.href='planner.html'">
+                    📋 Pianifica viaggio
+                </button>
             </div>
-            <button class="btn btn-primary btn-planner" onclick="window.location.href='planner.html'">Vai al planner</button>
         </div>
         <div class="page-lista">
             <div class="lista-container">

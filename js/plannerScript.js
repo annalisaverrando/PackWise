@@ -36,9 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
       let diffMill = start - today;
       let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
 
-      document.getElementById(
-        "countdown"
-      ).textContent = `${diffDays} giorni rimanenti`;
+      if (diffDays < 0) {
+        document.getElementById(
+          "countdown"
+        ).textContent = `Partenza avvenuta ${-diffDays} giorni fa`;
+      } else {
+        document.getElementById(
+          "countdown"
+        ).textContent = `${diffDays} giorni rimanenti`;
+      }
 
       //Calcolo le date della settimana di partenza
       calculateMonday();
