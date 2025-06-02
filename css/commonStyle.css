@@ -221,6 +221,8 @@ button {
 .logout-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(252, 89, 60, 0.3);
+  background-color: #ff3b20;
+  border-color: #ff3b20;
 }
 
 .logout-btn:active {
@@ -298,8 +300,8 @@ button {
   border: none;
   border-radius: 8px;
   padding: 10px 16px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 550;
   cursor: pointer;
   margin-top: 16px;
   transition: all 0.2s ease;

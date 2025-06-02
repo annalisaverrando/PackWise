@@ -72,6 +72,7 @@ select {
   width: 100%;
   margin-right: auto;
   margin-bottom: 25px;
+  gap: 10px;
 }
 
 .filter-tabs {
