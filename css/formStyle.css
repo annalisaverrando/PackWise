@@ -29,7 +29,7 @@ body {
   margin-bottom: 30px;
 }
 
-.main-container {
+.form-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +67,9 @@ body {
   font-weight: 600;
   line-height: 1.5;
   background: linear-gradient(45deg, #5f8ecc, #191970);
+}
+.form-btn:hover{
+  background: var(--hover-color);
 }
 
 form {
@@ -159,7 +162,7 @@ form div:has(input:focus) > label {
 }
 
 @media screen and (max-width: 768px) {
-  .main-container {
+  .form-container {
     padding: 2rem;
   }
 }
@@ -169,7 +172,7 @@ form div:has(input:focus) > label {
   html {
     font-size: 14px;
   }
-  .main-container {
+  .form-container {
     padding: 1rem;
   }
 }

@@ -5,6 +5,7 @@
   --background2-color: #e6e4f0;
   --text-color: #000000;
   --error-color: #ff6347;
+  --error-hover: #ff3b20;
   --btn-icon-background-color: #5f8ecc;
   --hover-color: #191970;
   --shadow-color: #898989;
@@ -12,6 +13,8 @@
   --event-bg: #d6f2f9;
   --event-border: #00bed6;
   --accent-color: #00bed6;
+  --gradient: linear-gradient(135deg, #5f8ecc 0%, #191970 100%);
+  --light-gradient: linear-gradient(135deg, #a6c4e8 0%, var(--btn-icon-background-color) 100%);
 }
 
 * {
@@ -49,6 +52,7 @@ button {
 .btn-primary:hover {
   background-color: var(--hover-color);
   border-color: var(--hover-color);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -66,7 +70,7 @@ button {
 
 .title-bar {
   height: 4rem;
-  background: linear-gradient(135deg, #5f8ecc 0%, #191970 100%);
+  background: var(--gradient);
   display: flex;
   align-items: center;
   padding: 1rem 2rem;
@@ -210,8 +214,8 @@ button {
 .logout-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(252, 89, 60, 0.3);
-  background-color: #ff3b20;
-  border-color: #ff3b20;
+  background-color: var(--error-hover);
+  border-color: var(--error-hover);
 }
 
 .logout-btn:active {

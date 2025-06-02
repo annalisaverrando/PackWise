@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
   loadTripPanel("all");
   setEmail();
   setupEventListeners();
+  new Litepicker({
+      element: document.getElementById("daterange"),
+      singleMode: false,
+      format: "DD/MM/YYYY",
+      numberOfMonths: 1,
+      numberOfColumns: 1,
+      autoApply: true,
+      lang: "it-IT",
+    });
 });
 
 function setupEventListeners() {
@@ -45,7 +54,7 @@ function setupEventListeners() {
 
   //BOTTONE NUOVO VIAGGIO
   document.getElementById("new-trip").addEventListener("click", () => {
-    window.location.href = "viaggio.html";
+    document.getElementById("new-trip-modal").style.display = "flex";
   });
 
   //BOTTONE SALVA NEL PANNELLO MODIFICA VIAGGIO
@@ -340,3 +349,9 @@ function closeModal() {
   let modal = document.getElementById("trip-modal");
   modal.style.display = "none";
 }
+
+function closeModalNewTrip() {
+  let modal = document.getElementById("new-trip-modal");
+  modal.style.display = "none";
+}
+

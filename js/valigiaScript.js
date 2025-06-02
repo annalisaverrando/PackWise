@@ -308,9 +308,7 @@ function addButton() {
   newSection.className = "sezione";
   newSection.innerHTML = `
         <div class="sezione-header">
-            <div class="title-container">
-                <input type="text" class="edit-section-name" placeholder="Inserisci nome sezione" autofocus>
-            </div>
+            <input type="text" class="edit-section-name" placeholder="Inserisci nome sezione" autofocus>
             
             <div class="sezione-controls">
                 <button class='btn-add' title='Aggiungi elemento'><i class='bi bi-plus-lg'></i></button>
@@ -343,8 +341,9 @@ function addButton() {
 
     newSection.id = sectionId;
 
-    const titleContainer = newSection.querySelector(".title-container");
-    titleContainer.innerHTML = `<h2>${sectionName}</h2>`;
+    const h2 = document.createElement("h2");
+    h2.textContent = sectionName;
+    editNameInput.replaceWith(h2);
 
     const toggleBtn = newSection.querySelector(".btn-toggle");
     toggleBtn.addEventListener("click", () => {

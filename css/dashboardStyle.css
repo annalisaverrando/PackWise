@@ -77,7 +77,7 @@ select {
 
 .filter-tabs {
   display: flex;
-  background: linear-gradient(135deg, #5f8ecc 0%, #191970 100%);
+  background: var(--gradient);
   border-radius: 25px;
   padding: 0.3rem;
   backdrop-filter: blur(10px);
@@ -97,6 +97,11 @@ select {
 .filter-tab.active {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
+}
+
+.filter-tab:hover{
+  /*background: var(--hover-color);*/
+  background: var(--btn-icon-background-color);
 }
 
 .main-container {
@@ -201,19 +206,26 @@ select {
 }
 
 .new-trip {
-  background: linear-gradient(45deg, #00b4db, #0083b0);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 180, 219, 0.4);
+  background: var(--light-gradient);
+}
+
+.new-trip:hover {
+  background: var(--btn-icon-background-color);
 }
 
 .btn-edit {
-  background: linear-gradient(45deg, #5f8ecc, #191970);
-  color: white;
+  background: var(--gradient);
+}
+.btn-edit:hover{
+  background: var(--hover-color);
 }
 
 .btn-delete {
-  background: linear-gradient(45deg, #ff4757, #c44569);
-  color: white;
+  /*background: linear-gradient(45deg, #ff4757, #c44569);*/
+  background: linear-gradient(45deg, var(--error-color), #ff4757);
+}
+.btn-delete:hover{
+  background: var(--error-hover);
 }
 
 @media (max-width: 768px) {
