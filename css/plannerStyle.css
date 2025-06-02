@@ -166,6 +166,16 @@ select {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
+.btn-delete{
+  background: var(--error-color);
+}
+
+.btn-delete:hover {
+  background-color: #ff3b20;
+  border-color: #ff3b20;
+}
+
+
 @media (max-width: 768px) {
   .wrapper {
     display: grid;
