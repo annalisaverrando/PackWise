@@ -14,7 +14,11 @@
   --event-border: #00bed6;
   --accent-color: #00bed6;
   --gradient: linear-gradient(135deg, #5f8ecc 0%, #191970 100%);
-  --light-gradient: linear-gradient(135deg, #a6c4e8 0%, var(--btn-icon-background-color) 100%);
+  --light-gradient: linear-gradient(
+    135deg,
+    #a6c4e8 0%,
+    var(--btn-icon-background-color) 100%
+  );
 }
 
 * {
@@ -31,7 +35,7 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--background-color);
-  margin: 0.5rem; /*Crea lo spazio sopra la title bar*/
+  margin: 0.5rem 0; /*Crea lo spazio sopra la title bar*/
 }
 
 button {
