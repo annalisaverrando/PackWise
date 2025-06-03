@@ -26,7 +26,10 @@ if($filter == "all"){
 } elseif($filter == "past"){
     $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND $2 > data_fine ORDER BY data_inizio";
     $result_viaggi = pg_query_params($conn, $query, array($email, $date));
-} else{
+} elseif($filter == "active"){
+    $query = "SELECT * FROM viaggi WHERE email_utente = $1 AND data_inizio <= $2 AND $2 <= data_fine";
+    $result_viaggi = pg_query_params($conn, $query, array($email, $date));
+}else{
     $result_viaggi = false;
 }
 

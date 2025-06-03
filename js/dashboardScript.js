@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
   setEmail();
   setupEventListeners();
   new Litepicker({
-      element: document.getElementById("daterange"),
-      singleMode: false,
-      format: "DD/MM/YYYY",
-      numberOfMonths: 1,
-      numberOfColumns: 1,
-      autoApply: true,
-      lang: "it-IT",
-    });
+    element: document.getElementById("daterange"),
+    singleMode: false,
+    format: "DD/MM/YYYY",
+    numberOfMonths: 1,
+    numberOfColumns: 1,
+    autoApply: true,
+    lang: "it-IT",
+  });
 });
 
 function setupEventListeners() {
@@ -63,6 +63,8 @@ function setupEventListeners() {
     .addEventListener("click", () => editTrip(currentTrip));
 }
 
+//---FUNZIONI USER---
+
 //Setta l'email nel container per il logout
 function setEmail() {
   fetch("emailUtente.php")
@@ -81,37 +83,57 @@ function logoutPanel() {
   modalLogout.classList.toggle("hidden");
 }
 
+//Pulsante per il logout
 function logoutButton() {
   fetch("logout.php").then(() => {
     window.location.href = "login.html";
   });
 }
 
-async function setBanner() {
-  let tripList = await loadTrip("planned");
-  let incomingTrip = tripList[0];
+//---FUNZIONI DI APERTURA E CHIUSURA PANNELLI MODALI---
 
-  document.getElementById("banner-name").textContent = incomingTrip.nome;
-  document.getElementById(
-    "destination"
-  ).textContent = `${incomingTrip.destinazione}`;
-  document.getElementById("dates").textContent = getDateRange(
-    incomingTrip.data_inizio,
-    incomingTrip.data_fine
-  );
+//Apre il modal per la modifica dei dettagli del viaggio
+function openModal(id) {
+  fetch("get_date_viaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `viaggio_id=${encodeURIComponent(id)}`,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status == "error") {
+        alert("Error: ", data.error);
+      }
 
-  let today = new Date();
-  let start = new Date(incomingTrip.data_inizio);
-  let diffMill = start - today;
-  let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+      document.getElementById("trip-name").value = data.nome;
+      document.getElementById("trip-destination").value = data.destinazione;
+      document.getElementById("trip-start").value = data.data_inizio;
+      document.getElementById("trip-end").value = data.data_fine;
 
-  document.getElementById(
-    "countdown"
-  ).textContent = `${diffDays} giorni rimanenti`;
-
-  sessionStorage.viaggio_id = incomingTrip.id;
+      currentTrip = id;
+      let modal = document.getElementById("trip-modal");
+      modal.style.display = "flex";
+    })
+    .catch((error) => {
+      console.error("Errore durante il caricamento:", error);
+    });
 }
 
+//Chiude il modal per la modifica dei dettagli del vaiggio
+function closeModal() {
+  let modal = document.getElementById("trip-modal");
+  modal.style.display = "none";
+}
+
+//Chiude il modal per la creazione di un nuovo viaggio
+function closeModalNewTrip() {
+  let modal = document.getElementById("new-trip-modal");
+  modal.style.display = "none";
+}
+
+//---FUNZIONI CHE INTEREAGISCONO COL DATABASE---
+
+//Ottiene la lista dei viaggi in ordine di data e filtrati con il parametro 'filter' in input
 async function loadTrip(filter) {
   try {
     const response = await fetch("dashboard.php", {
@@ -134,6 +156,7 @@ async function loadTrip(filter) {
   }
 }
 
+//Riempe la dashboard con la lista di viaggi che rispecchiano il filtro selezionato
 async function loadTripPanel(filter) {
   let tripList = await loadTrip(filter);
   let container = document.getElementById("main-container");
@@ -151,70 +174,110 @@ async function loadTripPanel(filter) {
   }
 }
 
-function getDateRange(start, end) {
-  const italianMonth = [
-    "Gennaio",
-    "Febbraio",
-    "Marzo",
-    "Aprile",
-    "Maggio",
-    "Giugno",
-    "Luglio",
-    "Agosto",
-    "Settembre",
-    "Ottobre",
-    "Novembre",
-    "Dicembre",
-  ];
-  start = new Date(start);
-  end = new Date(end);
+//Inserisce nel banner le informazioni del viaggio attivo se è presente, altrimenti del viaggio in programma più vicino.
+async function setBanner() {
+  let tripList = await loadTrip("active");
+  console.log(tripList);
+  let bannerTrip;
+  if (tripList.length > 0) {
+    bannerTrip = tripList[0];
+    document.querySelector(".banner-header").textContent = "🧭	Sei in viaggio!";
+    document.querySelector(".banner-button").textContent =
+      "📋 Vedi attività programmate";
 
-  let startDay = start.getDate();
-  let endDay = end.getDate();
-
-  let startMonth = italianMonth[start.getMonth()];
-  let endMonth = italianMonth[end.getMonth()];
-
-  let startYear = start.getFullYear();
-  let endYear = end.getFullYear();
-
-  if (startMonth == endMonth && startYear == endYear) {
-    return `${startDay}-${endDay} ${startMonth} ${startYear}`;
-  }
-  if (startMonth != endMonth && startYear == endYear) {
-    return `${startDay} ${startMonth.slice(0, 3)} - ${endDay} ${endMonth.slice(
-      0,
-      3
-    )} ${startYear}`;
-  }
-  return `${startDay} ${startMonth.slice(
-    0,
-    3
-  )} ${startYear} - ${endDay} ${endMonth.slice(0, 3)} ${endYear}`;
-}
-
-function getTripStatus(start, end) {
-  let date = new Date();
-  start = new Date(start);
-  end = new Date(end);
-  if (date > end) return { status: "trip-completed", text: "COMPLETATO" };
-  if (date < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
-  return { status: "trip-active", text: "ATTIVO" };
-}
-
-function timeToGo(start) {
-  let today = new Date();
-  start = new Date(start);
-  let diffMill = start - today;
-  let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
-
-  if (start >= today) {
-    return `<span class="weight">Partenza tra: </span>${diffDays}g`;
+    //agiungo le classi al banner per stile personalizzato
+    document.querySelector(".banner").classList.add("active");
+    document.getElementById("countdown").textContent = "🎉 Viaggio in corso!";
   } else {
-    return `<span class="weight">Partenza avvenuta: </span>${-diffDays}g fa`;
+    tripList = await loadTrip("planned");
+    console.log("sono nell'else");
+    bannerTrip = tripList[0];
+
+    document.querySelector(".banner-header").textContent =
+      "🎒 Prossimo viaggio";
+    document.querySelector(".banner-button").textContent =
+      "📋 Pianifica viaggio";
+
+    document.querySelector(".banner").classList.remove("active");
+
+    //Setto i giorni mancati se il viaggio è in programma
+    let today = new Date();
+    let start = new Date(bannerTrip.data_inizio);
+    let diffMill = start - today;
+    let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+
+    document.getElementById(
+      "countdown"
+    ).textContent = `${diffDays} giorni rimanenti`;
   }
+
+  document.getElementById("banner-name").textContent = bannerTrip.nome;
+  document.getElementById(
+    "destination"
+  ).textContent = `${bannerTrip.destinazione}`;
+  document.getElementById("dates").textContent = getDateRange(
+    bannerTrip.data_inizio,
+    bannerTrip.data_fine
+  );
+
+  sessionStorage.viaggio_id = bannerTrip.id;
 }
 
+//Manda al db i dati modificati del viaggio
+function editTrip(viaggio_id) {
+  let name = document.getElementById("trip-name").value;
+  let destination = document.getElementById("trip-destination").value;
+  let start = document.getElementById("trip-start").value;
+  let end = document.getElementById("trip-end").value;
+
+  fetch("aggiornaViaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      destination,
+      start,
+      end,
+      viaggio_id,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data.status == "ok") {
+        console.log(data.message);
+        alert("Errore nella modifica del viaggio");
+      } else {
+        loadTripPanel("all");
+        closeModal();
+      }
+    });
+}
+
+//Elimina il viaggio selezionato
+function deleteTrip(id) {
+  fetch("eliminaViaggio.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status == "error") {
+        alert("Error: ", data.error);
+      }
+      alert("Eliminazione avvenuta con successo");
+      loadTripPanel("all");
+    })
+    .catch((error) => {
+      console.error("Errore durante l'eliminazione:", error);
+    });
+}
+
+//---ALTRE FUNZIONI----
+
+//Crea l'elemento html che contine i dati relativi ad un viaggio
 function createTripPanel(tripData) {
   let tripContainer = document.createElement("div");
   tripContainer.className = "trip-container";
@@ -258,6 +321,74 @@ function createTripPanel(tripData) {
   return tripContainer;
 }
 
+//Ottiene la stringa che indica il periodo del viaggio; Utilizzata nel banner e nel campo 'Date' della dashboard
+function getDateRange(start, end) {
+  const italianMonth = [
+    "Gennaio",
+    "Febbraio",
+    "Marzo",
+    "Aprile",
+    "Maggio",
+    "Giugno",
+    "Luglio",
+    "Agosto",
+    "Settembre",
+    "Ottobre",
+    "Novembre",
+    "Dicembre",
+  ];
+  start = new Date(start);
+  end = new Date(end);
+
+  let startDay = start.getDate();
+  let endDay = end.getDate();
+
+  let startMonth = italianMonth[start.getMonth()];
+  let endMonth = italianMonth[end.getMonth()];
+
+  let startYear = start.getFullYear();
+  let endYear = end.getFullYear();
+
+  if (startMonth == endMonth && startYear == endYear) {
+    return `${startDay}-${endDay} ${startMonth} ${startYear}`;
+  }
+  if (startMonth != endMonth && startYear == endYear) {
+    return `${startDay} ${startMonth.slice(0, 3)} - ${endDay} ${endMonth.slice(
+      0,
+      3
+    )} ${startYear}`;
+  }
+  return `${startDay} ${startMonth.slice(
+    0,
+    3
+  )} ${startYear} - ${endDay} ${endMonth.slice(0, 3)} ${endYear}`;
+}
+
+//Definisce lo stato di un viaggio sulla base delle date di partenza e arrivo
+function getTripStatus(start, end) {
+  let date = new Date();
+  start = new Date(start);
+  end = new Date(end);
+  if (date > end) return { status: "trip-completed", text: "COMPLETATO" };
+  if (date < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
+  return { status: "trip-active", text: "ATTIVO" };
+}
+
+//Calcola qunati giorni mancano alla data di partenza passata in input. Se la partenza è già avvenuta calcola i giorni passati
+function timeToGo(start) {
+  let today = new Date();
+  start = new Date(start);
+  let diffMill = start - today;
+  let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+
+  if (start >= today) {
+    return `<span class="weight">Partenza tra: </span>${diffDays}g`;
+  } else {
+    return `<span class="weight">Partenza avvenuta: </span>${-diffDays}g fa`;
+  }
+}
+
+//Gestisce il cambio di stile CSS per i filtri
 function tripFilters(filter) {
   document.querySelectorAll(".filter-tab").forEach((tab) => {
     tab.classList.remove("active");
@@ -265,93 +396,7 @@ function tripFilters(filter) {
   filter.target.classList.add("active");
 }
 
+//Reindirizza alla valigia quando viene cliccata la card di un viaggio
 function openDetails(id) {
   window.location.href = `valigia.php?id=${encodeURIComponent(id)}`;
 }
-
-function editTrip(viaggio_id) {
-  let name = document.getElementById("trip-name").value;
-  let destination = document.getElementById("trip-destination").value;
-  let start = document.getElementById("trip-start").value;
-  let end = document.getElementById("trip-end").value;
-
-  fetch("aggiornaViaggio.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      destination,
-      start,
-      end,
-      viaggio_id,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (!data.status == "ok") {
-        console.log(data.message);
-        alert("Errore nella modifica del viaggio");
-      } else {
-        loadTripPanel("all");
-        closeModal();
-      }
-    });
-}
-
-function deleteTrip(id) {
-  fetch("eliminaViaggio.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.status == "error") {
-        alert("Error: ", data.error);
-      }
-      alert("Eliminazione avvenuta con successo");
-      loadTripPanel("all");
-    })
-    .catch((error) => {
-      console.error("Errore durante l'eliminazione:", error);
-    });
-}
-
-function openModal(id) {
-  fetch("get_date_viaggio.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `viaggio_id=${encodeURIComponent(id)}`,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.status == "error") {
-        alert("Error: ", data.error);
-      }
-
-      document.getElementById("trip-name").value = data.nome;
-      document.getElementById("trip-destination").value = data.destinazione;
-      document.getElementById("trip-start").value = data.data_inizio;
-      document.getElementById("trip-end").value = data.data_fine;
-
-      currentTrip = id;
-      let modal = document.getElementById("trip-modal");
-      modal.style.display = "flex";
-    })
-    .catch((error) => {
-      console.error("Errore durante il caricamento:", error);
-    });
-}
-
-function closeModal() {
-  let modal = document.getElementById("trip-modal");
-  modal.style.display = "none";
-}
-
-function closeModalNewTrip() {
-  let modal = document.getElementById("new-trip-modal");
-  modal.style.display = "none";
-}
-

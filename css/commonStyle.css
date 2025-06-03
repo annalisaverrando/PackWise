@@ -314,6 +314,31 @@ button {
   box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
 }
 
+/*--BANNER PER VIAGGIO ATTIVO*--*/
+
+.banner.active {
+  background: white;
+  color: #333;
+  transform: scale(1.02);
+  box-shadow: 0 8px 40px rgba(255, 193, 7, 0.2);
+  /* border: 1px solid #ffc107; */
+}
+
+.destination,
+.dates {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.banner.active .banner-button {
+  font-weight: 600;
+  /*Decommenta le righe sotto per lo stile alternativo*/
+  /* background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); */
+  /* box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3); */
+}
+
 .update {
   align-self: baseline;
 }

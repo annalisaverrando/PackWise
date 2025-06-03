@@ -183,8 +183,8 @@ select {
 }
 
 .trip-active {
-  background: #fffbe6;
-  color: #8c6d1f;
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  color: white;
 }
 
 .trip-details::before {
