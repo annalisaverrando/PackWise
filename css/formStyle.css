@@ -68,7 +68,7 @@ body {
   line-height: 1.5;
   background: linear-gradient(45deg, #5f8ecc, #191970);
 }
-.form-btn:hover{
+.form-btn:hover {
   background: var(--hover-color);
 }
 
@@ -123,15 +123,6 @@ form input:focus {
 }
 form div:has(input:focus) > label {
   background-color: var(--hover-color);
-}
-
-.field-name {
-  display: block;
-  font-weight: 600;
-  color: #333;
-  font-size: 0.875rem;
-  text-align: left;
-  margin-top: 1.25rem;
 }
 
 .user-action {

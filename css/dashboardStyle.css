@@ -99,7 +99,7 @@ select {
   backdrop-filter: blur(10px);
 }
 
-.filter-tab:hover{
+.filter-tab:hover {
   /*background: var(--hover-color);*/
   background: var(--btn-icon-background-color);
 }
@@ -216,7 +216,7 @@ select {
 .btn-edit {
   background: var(--gradient);
 }
-.btn-edit:hover{
+.btn-edit:hover {
   background: var(--hover-color);
 }
 
@@ -224,7 +224,7 @@ select {
   /*background: linear-gradient(45deg, #ff4757, #c44569);*/
   background: linear-gradient(45deg, var(--error-color), #ff4757);
 }
-.btn-delete:hover{
+.btn-delete:hover {
   background: var(--error-hover);
 }
 
@@ -251,10 +251,13 @@ select {
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+    padding: 0;
+    margin-top: 10px;
   }
 
   .sidebar {
     order: 1;
+    padding: 20px 10px;
   }
 
   .dashboard {
