@@ -308,8 +308,8 @@ function addButton() {
   newSection.className = "sezione";
   newSection.innerHTML = `
         <div class="sezione-header">
+            <img src="assets/matita.png" / class="category-img">
             <input type="text" class="edit-section-name" placeholder="Inserisci nome sezione" autofocus>
-            
             <div class="sezione-controls">
                 <button class='btn-add' title='Aggiungi elemento'><i class='bi bi-plus-lg'></i></button>
                 <button class='btn-toggle' title='Espandi/Comprimi'><i class='bi bi-chevron-down'></i></button>

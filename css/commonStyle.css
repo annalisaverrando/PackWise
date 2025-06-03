@@ -19,6 +19,7 @@
     #a6c4e8 0%,
     var(--btn-icon-background-color) 100%
   );
+  --mid-gradient: linear-gradient(135deg, #5f8ecc 0%, #3a5c9e 100%);
 }
 
 * {
@@ -126,7 +127,7 @@ button {
 }
 
 .app-section {
-  padding-top: 3px;
+  padding-top: 2px;
   font-size: 1.25rem;
   color: white;
   padding-left: 0.94rem;
@@ -407,6 +408,19 @@ button {
 
   .title-bar {
     width: 100%;
+  }
+
+  .app-title {
+    font-size: 22px;
+  }
+
+  .app-section {
+    font-size: 20px;
+  }
+
+  .logo {
+    height: 40px;
+    width: 40px;
   }
 }
 

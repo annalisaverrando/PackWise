@@ -13,6 +13,36 @@ $conn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres passw
 
 // Recupera l'ID del viaggio dalla query string
 $viaggio_id = $_GET['id'];
+$immagini = [
+    "abbigliamento",
+    "aereo",
+    "amici",
+    "auto",
+    "bambino",
+    "barca",
+    "bici",
+    "campeggio",
+    "corriera",
+    "corsa",
+    "escursionismo",
+    "essenziali",
+    "festival",
+    "fotografia",
+    "gala",
+    "hotel",
+    "internazionale",
+    "invernali",
+    "lavoro",
+    "lista",
+    "moto",
+    "palestra",
+    "piscina",
+    "secondaCasa",
+    "spiaggia",
+    "toeletta",
+    "treno",
+];
+
 
 // Recupera i dettagli del viaggio
 $query_viaggio = "SELECT * FROM viaggi WHERE id = $1 AND email_utente = $2";
@@ -95,7 +125,12 @@ $current_category = '';
                             $current_category = $oggetto['categoria'];
                             echo "<div class='sezione' id='$current_category'>";
                             echo "<div class='sezione-header'>";
-                            echo "<img src='assets/" . $current_category . ".png' class='category-img'>"; 
+                            if(in_array($current_category, $immagini)){
+                                echo "<img src='assets/" . $current_category . ".png' class='category-img'>"; 
+                            }
+                            else {
+                                echo "<img src='assets/matita.png' class='category-img'>"; 
+                            }
                             echo "<h2>" . ucfirst($current_category) . "</h2>";
                             echo "<div class='sezione-controls'>";
                             echo "<button class='btn-add' title='Aggiungi elemento'><i class='bi bi-plus-lg'></i></button>";
@@ -132,9 +167,9 @@ $current_category = '';
                 echo "</script>";
                 ?>
             </div>
-            <button class="add-section-btn" id="add-section-btn">+</button>
         </div>
     </div>
+    <button class="add-section-btn" id="add-section-btn">+</button>
 </body>
 </html>
 

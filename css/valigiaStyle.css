@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   padding: 0.5rem 0.75rem;
-  background: var(--btn-icon-background-color);
+  background: var(--mid-gradient);
   color: var(--background-color);
 }
 
@@ -189,7 +189,7 @@
 /* Layout per wrapper e sidebar */
 .wrapper {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 250px 1fr;
   gap: 2rem;
   padding: 2rem 1rem;
   max-width: 100%;
@@ -201,7 +201,7 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: fit-content;
 }
 
 .dettagli {
@@ -245,6 +245,7 @@
   right: 25px;
   width: 56px;
   height: 56px;
+  z-index: 9999;
   border-radius: 50%;
   background-color: var(--accent-color);
   color: white;
@@ -294,6 +295,11 @@
   .lista-container {
     width: 100%;
     grid-template-columns: 1fr;
+  }
+
+  .sezione {
+    width: 100%;
+    max-width: none;
   }
 
   .check-item label {
