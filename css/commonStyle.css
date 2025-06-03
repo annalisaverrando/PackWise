@@ -3,22 +3,37 @@
 :root {
   --background-color: #f5f8fa;
   --background2-color: #e6e4f0;
-  --text-color: #000000;
+  --container-background: white;
+  --text-color: #2d3748;
+
   --error-color: #ff6347;
   --error-hover: #ff3b20;
-  --btn-icon-background-color: #5f8ecc;
-  --hover-color: #191970;
+  --error-shadow: rgba(252, 89, 60, 0.3);
+
+  --color-1: #5f8ecc;
+  --color-2: #191970;
+
+  --btn-text: white;
+  --btn-1-color: linear-gradient(
+    135deg,
+    var(--color-1) 0%,
+    var(--color-2) 100%
+  );
+  --btn-1-hover: var(--color-2);
+  --shadow-1: rgba(66, 153, 225, 0.3);
+  --btn-2-color: linear-gradient(45deg, #00b4db, #0083b0);
+
+  --shadow-active: rgba(95, 142, 204, 0.5);
   --shadow-color: #898989;
+  --title-shadow: rgba(255, 255, 255, 0.3);
+  --container-shadow: rgba(0, 0, 0, 0.2);
   --border-color: #e0e0e0;
   --event-bg: #d6f2f9;
   --event-border: #00bed6;
-  --accent-color: #00bed6;
+
+  --error-gradient: linear-gradient(45deg, var(--error-color), #ff4757);
   --gradient: linear-gradient(135deg, #5f8ecc 0%, #191970 100%);
-  --light-gradient: linear-gradient(
-    135deg,
-    #a6c4e8 0%,
-    var(--btn-icon-background-color) 100%
-  );
+  --light-gradient: linear-gradient(135deg, #a6c4e8 0%, var(--color-2) 100%);
   --mid-gradient: linear-gradient(135deg, #5f8ecc 0%, #3a5c9e 100%);
 }
 
@@ -48,27 +63,37 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--btn-icon-background-color);
-  border-color: var(--btn-icon-background-color);
+  background: var(--btn-1-color);
   font-weight: 600;
   font-size: 0.9rem;
-  color: white;
+  color: var(--btn-text);
 }
 .btn-primary:hover {
-  background-color: var(--hover-color);
-  border-color: var(--hover-color);
+  background: var(--btn-1-hover);
   transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: linear-gradient(45deg, #00b4db, #0083b0);
-  color: white;
-  transition: all 0.2s ease;
+  background: var(--btn-2-color);
+  color: var(--btn-text);
 }
 
 .btn-secondary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+  box-shadow: 0 4px 8px var(--shadow-1);
+}
+
+.form-btn {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  background: var(--btn-1-color);
+  color: white;
+}
+.form-btn:hover {
+  background: var(--btn-1-hover);
 }
 
 /*--STILE RELATIVO ALLA BARRA SUPERIORE */
@@ -102,7 +127,7 @@ button {
 
 .title-link:hover {
   color: #f0f8ff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 0 10px var(--title-shadow);
 }
 
 .title-link::after {
@@ -165,7 +190,7 @@ button {
   margin-top: 0.5rem;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px var(--container-shadow);
   padding: 1.5rem;
   min-width: 250px;
   opacity: 0;
@@ -218,7 +243,7 @@ button {
 
 .logout-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(252, 89, 60, 0.3);
+  box-shadow: 0 4px 12px var(--error-shadow);
   background-color: var(--error-hover);
   border-color: var(--error-hover);
 }
@@ -233,7 +258,7 @@ button {
   border-radius: 16px;
   padding: 1.25rem;
   background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px var(--container-shadow);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -288,13 +313,11 @@ button {
   font-size: 0.75rem;
   text-align: center;
   opacity: 0.8;
-  border-top-color: rgba(0, 0, 0, 0.1);
+  border-top-color: var(--border-color);
 }
 
 .banner-button {
   width: 100%;
-  background: linear-gradient(45deg, #00b4db, #0083b0);
-  color: white;
   border: none;
   border-radius: 8px;
   padding: 10px 16px;
@@ -309,19 +332,13 @@ button {
   gap: 6px;
 }
 
-.banner-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
-}
-
 /*--BANNER PER VIAGGIO ATTIVO*--*/
 
 .banner.active {
   background: white;
   color: #333;
   transform: scale(1.02);
-  box-shadow: 0 8px 40px rgba(255, 193, 7, 0.2);
-  /* border: 1px solid #ffc107; */
+  box-shadow: 0 8px 40px var(--shadow-active);
 }
 
 .destination,
@@ -334,9 +351,6 @@ button {
 
 .banner.active .banner-button {
   font-weight: 600;
-  /*Decommenta le righe sotto per lo stile alternativo*/
-  /* background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); */
-  /* box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3); */
 }
 
 .update {
@@ -350,7 +364,7 @@ button {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: var(--accent-color);
+  background: var(--btn-2-color);
   color: white;
   border: none;
   font-size: 24px;
@@ -391,7 +405,7 @@ button {
   border-radius: 20px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px var(--container-shadow);
   animation: modalSlideIn 0.3s ease forwards;
 }
 
@@ -401,7 +415,7 @@ button {
   align-items: center;
   margin-bottom: 25px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .close {

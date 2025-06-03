@@ -27,11 +27,11 @@ select {
 /*---SIDEBAR---*/
 
 .sidebar {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--container-background);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 25px -5px var(--container-shadow);
   height: 100%;
   max-height: 392px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -43,13 +43,13 @@ select {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #2d3748;
+  color: var(--text-color);
 }
 
 /*---DASHBOARD---*/
 
 .dashboard {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--container-background);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 2rem;
@@ -61,7 +61,7 @@ select {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #2d3748;
+  color: var(--text-color);
   letter-spacing: -0.5px;
   line-height: 1.6;
 }
@@ -100,8 +100,7 @@ select {
 }
 
 .filter-tab:hover {
-  /*background: var(--hover-color);*/
-  background: var(--btn-icon-background-color);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .main-container {
@@ -126,7 +125,7 @@ select {
 .trip-container {
   font-size: 0.9rem;
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px var(--container-shadow);
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -146,7 +145,7 @@ select {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(45deg, #5f8ecc, #191970);
+  background: var(--gradient);
 }
 
 .trip-container:hover {
@@ -210,19 +209,18 @@ select {
 }
 
 .new-trip:hover {
-  background: var(--btn-icon-background-color);
+  background: var(--btn-1-hover);
 }
 
 .btn-edit {
   background: var(--gradient);
 }
 .btn-edit:hover {
-  background: var(--hover-color);
+  background: var(--btn-1-hover);
 }
 
 .btn-delete {
-  /*background: linear-gradient(45deg, #ff4757, #c44569);*/
-  background: linear-gradient(45deg, var(--error-color), #ff4757);
+  background: var(--error-gradient);
 }
 .btn-delete:hover {
   background: var(--error-hover);

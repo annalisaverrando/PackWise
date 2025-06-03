@@ -42,7 +42,7 @@ body {
 }
 
 .text-center {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--container-background);
   border-radius: 20px;
   padding: 40px;
   width: 100%;
@@ -58,18 +58,6 @@ body {
 
 .form-group {
   margin-bottom: 10px;
-}
-
-.form-btn {
-  width: 100%;
-  margin-top: 20px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.5;
-  background: linear-gradient(45deg, #5f8ecc, #191970);
-}
-.form-btn:hover {
-  background: var(--hover-color);
 }
 
 form {
@@ -90,7 +78,7 @@ form label {
   flex-shrink: 0;
   height: 3.125rem;
   width: 3.125rem;
-  background-color: var(--btn-icon-background-color);
+  background-color: var(--color-1);
   fill: var(--background-color);
   border-radius: 10px 0 0 10px;
   display: flex;
@@ -98,8 +86,8 @@ form label {
   align-items: center;
 }
 form label:hover {
-  background-color: var(--hover-color);
-  border-color: var(--hover-color);
+  background-color: var(--color-2);
+  border-color: var(--color-2);
 }
 
 form input {
@@ -115,14 +103,14 @@ form input {
   border-left: none;
 }
 form input:hover {
-  border-color: var(--btn-icon-background-color);
+  border-color: var(--color-1);
 }
 form input:focus {
   outline: none;
-  border-color: var(--hover-color);
+  border-color: var(--color-2);
 }
 form div:has(input:focus) > label {
-  background-color: var(--hover-color);
+  background-color: var(--color-2);
 }
 
 .user-action {
@@ -145,11 +133,11 @@ form div:has(input:focus) > label {
 .text-center a {
   text-decoration: none;
   font-weight: bold;
-  color: var(--btn-icon-background-color);
+  color: var(--color-1);
 }
 .text-center a:hover {
   text-decoration: underline;
-  color: var(--hover-color);
+  color: var(--color-2);
 }
 
 @media screen and (max-width: 768px) {

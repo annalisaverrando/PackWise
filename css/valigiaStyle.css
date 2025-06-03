@@ -6,7 +6,7 @@
   padding: 2rem;
   text-align: center;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--container-background);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,7 @@
 .sezione {
   background: var(--background-color);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--container-shadow);
   overflow: hidden;
   transition: all 0.2s ease;
   height: fit-content;
@@ -111,7 +111,7 @@
   margin-right: 0.3rem;
   width: 12px;
   height: 12px;
-  accent-color: var(--btn-icon-background-color);
+  accent-color: var(--color-1);
 }
 
 .check-item label {
@@ -138,7 +138,7 @@
   font-size: 1.2rem;
   background: none;
   border: none;
-  color: var(--btn-icon-background-color);
+  color: var(--color-1);
   padding: 0.15rem;
   cursor: pointer;
   display: flex;
@@ -148,7 +148,7 @@
 }
 
 .quantity-btn:hover {
-  color: var(--hover-color);
+  color: var(--color-2);
   transform: scale(1.1);
 }
 
@@ -183,7 +183,7 @@
   outline: none;
   color: var(--text-color);
   font-family: inherit;
-  border-bottom: 2px solid var(--btn-icon-background-color);
+  border-bottom: 2px solid var(--color-1);
 }
 
 /* Layout per wrapper e sidebar */
@@ -205,11 +205,11 @@
 }
 
 .dettagli {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--container-background);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 25px -5px var(--container-shadow);
   height: fit-content;
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
@@ -247,7 +247,7 @@
   height: 56px;
   z-index: 9999;
   border-radius: 50%;
-  background-color: var(--accent-color);
+  background: var(--btn-2-color);
   color: white;
   border: none;
   font-size: 24px;
@@ -260,8 +260,8 @@
   outline: none;
   color: var(--background-color);
   font-family: inherit;
-  border-bottom: 2px solid var(--btn-icon-background-color);
-  background-color: var(--btn-icon-background-color);
+  border-bottom: 2px solid var(--color-1);
+  background-color: var(--color-1);
 }
 .edit-section-name::placeholder {
   color: var(--background-color);

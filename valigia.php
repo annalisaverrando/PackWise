@@ -110,7 +110,7 @@ $current_category = '';
                 <div class="destination" id="destination"><?php echo $viaggio['destinazione']?></div>
                 <div class="dates" id="dates"></div>
                 <div class="countdown" id="countdown"></div>
-                <button class="banner-button btn-primary" onclick="window.location.href='planner.html'">
+                <button class="banner-button btn-secondary" onclick="window.location.href='planner.html'">
                     📋 Pianifica viaggio
                 </button>
             </div>

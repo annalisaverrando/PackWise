@@ -116,12 +116,12 @@ body {
 }
 
 .attività:has(input[type="checkbox"]:checked) {
-  border-color: var(--btn-icon-background-color);
+  border-color: var(--color-1);
   background-color: #e6f0ff;
 }
 
 .attività:hover {
-  border-color: var(--btn-icon-background-color);
+  border-color: var(--color-1);
   box-shadow: 0 4px 12px var(--shadow-color);
 }
 .attività:focus {
@@ -151,9 +151,8 @@ body {
 }
 
 .btn-submit {
-  /* background: #111827; */
-  color: white;
-  border: none;
+  background: var(--btn-1-color);
+  color: var(--btn-text);
   padding: 1rem 2rem;
   border-radius: 8px;
   font-size: 1rem;
@@ -161,6 +160,10 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   min-width: 200px;
+}
+
+.btn-submit:hover {
+  box-shadow: 0 4px 20px var(--shadow-1);
 }
 
 .btn-submit:disabled {
