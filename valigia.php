@@ -3,8 +3,13 @@ session_start();
 
 // Verifica che l'utente sia loggato
 if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
-    exit;
+    // Sessione scaduta? Prova a recuperare dal cookie
+    if (isset($_COOKIE['email'])) {
+        $_SESSION['email'] = $_COOKIE['email'];
+    } else {
+        header("Location: login.php"); // Se l'utente non è loggato, reindirizza alla pagina di login
+        exit();
+    }
 }
 
 // Connessione al database

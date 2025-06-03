@@ -56,6 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $_SESSION['email'] = $email;
                     $_SESSION['nome'] = $nome;
                     $_SESSION['cognome'] = $cognome;
+                    //Setta i cookie
+                    setcookie("email", $email, time() + 3600, "/");
                     header("Location: dashboard.html");
                     exit;
                 } else {

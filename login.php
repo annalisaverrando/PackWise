@@ -31,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 // Confronta la password inserita con l'hash salvato nel database
                 if (password_verify($_POST['password'], $utente['password'])) {
                     $_SESSION['email'] = $email;
+                    setcookie("email", $email, time() + 3600, "/");
+    
                     header("Location: dashboard.html");
                     exit;
                     
