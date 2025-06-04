@@ -116,6 +116,7 @@ $current_category = '';
             </div>
         </div>
         <div class="page-lista">
+            <h2>La tua valigia</h2>
             <div class="lista-container">
                 <?php
                 while ($oggetto = pg_fetch_assoc($result_oggetti)) {
