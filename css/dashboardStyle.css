@@ -226,20 +226,6 @@ select {
   background: var(--btn-1-hover);
 }
 
-.btn-edit {
-  background: var(--gradient);
-}
-.btn-edit:hover {
-  background: var(--btn-1-hover);
-}
-
-.btn-delete {
-  background: var(--error-gradient);
-}
-.btn-delete:hover {
-  background: var(--error-hover);
-}
-
 @media (max-width: 768px) {
   .wrapper {
     grid-template-columns: 1fr;

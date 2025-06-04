@@ -88,7 +88,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="modal-title">Modifica Viaggio</h2>
-          <span class="close" onclick="closeModal()">×</span>
+          <span class="close" onclick="closeModal('trip-modal')">×</span>
         </div>
         <div class="form-group">
           <label class="form-label" for="trip-name">Nome del viaggio</label>
@@ -120,12 +120,34 @@
       </div>
     </div>
 
+    <!--Modal per la conferma eliminzione nuovo viaggio-->
+    <div class="modal" id="delete-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title">
+            Sei sicuro di voler eliminare questo viaggio?
+          </h2>
+          <span class="close" onclick="closeModal('delete-modal')">×</span>
+        </div>
+        <button
+          class="btn-primary"
+          id="cancel-delete"
+          onclick="closeModal('delete-modal')"
+        >
+          Annulla
+        </button>
+        <button class="btn-primary btn-delete" id="confirm-delete">
+          Elimina
+        </button>
+      </div>
+    </div>
+
     <!--Modal nuovo viaggio-->
     <div class="modal" id="new-trip-modal">
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="modal-title">Nuovo viaggio</h2>
-          <span class="close" onclick="closeModalNewTrip()">×</span>
+          <span class="close" onclick="closeModal('new-trip-modal')">×</span>
         </div>
         <form
           name="form_viaggio"

@@ -119,15 +119,9 @@ function openModal(id) {
     });
 }
 
-//Chiude il modal per la modifica dei dettagli del vaiggio
-function closeModal() {
-  let modal = document.getElementById("trip-modal");
-  modal.style.display = "none";
-}
-
-//Chiude il modal per la creazione di un nuovo viaggio
-function closeModalNewTrip() {
-  let modal = document.getElementById("new-trip-modal");
+//Chiude il modal passato come parametro
+function closeModal(modalId) {
+  let modal = document.getElementById(modalId);
   modal.style.display = "none";
 }
 
@@ -299,7 +293,6 @@ function deleteTrip(id) {
       if (data.status == "error") {
         alert("Error: ", data.error);
       }
-      alert("Eliminazione avvenuta con successo");
       loadTripPanel("all");
     })
     .catch((error) => {
@@ -347,7 +340,11 @@ function createTripPanel(tripData) {
     .querySelector(".btn-delete")
     .addEventListener("click", (event) => {
       event.stopPropagation();
-      deleteTrip(tripData.id);
+      document.getElementById("delete-modal").style.display = "flex";
+      document.getElementById("confirm-delete").onclick = function () {
+        deleteTrip(tripData.id);
+        closeModal("delete-modal");
+      };
     });
 
   return tripContainer;
