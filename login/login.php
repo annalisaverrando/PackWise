@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
-        <link rel="stylesheet" href="css/commonStyle.css">
-        <link rel="stylesheet" href="css/formStyle.css">
+        <link rel="stylesheet" href="../css/commonStyle.css">
+        <link rel="stylesheet" href="../css/formStyle.css">
     </head>
     <body>
         <?php
@@ -26,20 +26,20 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
             if (!($utente = pg_fetch_array($result, null, PGSQL_ASSOC))) {
                 echo "<h1>Utente non registrato</h1>";
-                echo "<a href='registrazione.html'>Clicca qui per registrarti</a>";
+                echo "<a href='../registrazione/registrazione.html'>Clicca qui per registrarti</a>";
             } else {
                 // Confronta la password inserita con l'hash salvato nel database
                 if (password_verify($_POST['password'], $utente['password'])) {
                     $_SESSION['email'] = $email;
                     setcookie("email", $email, time() + 3600, "/");
     
-                    header("Location: dashboard.html");
+                    header("Location: ../dashboard/dashboard.html");
                     exit;
                     
                     //echo "<a href='dashboard.php'>clicca</a>";
                 } else {
                     echo "<h1>Password errata</h1>";
-                    echo "<a href='login.html'>Riprova</a>";
+                    echo "<a href='../login/login.html'>Riprova</a>";
                 }
                 pg_close($dbconn);
             }

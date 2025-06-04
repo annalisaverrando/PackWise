@@ -16,9 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     <head>
         <meta charset="UTF-8">
         <title>Registrazione</title>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="css/commonStyle.css">
-        <link rel="stylesheet" href="css/formStyle.css">
+        <link rel="stylesheet" href="../css/commonStyle.css">
+        <link rel="stylesheet" href="../css/formStyle.css">
     </head>
     <body>
         <?php
@@ -42,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
             if (pg_num_rows($checkResult) > 0) {
                 echo "<h1>Email già registrata.</h1>";
-                echo "<a href='login.html'>Vai al login</a>";
+                echo "<a href='../login/login.html'>Vai al login</a>";
             } else {
                 // Inserimento
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -58,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $_SESSION['cognome'] = $cognome;
                     //Setta i cookie
                     setcookie("email", $email, time() + 3600, "/");
-                    header("Location: dashboard.html");
+                    header("Location: ../dashboard/dashboard.html");
                     exit;
                 } else {
                     echo "<h1>Errore nella registrazione: " . pg_last_error($conn) . "</h1>";

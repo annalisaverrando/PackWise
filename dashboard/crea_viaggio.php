@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>
                     sessionStorage.setItem('viaggio_id', '$viaggio_id');
                     sessionStorage.setItem('user_id', '$email');
-                    window.location.href = 'attivita.html';
+                    window.location.href = '../attivita/attivita.html';
                 </script>";
         } else {
             echo "Errore durante la creazione del viaggio.";

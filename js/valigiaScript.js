@@ -20,7 +20,7 @@ function updateItem(
 
   console.log("Dati inviati:", payload);
 
-  fetch("aggiornaValigia.php", {
+  fetch("../valigia/aggiornaValigia.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -257,7 +257,7 @@ function getDateRange(start, end) {
 //Aggiorna i dettagli presenti nel banner
 function updateDetails() {
   const viaggio_id = new URLSearchParams(window.location.search).get("id");
-  fetch("get_date_viaggio.php", {
+  fetch("../php/get_date_viaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,
@@ -308,7 +308,7 @@ function addButton() {
   newSection.className = "sezione";
   newSection.innerHTML = `
         <div class="sezione-header">
-            <img src="assets/matita.png" / class="category-img">
+            <img src="../assets/matita.png" / class="category-img">
             <input type="text" class="edit-section-name" placeholder="Inserisci nome sezione" autofocus>
             <div class="sezione-controls">
                 <button class='btn-add' title='Aggiungi elemento'><i class='bi bi-plus-lg'></i></button>
@@ -368,7 +368,7 @@ function addButton() {
 
 //Setta l'email nel container per il logout
 function setEmail() {
-  fetch("emailUtente.php")
+  fetch("../php/emailUtente.php")
     .then((response) => response.json())
     .then((data) => {
       if (data.email) {
@@ -385,8 +385,8 @@ function logoutPanel() {
 }
 
 function logoutButton() {
-  fetch("logout.php").then(() => {
-    window.location.href = "login.html";
+  fetch("../php/logout.php").then(() => {
+    window.location.href = "../login/login.html";
   });
 }
 

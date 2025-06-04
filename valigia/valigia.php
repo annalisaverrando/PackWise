@@ -7,7 +7,7 @@ if (!isset($_SESSION['email'])) {
     if (isset($_COOKIE['email'])) {
         $_SESSION['email'] = $_COOKIE['email'];
     } else {
-        header("Location: login.php"); // Se l'utente non è loggato, reindirizza alla pagina di login
+        header("Location: ../login/login.php"); // Se l'utente non è loggato, reindirizza alla pagina di login
         exit();
     }
 }
@@ -71,24 +71,24 @@ $current_category = '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valigia</title>
-        <link rel="stylesheet" href="css/commonStyle.css">
-        <link rel="stylesheet" href="css/valigiaStyle.css">
+        <link rel="stylesheet" href="../css/commonStyle.css">
+        <link rel="stylesheet" href="../css/valigiaStyle.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet"/>
-        <script type="application/javascript" src="js/valigiaScript.js" defer></script>   
+        <script type="application/javascript" src="../js/valigiaScript.js" defer></script>   
 </head>
 <body>
     <header class="title-bar">
-        <img src="assets/Logo.png" class="logo" />
+        <img src="../assets/Logo.png" class="logo" />
         <h1 class="app-title">
-            <a href="dashboard.html" class="title-link">PackWise</a>
+            <a href="../dashboard/dashboard.html" class="title-link">PackWise</a>
         </h1>
         <span class="line"></span>
         <h2 class="app-section">Valigia</h2>
         <div class="user-container" id="user-container">
-            <img src="assets/user.png" class="user-logo" id="user-logo" />
+            <img src="../assets/user.png" class="user-logo" id="user-logo" />
             <!--Modal che appare quando l'utente è loggato-->
             <div class="modal-logout active hidden" id="modal-logout">
                 <div class="email" id="email"></div>
@@ -110,7 +110,7 @@ $current_category = '';
                 <div class="destination" id="destination"><?php echo $viaggio['destinazione']?></div>
                 <div class="dates" id="dates"></div>
                 <div class="countdown" id="countdown"></div>
-                <button class="banner-button btn-secondary" onclick="window.location.href='planner.html'">
+                <button class="banner-button btn-secondary" onclick="window.location.href='../planner/planner.html'">
                     📋 Pianifica viaggio
                 </button>
             </div>
@@ -131,10 +131,10 @@ $current_category = '';
                             echo "<div class='sezione' id='$current_category'>";
                             echo "<div class='sezione-header'>";
                             if(in_array($current_category, $immagini)){
-                                echo "<img src='assets/" . $current_category . ".png' class='category-img'>"; 
+                                echo "<img src='../assets/" . $current_category . ".png' class='category-img'>"; 
                             }
                             else {
-                                echo "<img src='assets/matita.png' class='category-img'>"; 
+                                echo "<img src='../assets/matita.png' class='category-img'>"; 
                             }
                             echo "<h2>" . ucfirst($current_category) . "</h2>";
                             echo "<div class='sezione-controls'>";

@@ -41,7 +41,7 @@ function submitAttivita() {
     });
 
   // Crea una richiesta POST a crea_lista.php
-  fetch("crea_lista.php", {
+  fetch("../attivita/crea_lista.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(
@@ -61,7 +61,7 @@ function submitAttivita() {
 
       if (data.status === "success") {
         // Vai direttamente alla pagina dei dettagli del viaggio
-        window.location.href = "valigia.php?id=" + viaggio_id;
+        window.location.href = "../valigia/valigia.php?id=" + viaggio_id;
       } else {
         // Se c'è stato un errore, mostra il messaggio
         alert(data.message || "Errore durante la creazione della valigia");
@@ -87,7 +87,7 @@ function setupEventListeners() {
 
 //Setta l'email nel container per il logout
 function setEmail() {
-  fetch("emailUtente.php")
+  fetch("../php/emailUtente.php")
     .then((response) => response.json())
     .then((data) => {
       if (data.email) {
@@ -104,7 +104,7 @@ function logoutPanel() {
 }
 
 function logoutButton() {
-  fetch("logout.php").then(() => {
+  fetch("../php/logout.php").then(() => {
     window.location.href = "login.html";
   });
 }

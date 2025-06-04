@@ -67,7 +67,7 @@ function setupEventListeners() {
 
 //Setta l'email nel container per il logout
 function setEmail() {
-  fetch("emailUtente.php")
+  fetch("../php/emailUtente.php")
     .then((response) => response.json())
     .then((data) => {
       if (data.email) {
@@ -85,8 +85,8 @@ function logoutPanel() {
 
 //Pulsante per il logout
 function logoutButton() {
-  fetch("logout.php").then(() => {
-    window.location.href = "login.html";
+  fetch("../php/logout.php").then(() => {
+    window.location.href = "../login/login.html";
   });
 }
 
@@ -94,7 +94,7 @@ function logoutButton() {
 
 //Apre il modal per la modifica dei dettagli del viaggio
 function openModal(id) {
-  fetch("get_date_viaggio.php", {
+  fetch("../php/get_date_viaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(id)}`,
@@ -136,7 +136,7 @@ function closeModalNewTrip() {
 //Ottiene la lista dei viaggi in ordine di data e filtrati con il parametro 'filter' in input
 async function loadTrip(filter) {
   try {
-    const response = await fetch("dashboard.php", {
+    const response = await fetch("../dashboard/dashboard.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `filter=${encodeURIComponent(filter)}`,
@@ -230,7 +230,7 @@ function editTrip(viaggio_id) {
   let start = document.getElementById("trip-start").value;
   let end = document.getElementById("trip-end").value;
 
-  fetch("aggiornaViaggio.php", {
+  fetch("../php/aggiornaViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -255,7 +255,7 @@ function editTrip(viaggio_id) {
 
 //Elimina il viaggio selezionato
 function deleteTrip(id) {
-  fetch("eliminaViaggio.php", {
+  fetch("../dashboard/eliminaViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -398,5 +398,5 @@ function tripFilters(filter) {
 
 //Reindirizza alla valigia quando viene cliccata la card di un viaggio
 function openDetails(id) {
-  window.location.href = `valigia.php?id=${encodeURIComponent(id)}`;
+  window.location.href = `../valigia/valigia.php?id=${encodeURIComponent(id)}`;
 }

@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/formStyle.css" />
-    <link rel="stylesheet" href="css/commonStyle.css" />
-    <link rel="stylesheet" href="css/dashboardStyle.css" />
+    <link rel="stylesheet" href="../css/formStyle.css" />
+    <link rel="stylesheet" href="../css/commonStyle.css" />
+    <link rel="stylesheet" href="../css/dashboardStyle.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
       rel="stylesheet"
@@ -23,19 +23,19 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.css"
     />
-    <script src="js/dashboardScript.js"></script>
+    <script src="../js/dashboardScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
   </head>
   <body>
     <header class="title-bar">
-      <img src="assets/Logo.png" class="logo" />
+      <img src="../assets/Logo.png" class="logo" />
       <h1 class="app-title">
         <a href="dashboard.html" class="title-link">PackWise</a>
       </h1>
       <span class="line"></span>
       <h2 class="app-section">Dashboard</h2>
       <div class="user-container" id="user-container">
-        <img src="assets/user.png" class="user-logo" id="user-logo" />
+        <img src="../assets/user.png" class="user-logo" id="user-logo" />
         <!--Modal che appare quando l'utente è loggato-->
         <div class="modal-logout active hidden" id="modal-logout">
           <div class="email" id="email"></div>
@@ -58,7 +58,7 @@
           <div class="countdown" id="countdown"></div>
           <button
             class="banner-button btn-secondary"
-            onclick="window.location.href='planner.html'"
+            onclick="window.location.href='../planner/planner.html'"
           >
             📋 Pianifica viaggio
           </button>
@@ -124,7 +124,11 @@
           <h2 class="modal-title" id="modal-title">Nuovo viaggio</h2>
           <span class="close" onclick="closeModalNewTrip()">×</span>
         </div>
-        <form name="form_viaggio" action="crea_viaggio.php" method="POST">
+        <form
+          name="form_viaggio"
+          action="../dashboard/crea_viaggio.php"
+          method="POST"
+        >
           <div class="form-group">
             <label for="inputNome">
               <svg

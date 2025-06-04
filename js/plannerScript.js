@@ -6,7 +6,7 @@ let return_date;
 
 document.addEventListener("DOMContentLoaded", function () {
   //Invio l'id viaggio al server PHP per poter recuperare le informazioni del viaggio
-  fetch("get_date_viaggio.php", {
+  fetch("../php/get_date_viaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,
@@ -126,7 +126,7 @@ function setupEventListeners() {
 
 //Setta l'email nel container per il logout
 function setEmail() {
-  fetch("emailUtente.php")
+  fetch("../php/emailUtente.php")
     .then((response) => response.json())
     .then((data) => {
       if (data.email) {
@@ -143,8 +143,8 @@ function logoutPanel() {
 }
 
 function logoutButton() {
-  fetch("logout.php").then(() => {
-    window.location.href = "login.html";
+  fetch("../php/logout.php").then(() => {
+    window.location.href = "../login/login.html";
   });
 }
 
@@ -152,7 +152,7 @@ function logoutButton() {
 
 //Apre il pannello di modifica viaggio
 function openTripPanel() {
-  fetch("get_date_viaggio.php", {
+  fetch("../php/get_date_viaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,
@@ -206,7 +206,7 @@ function closeAddEventPanel() {
 //Apre il pannello dei dettagli di un evento
 function openDetailsPanel(id) {
   //Prendere dal db le info dell'evento e mostrarle a schermo
-  fetch("infoEvento.php", {
+  fetch("../planner/infoEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -272,7 +272,7 @@ function closeDetailsEvent() {
 
 //Apre il pannello di modifica evento
 function openEditPanel(id) {
-  fetch("infoEvento.php", {
+  fetch("../planner/infoEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -466,7 +466,9 @@ function navigateCalendar(days) {
 
 //Torna alla valigia
 function goToBag() {
-  window.location.href = `valigia.php?id=${encodeURIComponent(viaggio_id)}`;
+  window.location.href = `../valigia/valigia.php?id=${encodeURIComponent(
+    viaggio_id
+  )}`;
 }
 
 //Aggiorna nome, date di inizio e fine vacanza
@@ -476,7 +478,7 @@ function updateVacationDetails() {
   let start = document.getElementById("trip-start").value;
   let end = document.getElementById("trip-end").value;
 
-  fetch("aggiornaViaggio.php", {
+  fetch("../php/aggiornaViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -524,7 +526,7 @@ function addEvent() {
   let action = "add";
 
   //Invio i dati al PHP che li aggiungerà al db
-  fetch("gestisciEvento.php", {
+  fetch("../planner/gestisciEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -565,7 +567,7 @@ function createEventHTML(eventId, start_time, title) {
 
 //Prende dal db gli eventi della data selezionata e li aggiunge al calendario
 function loadEvents(week) {
-  fetch("caricaEventi.php", {
+  fetch("../planner/caricaEventi.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -597,7 +599,7 @@ function loadEvents(week) {
 //Elimina l'evento selezionato
 function deleteEvent(id) {
   let action = "delete";
-  fetch("gestisciEvento.php", {
+  fetch("../planner/gestisciEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -629,7 +631,7 @@ function editEvent(id) {
   end_time = end_time == "" ? null : end_time;
   let notes = document.getElementById("edit-event-notes").value;
 
-  fetch("gestisciEvento.php", {
+  fetch("../planner/gestisciEvento.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
