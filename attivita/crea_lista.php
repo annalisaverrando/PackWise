@@ -134,10 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ['nome' => 'Scarpe da trekking', 'categoria' => 'escursionismo']
         ],
         'gala' => [
-            ['nome' => 'Abito elegante', 'categoria' => 'cena-di-gala'],
-            ['nome' => 'Cravatta', 'categoria' => 'cena-di-gala'],
-            ['nome' => 'Gioielli', 'categoria' => 'cena-di-gala'],
-            ['nome' => 'Scarpe eleganti', 'categoria' => 'cena-di-gala']
+            ['nome' => 'Abito elegante', 'categoria' => 'gala'],
+            ['nome' => 'Cravatta', 'categoria' => 'gala'],
+            ['nome' => 'Gioielli', 'categoria' => 'gala'],
+            ['nome' => 'Scarpe eleganti', 'categoria' => 'gala']
         ],
         'fotografia' => [
             ['nome' => 'Caricabatterie', 'categoria' => 'fotografia'],
