@@ -81,7 +81,7 @@ function initializeItem(item) {
   });
 
   // Inizializza il pulsante elimina
-  const deleteBtn = item.querySelector(".btn-delete");
+  const deleteBtn = item.querySelector(".delete-element");
   deleteBtn.addEventListener("click", () => {
     item.style.opacity = "0";
     item.style.transform = "scale(0.9)";
@@ -126,7 +126,7 @@ function initializeAddBtn(addBtn) {
                 <i class="bi bi-plus"></i>
             </button>
         </div>
-        <button class="btn-delete" title="Elimina">
+        <button class="delete-element" title="Elimina">
             <i class="bi bi-x-lg"></i>
         </button>`;
   itemList.appendChild(newItem);

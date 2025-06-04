@@ -139,8 +139,11 @@ async function loadTrip(filter) {
     const json = await response.json();
 
     if (json.status === "error") {
-      console.log(json.error);
-      return [];
+      if (json.error == "nonLoggato") {
+        window.location.href = "../login/login.html";
+      } else {
+        return [];
+      }
     }
 
     return json.data;

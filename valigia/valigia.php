@@ -159,7 +159,7 @@ $current_category = '';
                     echo "<span class='quantity-display' style='display: $quantity_display_style;'>" . $oggetto['quantita'] . "</span>";
                     echo "<button class='quantity-btn plus-btn'><i class='bi bi-plus'></i></button>";
                     echo "</div>";
-                    echo "<button class='btn-delete' title='Elimina'><i class='bi bi-x-lg'></i></button>";
+                    echo "<button class='delete-element' title='Elimina'><i class='bi bi-x-lg'></i></button>";
                     echo "</div>";
                 }
 
