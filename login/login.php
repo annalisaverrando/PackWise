@@ -1,49 +1,36 @@
 <?php
 session_start();
-if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    header("Location: login.html");
-    exit;
-} else {
-    $dbconn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres password=postgres")
-        or die('Errore nella connessione: ' . pg_last_error());
-}
-?>
-<!DOCTYPE html>
-<html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="stylesheet" href="../css/commonStyle.css">
-        <link rel="stylesheet" href="../css/formStyle.css">
-    </head>
-    <body>
-        <?php
-        if ($dbconn) {
-            $email = $_POST['email'];
 
-            $q1 = "SELECT * FROM utenti WHERE email = $1";
-            $result = pg_query_params($dbconn, $q1, array($email));
-
-            if (!($utente = pg_fetch_array($result, null, PGSQL_ASSOC))) {
-                echo "<h1>Utente non registrato</h1>";
-                echo "<a href='../registrazione/registrazione.html'>Clicca qui per registrarti</a>";
-            } else {
-                // Confronta la password inserita con l'hash salvato nel database
-                if (password_verify($_POST['password'], $utente['password'])) {
-                    $_SESSION['email'] = $email;
-                    setcookie("email", $email, time() + 3600, "/");
+$dbconn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres password=postgres")
+    or die('Errore nella connessione: ' . pg_last_error());
     
-                    header("Location: ../dashboard/dashboard.html");
-                    exit;
-                    
-                    //echo "<a href='dashboard.php'>clicca</a>";
-                } else {
-                    echo "<h1>Password errata</h1>";
-                    echo "<a href='../login/login.html'>Riprova</a>";
-                }
-                pg_close($dbconn);
-            }
+header("Content-Type: application/json");
+
+$inputJSON = file_get_contents('php://input');
+$input = json_decode($inputJSON, true);
+
+if ($dbconn) {
+    $email = $input['email'];
+
+$q1 = "SELECT * FROM utenti WHERE email = $1";
+$result = pg_query_params($dbconn, $q1, array($email));
+
+if (!($utente = pg_fetch_array($result, null, PGSQL_ASSOC))) {
+    echo json_encode(["status" => "error", "message" => "noUser"]);
+} else {
+    // Confronta la password inserita con l'hash salvato nel database
+    if (password_verify($input['password'], $utente['password'])) {
+        $_SESSION['email'] = $email;
+        setcookie("email", $email, time() + 3600, "/");
+
+        echo json_encode(["status" => "ok", "message" => "ok"]);
+        exit;
+        
+    } else {
+        echo json_encode(["status" => "error", "message" => "pwdError"]);
+        exit;
+    }
+    pg_close($dbconn);
         }
-        ?>
-    </body>
-</html>
+    }
+?>
