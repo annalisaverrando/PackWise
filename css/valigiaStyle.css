@@ -271,6 +271,8 @@
 @media (max-width: 768px) {
   .wrapper {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: 0;
   }
 
   .sidebar {

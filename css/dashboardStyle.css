@@ -103,6 +103,20 @@ select {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.no-trip {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.no-trip-title {
+  font-size: 1.5rem;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+}
+
 .main-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

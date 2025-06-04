@@ -161,66 +161,98 @@ async function loadTripPanel(filter) {
   let tripList = await loadTrip(filter);
   let container = document.getElementById("main-container");
   container.textContent = "";
-  if (tripList == []) {
-    let content = document.createElement("div");
-    content.textContent = "Non hai ancora nessun viaggio";
-    container.appendChild(content);
-  } else {
+
+  //Se non ci sono viaggi mostro la schermata per la dashboard vuota
+  if (tripList.length == 0 && filter == "all") {
+    container.style.display = "none";
+    let freeContainer = document.getElementById("no-trip");
+    freeContainer.style.display = "flex";
+  }
+  //Se ci sono viaggi carico i viaggi nella dashboard
+  else {
+    container.style.display = "grid";
+    document.getElementById("no-trip").style.display = "none";
     for (let trip of tripList) {
       let tripElement = createTripPanel(trip);
       container.appendChild(tripElement);
     }
-    setBanner();
   }
+  setBanner();
 }
 
 //Inserisce nel banner le informazioni del viaggio attivo se è presente, altrimenti del viaggio in programma più vicino.
 async function setBanner() {
   let tripList = await loadTrip("active");
-  console.log(tripList);
   let bannerTrip;
+
+  let header = document.querySelector(".banner-header");
+  let name = document.getElementById("banner-name");
+  let destination = document.getElementById("destination");
+  let dates = document.getElementById("dates");
+  let button = document.querySelector(".banner-button");
+  let countdown = document.getElementById("countdown");
+
   if (tripList.length > 0) {
     bannerTrip = tripList[0];
     document.querySelector(".banner-header").textContent = "🧭	Sei in viaggio!";
     document.querySelector(".banner-button").textContent =
       "📋 Vedi attività programmate";
+    name.textContent = bannerTrip.nome;
+    destination.textContent = `${bannerTrip.destinazione}`;
+    dates.textContent = getDateRange(
+      bannerTrip.data_inizio,
+      bannerTrip.data_fine
+    );
 
     //agiungo le classi al banner per stile personalizzato
     document.querySelector(".banner").classList.add("active");
     document.getElementById("countdown").textContent = "🎉 Viaggio in corso!";
+    sessionStorage.viaggio_id = bannerTrip.id;
+    button.onclick = function () {
+      window.location.href = "../planner/planner.html";
+    };
   } else {
     tripList = await loadTrip("planned");
-    console.log("sono nell'else");
-    bannerTrip = tripList[0];
 
-    document.querySelector(".banner-header").textContent =
-      "🎒 Prossimo viaggio";
-    document.querySelector(".banner-button").textContent =
-      "📋 Pianifica viaggio";
+    //Se non ci sono viaggi in programma il banner invita l'utente a crear e uno nuovo
+    if (tripList.length == 0) {
+      name.textContent = "Pianifica il tuo prossimo viaggio!";
+      header.textContent = "";
+      destination.textContent = "";
+      dates.textContent = "";
+      countdown.textContent = "";
+      button.textContent = "📋 Pianifica ora!";
+      button.onclick = function () {
+        document.getElementById("new-trip-modal").style.display = "flex";
+      };
+      document.querySelector(".banner").classList.remove("active");
+    } else {
+      //Se ci sono viaggi in programma mostro quello più vicino
+      bannerTrip = tripList[0];
 
-    document.querySelector(".banner").classList.remove("active");
+      header.textContent = "🎒 Prossimo viaggio";
+      button.textContent = "📋 Pianifica viaggio";
+      document.querySelector(".banner").classList.remove("active");
 
-    //Setto i giorni mancati se il viaggio è in programma
-    let today = new Date();
-    let start = new Date(bannerTrip.data_inizio);
-    let diffMill = start - today;
-    let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+      let today = new Date();
+      let start = new Date(bannerTrip.data_inizio);
+      let diffMill = start - today;
+      let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
 
-    document.getElementById(
-      "countdown"
-    ).textContent = `${diffDays} giorni rimanenti`;
+      countdown.textContent = `${diffDays} giorni rimanenti`;
+
+      name.textContent = bannerTrip.nome;
+      destination.textContent = `${bannerTrip.destinazione}`;
+      dates.textContent = getDateRange(
+        bannerTrip.data_inizio,
+        bannerTrip.data_fine
+      );
+      button.onclick = function () {
+        window.location.href = "../planner/planner.html";
+      };
+      sessionStorage.viaggio_id = bannerTrip.id;
+    }
   }
-
-  document.getElementById("banner-name").textContent = bannerTrip.nome;
-  document.getElementById(
-    "destination"
-  ).textContent = `${bannerTrip.destinazione}`;
-  document.getElementById("dates").textContent = getDateRange(
-    bannerTrip.data_inizio,
-    bannerTrip.data_fine
-  );
-
-  sessionStorage.viaggio_id = bannerTrip.id;
 }
 
 //Manda al db i dati modificati del viaggio
@@ -367,10 +399,11 @@ function getDateRange(start, end) {
 //Definisce lo stato di un viaggio sulla base delle date di partenza e arrivo
 function getTripStatus(start, end) {
   let date = new Date();
+  let today = new Date(date.getFullYear(), date.getMonth(), date.getDate()); //Non considero l'orario
   start = new Date(start);
   end = new Date(end);
-  if (date > end) return { status: "trip-completed", text: "COMPLETATO" };
-  if (date < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
+  if (today > end) return { status: "trip-completed", text: "COMPLETATO" };
+  if (today < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
   return { status: "trip-active", text: "ATTIVO" };
 }
 
