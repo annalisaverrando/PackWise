@@ -274,7 +274,7 @@ function editTrip(viaggio_id) {
         alert("Errore nella modifica del viaggio");
       } else {
         loadTripPanel("all");
-        closeModal();
+        closeModal("trip-modal");
       }
     });
 }
@@ -400,7 +400,7 @@ function getTripStatus(start, end) {
   start = new Date(start);
   end = new Date(end);
   if (today > end) return { status: "trip-completed", text: "COMPLETATO" };
-  if (today < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
+  if (date < start) return { status: "trip-planned", text: "IN PROGRAMMA" };
   return { status: "trip-active", text: "ATTIVO" };
 }
 

@@ -11,12 +11,13 @@ $viaggio_id = $data["viaggio_id"];
 $conn = pg_connect("host=localhost port=5432 dbname=packwise user=postgres password=postgres")
     or die('Errore nella connessione: ' . pg_last_error());
 
-$query = "UPDATE viaggi SET nome = $1, destinazione = $2, data_inizio = $3, data_fine = $4 WHERE id = $5";
+$query = "UPDATE viaggi SET nome = $1, destinazione = $2, data_inizio = $3, data_fine = $4 WHERE id = $5 RETURNING *";
 
 $result = pg_query_params($conn, $query, array($name, $destination, $start, $end, $viaggio_id));
 
 if($result){
-  echo json_encode(["status" => "ok"]);
+  $row = pg_fetch_assoc($result);
+  echo json_encode(["status" => "ok", "message" => $row]);
   exit;
 } else{
   echo json_encode(["status" => "error", "message" => pg_last_error()]);

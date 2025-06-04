@@ -21,30 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       departure_date = info.data_inizio;
       return_date = info.data_fine;
 
-      //Setto le informazioni del viaggio nel banner
-      document.getElementById("banner-name").textContent = info.nome;
-      document.getElementById(
-        "destination"
-      ).textContent = `${info.destinazione}`;
-      document.getElementById("dates").textContent = getDateRange(
-        departure_date,
-        return_date
-      );
-
-      let today = new Date();
-      let start = new Date(departure_date);
-      let diffMill = start - today;
-      let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
-
-      if (diffDays < 0) {
-        document.getElementById(
-          "countdown"
-        ).textContent = `Partenza avvenuta ${-diffDays} giorni fa`;
-      } else {
-        document.getElementById(
-          "countdown"
-        ).textContent = `${diffDays} giorni rimanenti`;
-      }
+      setBanner(info);
 
       //Calcolo le date della settimana di partenza
       calculateMonday();
@@ -313,6 +290,31 @@ function closeEditPanel() {
 
 //---ALTRE FUNZIONI---
 
+function setBanner(info) {
+  //Setto le informazioni del viaggio nel banner
+  document.getElementById("banner-name").textContent = info.nome;
+  document.getElementById("destination").textContent = `${info.destinazione}`;
+  document.getElementById("dates").textContent = getDateRange(
+    departure_date,
+    return_date
+  );
+
+  let today = new Date();
+  let start = new Date(departure_date);
+  let diffMill = start - today;
+  let diffDays = Math.ceil(diffMill / (1000 * 60 * 60 * 24));
+
+  if (diffDays < 0) {
+    document.getElementById(
+      "countdown"
+    ).textContent = `Partenza avvenuta ${-diffDays} giorni fa`;
+  } else {
+    document.getElementById(
+      "countdown"
+    ).textContent = `${diffDays} giorni rimanenti`;
+  }
+}
+
 //Calcola la stringa che indica le date del viaggio
 function getDateRange(start, end) {
   const italianMonth = [
@@ -501,6 +503,7 @@ function updateVacationDetails() {
         //Calcolo il lunedì della nuova settimana di vacanza
         calculateMonday(new Date(start));
         //Aggiorno la data corrente
+        setBanner(data.message);
         renderCalendar();
         closeTripPanel();
       }
@@ -565,7 +568,7 @@ function createEventHTML(eventId, start_time, title) {
   return div;
 }
 
-//Prende dal db gli eventi della data selezionata e li aggiunge al calendario
+//Prende dal db gli eventi della settimana selezionata e li aggiunge al calendario
 function loadEvents(week) {
   fetch("../planner/caricaEventi.php", {
     method: "POST",
