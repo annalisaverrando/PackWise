@@ -257,7 +257,7 @@ function getDateRange(start, end) {
 //Aggiorna i dettagli presenti nel banner
 function updateDetails() {
   const viaggio_id = new URLSearchParams(window.location.search).get("id");
-  fetch("../php/get_date_viaggio.php", {
+  fetch("../php/infoViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,

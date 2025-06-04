@@ -94,7 +94,7 @@ function logoutButton() {
 
 //Apre il modal per la modifica dei dettagli del viaggio
 function openModal(id) {
-  fetch("../php/get_date_viaggio.php", {
+  fetch("../php/infoViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(id)}`,

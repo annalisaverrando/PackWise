@@ -6,7 +6,7 @@ let return_date;
 
 document.addEventListener("DOMContentLoaded", function () {
   //Invio l'id viaggio al server PHP per poter recuperare le informazioni del viaggio
-  fetch("../php/get_date_viaggio.php", {
+  fetch("../php/infoViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,
@@ -152,7 +152,7 @@ function logoutButton() {
 
 //Apre il pannello di modifica viaggio
 function openTripPanel() {
-  fetch("../php/get_date_viaggio.php", {
+  fetch("../php/infoViaggio.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `viaggio_id=${encodeURIComponent(viaggio_id)}`,
