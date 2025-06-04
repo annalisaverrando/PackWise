@@ -61,7 +61,7 @@ function handlerRegistration(event) {
     }, 3000);
     return;
   }
-  let password = document.getElementById("inputPassword");
+  let password = document.getElementById("inputPassword").value;
 
   fetch("../registrazione/registrazione.php", {
     method: "POST",
